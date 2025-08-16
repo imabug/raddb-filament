@@ -42,14 +42,14 @@ class MonthlySurveyCountWidget extends ChartWidget
                             ->all();
 
         foreach ($monthlyCount as $c) {
-            $chartData[] = $c['c'];
+            $data[] = $c['c'];
         }
 
         return [
             'datasets' => [
                 [
                     'label' => 'Monthly survey counts',
-                    'data' => $chartData,
+                    'data' => $data,
                 ],
             ],
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

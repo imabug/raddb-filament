@@ -3,15 +3,18 @@
 namespace App\Filament\Widgets;
 
 use App\Models\TestDate;
-use Filament\Forms\Components\Select;
 use Filament\Widgets\ChartWidget;
-use Illuminate\Support\Facades\DB;
 
 class MonthlySurveyCountWidget extends ChartWidget
 {
-    protected ?string $heading = 'Monthly Survey Count Widget';
+    protected ?string $heading = 'Monthly Survey Counts';
     protected ?string $pollingInterval = null;
     public ?string $filter = '';
+
+    public function getDescription(): ?string
+    {
+        return 'The number of surveys performed in each month.  Includes annual and acceptance tests, major service checks, shielding plans and surveys, accreditation surveys.';
+    }
 
     protected function getFilters(): ?array
     {
@@ -26,11 +29,6 @@ class MonthlySurveyCountWidget extends ChartWidget
         }
 
         return $yearFilter;
-    }
-
-    public function getDescription(): ?string
-    {
-        return 'The number of surveys performed in each month.  Includes annual and acceptance tests, major service checks, shielding plans and surveys, accreditation surveys.';
     }
 
     protected function getData(): array

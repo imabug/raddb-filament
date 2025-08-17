@@ -9,6 +9,7 @@ class YearlySurveyCountWidget extends ChartWidget
 {
     protected ?string $heading = 'Yearly Survey Counts';
     protected ?string $pollingInterval = null;
+    protected static ?int $sort = 1;
 
     public function getDescription(): ?string
     {

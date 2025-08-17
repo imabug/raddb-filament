@@ -27,4 +27,14 @@ class LastYear extends Model
     {
         return $this->belongsTo(TestDate::class, 'id');
     }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'test_date' => 'date:Y-m-d',
+        ];
+    }
 }

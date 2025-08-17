@@ -38,19 +38,6 @@ class Machine extends Model implements HasMedia
     ];
 
     /**
-     * Attribute casting.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at'   => 'datetime',
-        'deleted_at'   => 'datetime',
-        'updated_at'   => 'datetime',
-        'manuf_date'   => 'date:Y-m-d',
-        'install_date' => 'date:Y-m-d',
-    ];
-
-    /**
      * Accessors to append to the model.
      *
      * @var array<string>
@@ -131,6 +118,21 @@ class Machine extends Model implements HasMedia
     public function genData(): HasMany
     {
         return $this->hasMany(GenData::class);
+    }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+            'manuf_date'   => 'date:Y-m-d',
+            'install_date' => 'date:Y-m-d',
+            'remove_date'  => 'date:Y-m-d',
+        ];
     }
 
     /*

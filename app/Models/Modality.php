@@ -24,20 +24,21 @@ class Modality extends Model
      */
     protected $fillable = ['modality'];
 
-    /**
-     * Attribute casting.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
     // Relationships
     public function machine(): HasMany
     {
         return $this->hasMany(Machine::class);
+    }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
     }
 }

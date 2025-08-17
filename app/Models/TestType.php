@@ -18,17 +18,6 @@ class TestType extends Model
     protected $fillable = ['test_type'];
 
     /**
-     * Attribute casting.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -40,4 +29,17 @@ class TestType extends Model
     {
         return $this->hasMany(TestDate::class);
     }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
 }

@@ -35,18 +35,6 @@ class TestDate extends Model implements HasMedia
         'report_file_path',
     ];
 
-    /**
-     * Attribute casting.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'test_date'  => 'date',
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
     public function registerMediaCollections(?Media $media = null): void
     {
         $this->addMediaCollection('survey_reports')
@@ -113,4 +101,18 @@ class TestDate extends Model implements HasMedia
             ->orderby('test_date', 'desc')
             ->limit($n);
     }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'test_date'  => 'date:Y-m-d',
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
 }

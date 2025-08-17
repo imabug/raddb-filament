@@ -21,17 +21,6 @@ class OpNote extends Model
     ];
 
     /**
-     * Attribute casting.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -43,4 +32,17 @@ class OpNote extends Model
     {
         return $this->belongsTo(Machine::class);
     }
+
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
 }

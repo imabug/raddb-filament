@@ -8,8 +8,14 @@ use Filament\Widgets\ChartWidget;
 
 class SurveyCategoryCountWidget extends ChartWidget
 {
+    /*
+     * FilamentPHP widget to display the number of surveys performed each year by
+     * test type category.
+     */
+
     protected ?string $heading = 'Survey Categories';
     protected ?string $pollingInterval = null;
+    protected static ?int $sort = 3;
     public ?string $filter = '';
 
     public function getDescription(): ?string
@@ -31,6 +37,7 @@ class SurveyCategoryCountWidget extends ChartWidget
 
     protected function getFilters(): ?array
     {
+        // Get a collection of all the survey years in the database
         $years = TestDate::selectRaw('year(test_date) as years')
                      ->distinct()
                      ->orderBy('years','desc')
@@ -46,8 +53,16 @@ class SurveyCategoryCountWidget extends ChartWidget
 
     protected function getData(): array
     {
-        $activeFilter = empty($this->filter) ? date("Y") : $this->filter;
+        // If $this->filter is empty, set $activeFilter to the current year
+        if (empty($this->filter)) $this->filter = date("Y");
 
+
+        // Get a collection of all the test type categories
+        // Don't count these survey types:
+        // 8 - Other
+        // 10 - Calibration
+        // If the testtypes database table changes, the test type IDs to be excluded
+        // will need to be modified.
         $categories = TestType::whereNotIn('id', [8, 10])
                           ->orderBy('id')
                           ->get('test_type')
@@ -57,8 +72,9 @@ class SurveyCategoryCountWidget extends ChartWidget
             $categoryLabels[] = $c['test_type'];
         }
 
+        // Count the surveys for each test type
         $categoryCounts = TestDate::with('type')
-                              ->year($activeFilter)
+                              ->year($this->filter)
                               ->whereNotIn('type_id', [8, 10])
                               ->orderBy('type_id')
                               ->get()

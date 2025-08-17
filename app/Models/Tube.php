@@ -74,31 +74,6 @@ class Tube extends Model
     }
 
     /*
-     * Scopes
-     */
-
-    /**
-     * Scope function to return tubes with tube_status = Active.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeActive($query): Builder
-    {
-        return $query->where('tube_status', 'Active');
-    }
-
-    /**
-     * Scope function to return tubes belonging to $machine_id.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $machine_id
-     */
-    public function scopeForMachine($query, $machine_id): Builder
-    {
-        return $query->where('machine_id', $machine_id);
-    }
-
-    /*
      * Mutators
      */
 

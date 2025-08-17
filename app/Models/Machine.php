@@ -128,86 +128,9 @@ class Machine extends Model implements HasMedia
         return $this->hasOne(SurveyScheduleView::class, 'id');
     }
 
-    /*
-     * Scopes
-     */
-
-    /**
-     * Scope function to return active machines.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeActive($query): Builder
+    public function genData(): HasMany
     {
-        return $query->where('machine_status', 'Active');
-    }
-
-    /**
-     * Scope function to return inactive machines.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeInactive($query): Builder
-    {
-        return $query->where('machine_status', 'Inactive');
-    }
-
-    /**
-     * Scope function to return removed machines.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeRemoved($query): Builder
-    {
-        return $query->where('machine_status', 'Removed');
-    }
-
-    /**
-     * Scope function to return machines for a specific location.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
-     */
-    public function scopeLocation($query, $id): Builder
-    {
-        // Scope function to return machines with location_id=$id
-        return $query->where('location_id', $id);
-    }
-
-    /**
-     * Scope function to return machines for a specific modality.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
-     */
-    public function scopeModality($query, $id): Builder
-    {
-        // Scope function to return machines with modality_id=$id
-        return $query->where('modality_id', $id);
-    }
-
-    /**
-     * Scope function to return machines for a specific manufacturer.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
-     */
-    public function scopeManufacturer($query, $id): Builder
-    {
-        // Scope function to return machines with modality_id=$id
-        return $query->where('manufacturer_id', $id);
-    }
-
-    /**
-     * Scope function to return test equipment.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeTestEquipment($query): Builder
-    {
-        // If the modality_id for test equipment is something other than 19
-        // change the value in the where() clause.
-        return $query->where('modality_id', 19);
+        return $this->hasMany(GenData::class);
     }
 
     /*
@@ -217,7 +140,7 @@ class Machine extends Model implements HasMedia
     /**
      * Add an age attribute based on either install or manufacture date.
      */
-    public function age(): Attribute
+    protected function age(): Attribute
     {
         // Calculate the age of the unit based on manuf_date or install_date
         return Attribute::make(

@@ -91,55 +91,6 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
-    /*
-     * Scopes
-     */
-
-    /**
-     * Scope function to return tests dates belonging to $machine_id.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $machine_id
-     */
-    public function scopeForMachine($query, $machine_id): Builder
-    {
-        // Scope function to return test dates belonging to $machine_id
-        return $query->where('machine_id', $machine_id);
-    }
-
-    /**
-     * Scope function to return test dates from the specified year.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $yr
-     */
-    public function scopeYear($query, $yr): Builder
-    {
-        return $query->whereYear('test_date', '=', $yr);
-    }
-
-    /**
-     * Scope function to return a specific $id.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
-     */
-    public function scopeId($query, $id): Builder
-    {
-        return $query->where('id', $id);
-    }
-
-    /**
-     * Scope function to return test dates for a specific type of test.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $id
-     */
-    public function scopeTestType($query, $id): Builder
-    {
-        return $query->where('type_id', $id);
-    }
-
     /**
      * Scope function to return pending test dates (scheduled after the current date).
      *

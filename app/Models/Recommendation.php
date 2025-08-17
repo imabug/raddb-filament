@@ -54,39 +54,4 @@ class Recommendation extends Model
     {
         return $this->belongsTo(TestDate::class);
     }
-
-    /*
-     * Scopes
-     */
-
-    /**
-     * Scope function to return unresolved recommendations (resolved=0).
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeUnresolved($query): Builder
-    {
-        return $query->where('resolved', 0);
-    }
-
-    /**
-     * Scope function to return unresolved recommendations (resolved=1).
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     */
-    public function scopeResolved($query): Builder
-    {
-        return $query->where('resolved', 1);
-    }
-
-    /**
-     * Scope function to return recommendations for a given $surveyID.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int                                   $surveyId
-     */
-    public function scopeSurveyId($query, $surveyId): Builder
-    {
-        return $query->where('survey_id', $surveyId);
-    }
 }

@@ -35,6 +35,19 @@ class TestDate extends Model implements HasMedia
         'report_file_path',
     ];
 
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'test_date'  => 'date:Y-m-d',
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
     public function registerMediaCollections(?Media $media = null): void
     {
         $this->addMediaCollection('survey_reports')
@@ -84,7 +97,8 @@ class TestDate extends Model implements HasMedia
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
-    public function scopePending($query): Builder
+    #[Scope]
+    public function pending($query): Builder
     {
         return $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
@@ -95,24 +109,11 @@ class TestDate extends Model implements HasMedia
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param int                                   $n
      */
-    public function scopeRecent($query, $n): Builder
+    #[Scope]
+    public function recent($query, $n): Builder
     {
         return $query->where('type_id', 1)
             ->orderby('test_date', 'desc')
             ->limit($n);
     }
-
-    /*
-     * Attribute casting
-     */
-    protected function casts(): array
-    {
-        return [
-            'test_date'  => 'date:Y-m-d',
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
-        ];
-    }
-
 }

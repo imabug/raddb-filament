@@ -15,6 +15,16 @@ class LastYear extends Model
     protected $table = 'lastyear_view';
 
     /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'test_date' => 'date:Y-m-d',
+        ];
+    }
+
+    /*
      * Relationships
      */
 
@@ -26,15 +36,5 @@ class LastYear extends Model
     public function survey(): BelongsTo
     {
         return $this->belongsTo(TestDate::class, 'id');
-    }
-
-    /*
-     * Attribute casting
-     */
-    protected function casts(): array
-    {
-        return [
-            'test_date' => 'date:Y-m-d',
-        ];
     }
 }

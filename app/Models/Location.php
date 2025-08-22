@@ -17,12 +17,6 @@ class Location extends Model
      */
     protected $fillable = ['location'];
 
-    // Relationships
-    public function machine(): HasMany
-    {
-        return $this->hasMany(Machine::class);
-    }
-
     /*
      * Attribute casting
      */
@@ -33,5 +27,11 @@ class Location extends Model
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
         ];
+    }
+
+    // Relationships
+    public function machine(): HasMany
+    {
+        return $this->hasMany(Machine::class);
     }
 }

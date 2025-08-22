@@ -11,6 +11,13 @@ class OpNote extends Model
     use SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'opnotes';
+
+    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>
@@ -19,19 +26,6 @@ class OpNote extends Model
         'machine_id',
         'note',
     ];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'opnotes';
-
-    // Relationships
-    public function machine(): BelongsTo
-    {
-        return $this->belongsTo(Machine::class);
-    }
 
     /*
      * Attribute casting
@@ -45,4 +39,9 @@ class OpNote extends Model
         ];
     }
 
+    // Relationships
+    public function machine(): BelongsTo
+    {
+        return $this->belongsTo(Machine::class);
+    }
 }

@@ -28,19 +28,6 @@ class Recommendation extends Model
         'wo_number',
     ];
 
-    public function registerMediaCollection(): void
-    {
-        $this->addMediaCollection('service_reports')
-            ->useDisk('ServiceReports');
-    }
-
-    /*
-     * Relationships
-     */
-    public function survey(): BelongsTo
-    {
-        return $this->belongsTo(TestDate::class);
-    }
     /*
      * Attribute casting
      */
@@ -55,4 +42,17 @@ class Recommendation extends Model
         ];
     }
 
+    public function registerMediaCollection(): void
+    {
+        $this->addMediaCollection('service_reports')
+            ->useDisk('ServiceReports');
+    }
+
+    /*
+     * Relationships
+     */
+    public function survey(): BelongsTo
+    {
+        return $this->belongsTo(TestDate::class);
+    }
 }

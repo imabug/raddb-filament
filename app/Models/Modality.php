@@ -24,12 +24,6 @@ class Modality extends Model
      */
     protected $fillable = ['modality'];
 
-    // Relationships
-    public function machine(): HasMany
-    {
-        return $this->hasMany(Machine::class);
-    }
-
     /*
      * Attribute casting
      */
@@ -40,5 +34,11 @@ class Modality extends Model
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
         ];
+    }
+
+    // Relationships
+    public function machine(): HasMany
+    {
+        return $this->hasMany(Machine::class);
     }
 }

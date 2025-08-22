@@ -17,6 +17,18 @@ class Manufacturer extends Model
      */
     protected $fillable = ['manufacturer'];
 
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+        ];
+    }
+
     // Relationships
     public function machine(): HasMany
     {
@@ -31,17 +43,5 @@ class Manufacturer extends Model
     public function tube_ins_manuf(): HasMany
     {
         return $this->hasMany(Tube::class);
-    }
-
-    /*
-     * Attribute casting
-     */
-    protected function casts(): array
-    {
-        return [
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
-        ];
     }
 }

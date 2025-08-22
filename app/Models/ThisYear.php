@@ -15,6 +15,16 @@ class ThisYear extends Model
     protected $table = 'thisyear_view';
 
     /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'test_date' => 'date:Y-m-d',
+        ];
+    }
+
+    /*
      * Relationships
      */
     public function machine(): BelongsTo
@@ -25,15 +35,5 @@ class ThisYear extends Model
     public function survey(): BelongsTo
     {
         return $this->belongsTo(TestDate::class, 'id');
-    }
-
-    /*
-     * Attribute casting
-     */
-    protected function casts(): array
-    {
-        return [
-            'test_date' => 'date:Y-m-d',
-        ];
     }
 }

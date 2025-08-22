@@ -17,11 +17,6 @@ class Tester extends Model
      */
     protected $fillable = ['name', 'initials'];
 
-    // Relationships
-    public function testdate(): HasMany
-    {
-        return $this->hasMany(TestDate::class);
-    }
     /*
      * Attribute casting
      */
@@ -34,4 +29,9 @@ class Tester extends Model
         ];
     }
 
+    // Relationships
+    public function testdate(): HasMany
+    {
+        return $this->hasMany(TestDate::class);
+    }
 }

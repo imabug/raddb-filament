@@ -11,24 +11,18 @@ class TestType extends Model
     use SoftDeletes;
 
     /**
-     * Attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
-    protected $fillable = ['test_type'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'testtypes';
 
-    // Relationships
-    public function testdate(): HasMany
-    {
-        return $this->hasMany(TestDate::class);
-    }
+    /**
+     * Attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = ['test_type'];
 
     /*
      * Attribute casting
@@ -42,4 +36,9 @@ class TestType extends Model
         ];
     }
 
+    // Relationships
+    public function testdate(): HasMany
+    {
+        return $this->hasMany(TestDate::class);
+    }
 }

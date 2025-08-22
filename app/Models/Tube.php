@@ -34,6 +34,21 @@ class Tube extends Model
         'tube_status',
     ];
 
+    /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'created_at'   => 'datetime',
+            'deleted_at'   => 'datetime',
+            'updated_at'   => 'datetime',
+            'manuf_date'   => 'date:Y-m-d',
+            'install_date' => 'date:Y-m-d',
+            'remove_date'  => 'date:Y-m-d',
+        ];
+    }
+
     /**
      * Accessors to append to the model.
      *
@@ -57,21 +72,6 @@ class Tube extends Model
     public function insert_manuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
-    }
-
-    /*
-     * Attribute casting
-     */
-    protected function casts(): array
-    {
-        return [
-            'created_at'   => 'datetime',
-            'deleted_at'   => 'datetime',
-            'updated_at'   => 'datetime',
-            'manuf_date'   => 'date:Y-m-d',
-            'install_date' => 'date:Y-m-d',
-            'remove_date'  => 'date:Y-m-d',
-        ];
     }
 
     /*

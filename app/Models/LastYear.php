@@ -14,6 +14,20 @@ class LastYear extends Model
      */
     protected $table = 'lastyear_view';
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'survey_id';
+
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /*
      * Attribute casting
      */

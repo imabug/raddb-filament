@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -93,14 +94,24 @@ class TestDate extends Model implements HasMedia
     }
 
     /**
+     * Scope function to return the test date year
+     *
+     */
+    #[Scope]
+    protected function year(Builder $query, int $y): void
+    {
+        $query->whereYear('test_date', '=', $y);
+    }
+
+    /**
      * Scope function to return pending test dates (scheduled after the current date).
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
     #[Scope]
-    public function pending($query): Builder
+    protected function pending(Builder $query): void
     {
-        return $query->where('testdates.test_date', '>=', date('Y-m-d'));
+        $query->where('testdates.test_date', '>=', date('Y-m-d'));
     }
 
     /**
@@ -110,9 +121,9 @@ class TestDate extends Model implements HasMedia
      * @param int                                   $n
      */
     #[Scope]
-    public function recent($query, $n): Builder
+    protected function recent(Builder $query, $n): void
     {
-        return $query->where('type_id', 1)
+        $query->where('type_id', 1)
             ->orderby('test_date', 'desc')
             ->limit($n);
     }

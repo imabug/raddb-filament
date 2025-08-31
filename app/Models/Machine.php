@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -133,6 +134,48 @@ class Machine extends Model implements HasMedia
     public function genData(): HasMany
     {
         return $this->hasMany(GenData::class);
+    }
+
+    /*
+     * Scopes
+     */
+
+    /**
+     * Scope function to return active machines
+     */
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->where('machine_status', 'Active');
+    }
+
+    /**
+     * Scope function to return inactive machines
+     */
+    #[Scope]
+    protected function inactive(Builder $query): void
+    {
+        $query->where('machine_status', 'Inactive');
+    }
+
+    /**
+     * Scope function to return removed machines
+     */
+    #[Scope]
+    protected function removed(Builder $query): void
+    {
+        $query->where('machine_status', 'Removed');
+    }
+
+    /**
+     * Scope function to return test equipment
+     */
+    #[Scope]
+    protected function testEquipment(Builder $query): void
+    {
+        // If the modality_id for test equipment is something other than 19
+        // change the value in the where clause appropriately
+        $query->where('modality_id', 19);
     }
 
     /*

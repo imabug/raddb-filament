@@ -14,6 +14,13 @@ class SurveyScheduleView extends Model
      */
     protected $table = 'surveyschedule_view';
 
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /*
      * Relationships
      */

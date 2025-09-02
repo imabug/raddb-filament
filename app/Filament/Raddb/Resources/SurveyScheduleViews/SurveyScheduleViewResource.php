@@ -21,9 +21,13 @@ class SurveyScheduleViewResource extends Resource
 
     protected static ?string $navigationLabel = "Survey Schedule";
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
 
     protected static ?string $recordTitleAttribute = 'description';
+
+    protected static ?string $modelLabel = 'Survey Schedule';
+
+    protected static ?string $pluralModelLabel = 'Survey Schedule';
 
     public static function getEloquentQuery(): Builder
     {

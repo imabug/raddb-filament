@@ -15,17 +15,19 @@ class SurveyScheduleViewsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('description'),
-                TextColumn::make('prevSurveyId'),
-                TextColumn::make('prevSurveyDate')
-                    ->date('Y-m-d'),
-                TextColumn::make('currSurveyId'),
-                TextColumn::make('currSurveyDate')
-                    ->date('Y-m-d'),
-            ])
-            ->paginated(false);
+                   ->heading('Survey Schedule')
+                   ->columns([
+                       TextColumn::make('id'),
+                       TextColumn::make('description'),
+                       TextColumn::make('prevSurveyId'),
+                       TextColumn::make('prevSurveyDate')
+                           ->date('Y-m-d'),
+                       TextColumn::make('currSurveyId'),
+                       TextColumn::make('currSurveyDate')
+                           ->date('Y-m-d'),
+                   ])
+                   ->paginated(false)
+                   ->striped();
             // ->filters([
             //     //
             // ]);

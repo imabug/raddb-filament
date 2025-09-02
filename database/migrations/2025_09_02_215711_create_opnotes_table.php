@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('opnotes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->nullable(false);
+            $table->foreignId('machine_id')->nullable(false)->index();
             $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();

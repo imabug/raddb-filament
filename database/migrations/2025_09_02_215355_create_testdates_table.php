@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('testdates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->nullable(false);
-            $table->foreignId('testtype_id')->nullable(false);
+            $table->foreignId('machine_id')->nullable(false)->index();
+            $table->foreignId('testtype_id')->nullable(false)->index();
             $table->date('test_date')->nullable(false);
             $table->string('accession', length:50)->nullable();
             $table->text('notes')->nullable();

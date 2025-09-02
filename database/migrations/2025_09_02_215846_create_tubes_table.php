@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('tubes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->nullable(false);
-            $table->foreignId('housing_manuf_id')->nullable();
+            $table->foreignId('machine_id')->nullable(false)->index();
+            $table->foreignId('housing_manuf_id')->nullable()->index();
             $table->string('housing_model', length:50)->nullable();
             $table->string('housing_sn', length:20)->nullable();
-            $table->foreignId('insert_manuf_id')->nullable();
+            $table->foreignId('insert_manuf_id')->nullable()->index();
             $table->string('insert_model', length:50)->nullable();
             $table->string('insert_sn', length:20)->nullable();
             $table->date('manuf_date')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('lfs', total:2, places:1)->default('0.0');
             $table->decimal('mfs', total:2, places:1)->default('0.0');
             $table->decimal('sfs', total:2, places:1)->default('0.0');
-            $table->enum('tube_status', ['Active', 'Removed']);
+            $table->enum('tube_status', ['Active', 'Removed'])->index();
             $table->text('notes')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facility_id')->nullable(false);
-            $table->foreignId('location_id')->nullable(false);
-            $table->foreignId('manufacturer_id')->nullable(false);
-            $table->foreignId('modality_id')->nullable(false);
+            $table->foreignId('facility_id')->nullable(false)->index();
+            $table->foreignId('location_id')->nullable(false)->index();
+            $table->foreignId('manufacturer_id')->nullable(false)->index();
+            $table->foreignId('modality_id')->nullable(false)->index();
             $table->string('description', length:100)->nullable();
             $table->string('model', length:100)->nullable();
             $table->string('serial_number', length:50)->nullable();
@@ -26,7 +26,8 @@ return new class extends Migration
             $table->date('manuf_date')->nullable();
             $table->date('remove_date')->nullable();
             $table->enum('machine_status', ['Active', 'Inactive', 'Removed'])
-                ->nullable(false);
+                ->nullable(false)
+                ->index();
             $table->string('software_version', length:50)->nullable();
             $table->string('pacs_station', length:50)->nullable();
             $table->text('notes')->nullable();

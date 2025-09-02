@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Machine;
+use App\Models\TestDate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -44,11 +46,11 @@ class LastYear extends Model
 
     public function machine(): BelongsTo
     {
-        return $this->belongsTo(Machine::class);
+        return $this->belongsTo(Machine::class, 'machine_id');
     }
 
     public function survey(): BelongsTo
     {
-        return $this->belongsTo(TestDate::class, 'id');
+        return $this->belongsTo(TestDate::class, 'survey_id');
     }
 }

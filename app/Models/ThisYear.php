@@ -43,11 +43,11 @@ class ThisYear extends Model
      */
     public function machine(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Machine::class);
+        return $this->belongsTo(\App\Models\Machine::class, 'machine_id');
     }
 
     public function survey(): BelongsTo
     {
-        return $this->belongsTo(TestDate::class, 'id');
+        return $this->belongsTo(TestDate::class, 'survey_id');
     }
 }

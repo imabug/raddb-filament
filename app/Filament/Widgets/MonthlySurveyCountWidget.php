@@ -22,7 +22,7 @@ class MonthlySurveyCountWidget extends ChartWidget
         // Get a collection of all the survey years in the database
         $years = TestDate::selectRaw('year(test_date) as years')
                      ->distinct()
-                     ->orderBy('years','desc')
+                     ->orderBy('years', 'desc')
                      ->get()
                      ->all();
 
@@ -36,7 +36,9 @@ class MonthlySurveyCountWidget extends ChartWidget
     protected function getData(): array
     {
         // If $this->filter is empty, set $activeFilter to the current year
-        if (empty($this->filter)) $this->filter = date("Y");
+        if (empty($this->filter)) {
+            $this->filter = date("Y");
+        }
 
         // Count the surveys for each month of the selected year
         $monthlyCount = TestDate::selectRaw('count(test_date) as c')

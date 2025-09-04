@@ -28,16 +28,16 @@ class SurveyScheduleViewsTable
                    ])
                    ->paginated(false)
                    ->striped();
-            // ->filters([
-            //     //
-            // ]);
-            // ->recordActions([
-            //     EditAction::make(),
-            // ])
-            // ->toolbarActions([
-            //     BulkActionGroup::make([
-            //         DeleteBulkAction::make(),
-            //     ]),
-            // ]);
+        // ->filters([
+        //     //
+        // ]);
+        // ->recordActions([
+        //     EditAction::make(),
+        // ])
+        // ->toolbarActions([
+        //     BulkActionGroup::make([
+        //         DeleteBulkAction::make(),
+        //     ]),
+        // ]);
     }
 }

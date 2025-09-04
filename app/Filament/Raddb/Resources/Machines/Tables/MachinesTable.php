@@ -27,13 +27,13 @@ class MachinesTable
                                'Active' => Heroicon::Check,
                                'Inactive' => Heroicon::XCircle,
                                'Removed' => Heroicon::Trash,
-                       })
+                           })
                            ->color(fn (string $state): string => match ($state) {
                                'Active' => 'success',
                                'Inactive' => 'warning',
                                'Removed' => 'danger',
                                default => 'info',
-                       }),
+                           }),
                        TextColumn::make('description')
                            ->searchable(),
                        TextColumn::make('manufacturer.manufacturer')
@@ -77,22 +77,22 @@ class MachinesTable
                            ->searchable(),
                    ])
                    ->filters([
-                       TrashedFilter::make(),
-                       Filter::make('active')
-                           ->query(fn (Builder $query): Builder => $query->where('machine_status', "Active"))
-                           ->toggle()
-                           ->default(),
+                           TrashedFilter::make(),
+                           Filter::make('active')
+                               ->query(fn (Builder $query): Builder => $query->where('machine_status', "Active"))
+                               ->toggle()
+                               ->default(),
                    ])
                    ->recordActions([
-                       ViewAction::make(),
-                       EditAction::make(),
+                           ViewAction::make(),
+                           EditAction::make(),
                    ])
                    ->toolbarActions([
-                       BulkActionGroup::make([
-                           DeleteBulkAction::make(),
-                           ForceDeleteBulkAction::make(),
-                           RestoreBulkAction::make(),
-                       ]),
+                           BulkActionGroup::make([
+                               DeleteBulkAction::make(),
+                               ForceDeleteBulkAction::make(),
+                               RestoreBulkAction::make(),
+                           ]),
                    ]);
     }
 }

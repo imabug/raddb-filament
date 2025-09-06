@@ -43,4 +43,5 @@ class ModalitySeeder extends Seeder
                 'modality' => $m,
             ]);
         }
+    }
 }

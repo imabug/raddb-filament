@@ -69,6 +69,10 @@ class Machine extends Model implements HasMedia
     /*
      * Relationships
      */
+    public function facility(): BelongsTo
+    {
+        return $this->belongsTo(Facility::class);
+    }
 
     public function location(): BelongsTo
     {
@@ -116,24 +120,9 @@ class Machine extends Model implements HasMedia
             ->latest('test_date')->first();
     }
 
-    public function recommendation(): HasManyThrough
-    {
-        return $this->hasManyThrough(
-            Recommendation::class,
-            TestDate::class,
-            'machine_id',
-            'survey_id'
-        );
-    }
-
     public function surveySchedule(): HasOne
     {
         return $this->hasOne(SurveyScheduleView::class, 'id');
-    }
-
-    public function genData(): HasMany
-    {
-        return $this->hasMany(GenData::class);
     }
 
     /*

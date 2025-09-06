@@ -38,7 +38,7 @@ class ModalitySeeder extends Seeder
      */
     public function run(): void
     {
-        foreach ($modalities as $m) {
+        foreach ($this->modalities as $m) {
             DB::table('modalities')->insert([
                 'modality' => $m,
             ]);

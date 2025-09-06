@@ -25,7 +25,7 @@ FROM testdates
 WHERE testdates.test_date BETWEEN
 MAKEDATE(YEAR(CURDATE()), 1) AND MAKEDATE(YEAR(CURDATE())+1, 1)
 AND testdates.deleted_at IS NULL
-AND (testdates.type_id=1 OR testdates.type_id=2)
+AND (testdates.testtype_id=1 OR testdates.testtype_id=2)
 ");
     }
 

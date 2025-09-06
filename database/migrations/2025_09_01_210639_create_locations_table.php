@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('facility_id')->nullable(false);
             $table->string('location', 100)->nullable(false);
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

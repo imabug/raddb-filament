@@ -68,21 +68,6 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(TestType::class);
     }
 
-    public function tester1(): BelongsTo
-    {
-        return $this->belongsTo(Tester::class);
-    }
-
-    public function tester2(): BelongsTo
-    {
-        return $this->belongsTo(Tester::class);
-    }
-
-    public function recommendations(): HasMany
-    {
-        return $this->hasMany(Recommendation::class, 'survey_id');
-    }
-
     public function thisyear(): BelongsTo
     {
         return $this->belongsTo(ThisYear::class, 'survey_id');
@@ -93,6 +78,10 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
+    public function testedBy(): BelongsTo
+    {
+        return $this->belongsTo(TestedBy::class, 'survey_id');
+    }
     /**
      * Scope function to return the test date year
      *

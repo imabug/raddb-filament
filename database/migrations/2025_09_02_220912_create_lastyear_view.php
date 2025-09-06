@@ -11,6 +11,13 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        /*
+         * View is created assuming routine and acceptance tests in the
+         * testtypes table have ID 1 and 2 respectively.
+         * If this is not true, the type_ids will need to be changed
+         * accordingly.
+         * Should find a better way to do this.
+         */
         DB::statement("
 CREATE VIEW lastyear_view (machine_id, survey_id, test_date) AS
 SELECT machine_id, testdates.id as survey_id, test_date

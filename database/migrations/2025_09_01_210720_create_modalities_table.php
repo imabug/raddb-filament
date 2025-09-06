@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('modalities', function (Blueprint $table) {
             $table->id();
-            $table->string('modality', 25)->nullable(false);
+            $table->string('modality', 50)->nullable(false);
             $table->softDeletes();
             $table->timestamps();
         });

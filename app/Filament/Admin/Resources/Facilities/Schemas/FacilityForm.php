@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Facilities\Schemas;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class FacilityForm
@@ -10,7 +11,7 @@ class FacilityForm
     {
         return $schema
             ->components([
-                //
+                TextInput::make('facility')->required(),
             ]);
     }
 }

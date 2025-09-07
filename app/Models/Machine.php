@@ -26,6 +26,10 @@ class Machine extends Model implements HasMedia
      * @var array<string>
      */
     protected $fillable = [
+        'facility_id',
+        'location_id',
+        'modality_id',
+        'manufacturer_id',
         'description',
         'vend_site_id',
         'model',
@@ -35,6 +39,8 @@ class Machine extends Model implements HasMedia
         'remove_date',
         'room',
         'status',
+        'software_version',
+        'pacs_station',
         'notes',
     ];
 

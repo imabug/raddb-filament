@@ -77,10 +77,10 @@ class SurveyCategoryCountWidget extends ChartWidget
         // Count the surveys for each test type
         $categoryCounts = TestDate::with('type')
                               ->year($this->filter)
-                              ->whereNotIn('type_id', [8, 10])
-                              ->orderBy('type_id')
+                              ->whereNotIn('testtype_id', [8, 10])
+                              ->orderBy('testtype_id')
                               ->get()
-                              ->countBy('type_id')
+                              ->countBy('testtype_id')
                               ->all();
 
         foreach ($categoryCounts as $k => $v) {

@@ -20,7 +20,7 @@ class TestTypeResource extends Resource
 {
     protected static ?string $model = TestType::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
     protected static ?string $recordTitleAttribute = 'test_type';
 

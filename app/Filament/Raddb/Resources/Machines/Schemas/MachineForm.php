@@ -6,7 +6,9 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class MachineForm
 {
@@ -14,43 +16,74 @@ class MachineForm
     {
         return $schema
             ->components([
-                Select::make('modality_id')
-                    ->relationship('modality', 'id')
+                Select::make('facility_id')
+                    ->label('Facility')
+                    ->relationship(name: 'facility', titleAttribute: 'facility')
                     ->required()
-                    ->default(0),
-                TextInput::make('description')
-                    ->default(null),
-                Select::make('manufacturer_id')
-                    ->relationship('manufacturer', 'id')
-                    ->required()
-                    ->default(0),
-                TextInput::make('vend_site_id')
-                    ->default(null),
-                TextInput::make('model')
-                    ->default('NULL'),
-                TextInput::make('serial_number')
-                    ->default(null),
-                DatePicker::make('manuf_date'),
-                DatePicker::make('install_date'),
-                DatePicker::make('remove_date'),
+                    ->live(),
                 Select::make('location_id')
-                    ->relationship('location', 'id')
-                    ->required()
-                    ->default(0),
-                TextInput::make('room')
+                    ->label('Location')
+                    ->relationship(
+                        name: 'location',
+                        titleAttribute: 'location',
+                        modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('facility_id', $get('facility_id')))
+                    ->required(),
+                Select::make('modality_id')
+                    ->label('Modality')
+                    ->relationship(name: 'modality', titleAttribute: 'modality')
+                    ->required(),
+                Select::make('manufacturer_id')
+                    ->label('Manufacturer')
+                    ->relationship(name: 'manufacturer', titleAttribute: 'manufacturer')
+                    ->required(),
+                TextInput::make('model')
+                    ->default(null)
+                    ->string()
+                    ->maxLength(100),
+                TextInput::make('serial_number')
+                    ->default(null)
+                    ->string()
+                    ->maxLength(50),
+                TextInput::make('description')
+                    ->default(null)
+                    ->string()
+                    ->maxLength(100),
+                TextInput::make('vend_site_id')
+                    ->label('Vendor site ID')
+                    ->string()
+                    ->maxLength(25)
                     ->default(null),
-                TextInput::make('machine_status')
+                TextInput::make('room')
+                    ->string()
+                    ->maxLength(20)
+                    ->default(null),
+                DatePicker::make('manuf_date')
+                    ->label('Manufacture date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
+                DatePicker::make('install_date')
+                    ->label('Install date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
+                Select::make('machine_status')
+                    ->options([
+                        'Active' => 'Active',
+                        'Inactive' => 'Inactive',
+                        'Removed' => 'Removed',
+                    ])
                     ->required()
                     ->default('Active'),
+                TextInput::make('software_version')
+                    ->string()
+                    ->maxLength(50)
+                    ->default(null),
+                TextInput::make('pacs_station')
+                    ->string()
+                    ->maxLength(50)
+                    ->default(null),
                 Textarea::make('notes')
                     ->default(null)
                     ->columnSpanFull(),
-                TextInput::make('photo')
-                    ->default(null),
-                TextInput::make('software_version')
-                    ->default(null),
-                TextInput::make('pacs_station')
-                    ->default(null),
             ]);
     }
 }

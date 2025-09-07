@@ -34,9 +34,9 @@ class MachinesTable
                                'Removed' => 'danger',
                                default => 'info',
                            }),
-                       TextColumn::make('facility.facility')
-                           ->searchable(),
                        TextColumn::make('location.location')
+                           ->searchable(),
+                       TextColumn::make('modality.modality')
                            ->searchable(),
                        TextColumn::make('description')
                            ->searchable(),
@@ -45,8 +45,6 @@ class MachinesTable
                        TextColumn::make('model')
                            ->searchable(),
                        TextColumn::make('serial_number')
-                           ->searchable(),
-                       TextColumn::make('modality.modality')
                            ->searchable(),
                        TextColumn::make('vend_site_id')
                            ->searchable(),
@@ -60,6 +58,8 @@ class MachinesTable
                            ->sortable(),
                        TextColumn::make('remove_date')
                            ->date('Y-m-d')
+                           ->sortable(),
+                       TextColumn::make('age')
                            ->sortable(),
                    ])
                    ->groups([

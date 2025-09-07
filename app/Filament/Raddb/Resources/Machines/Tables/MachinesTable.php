@@ -13,6 +13,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -63,10 +64,14 @@ class MachinesTable
                            ->sortable(),
                    ])
                    ->groups([
-                       'facility.facility',
-                       'location.location',
-                       'modality.modality',
-                       'manufacturer.manufacturer',
+                       Group::make('facility.facility')
+                           ->collapsible(),
+                       Group::make('location.location')
+                           ->collapsible(),
+                       Group::make('modality.modality')
+                           ->collapsible(),
+                       Group::make('manufacturer.manufacturer')
+                           ->collapsible(),
                    ])
                    ->defaultGroup('facility.facility')
                    ->filters([

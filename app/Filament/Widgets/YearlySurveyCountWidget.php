@@ -18,7 +18,7 @@ class YearlySurveyCountWidget extends ChartWidget
 
     protected function getData(): array
     {
-        $yearCounts = TestDate::whereNotIn('type_id', [8, 10])
+        $yearCounts = TestDate::whereNotIn('testtype_id', [8, 10])
                           ->get()
                           ->countBy(
                               function ($item, $key) {
@@ -26,6 +26,10 @@ class YearlySurveyCountWidget extends ChartWidget
                               }
                           )
                           ->sortKeys();
+
+        if (count($yearCounts) == 0) {
+            $yearCounts[] = 0;
+        }
 
         return [
             'datasets' => [

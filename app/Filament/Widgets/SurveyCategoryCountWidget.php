@@ -44,8 +44,13 @@ class SurveyCategoryCountWidget extends ChartWidget
                      ->get()
                      ->all();
 
-        foreach ($years as $y) {
-            $yearFilter[$y['years']] = $y['years'];
+        if (count($years) == 0) {
+            $yearFilter[] = 0;
+        }
+        else {
+            foreach ($years as $y) {
+                $yearFilter[$y['years']] = $y['years'];
+            }
         }
 
         return $yearFilter;
@@ -83,8 +88,13 @@ class SurveyCategoryCountWidget extends ChartWidget
                               ->countBy('testtype_id')
                               ->all();
 
-        foreach ($categoryCounts as $k => $v) {
-            $data[] = $v;
+        if (count($categoryCounts) == 0) {
+            $data[] = 0;
+        }
+        else {
+            foreach ($categoryCounts as $k => $v) {
+                $data[] = $v;
+            }
         }
 
         return [

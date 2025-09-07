@@ -34,6 +34,10 @@ class MachinesTable
                                'Removed' => 'danger',
                                default => 'info',
                            }),
+                       TextColumn::make('facility.facility')
+                           ->searchable(),
+                       TextColumn::make('location.location')
+                           ->searchable(),
                        TextColumn::make('description')
                            ->searchable(),
                        TextColumn::make('manufacturer.manufacturer')
@@ -46,36 +50,25 @@ class MachinesTable
                            ->searchable(),
                        TextColumn::make('vend_site_id')
                            ->searchable(),
-                       TextColumn::make('location.location')
-                           ->searchable(),
                        TextColumn::make('room')
                            ->searchable(),
                        TextColumn::make('manuf_date')
-                           ->date()
+                           ->date('Y-m-d')
                            ->sortable(),
                        TextColumn::make('install_date')
-                           ->date()
+                           ->date('Y-m-d')
                            ->sortable(),
                        TextColumn::make('remove_date')
-                           ->date()
+                           ->date('Y-m-d')
                            ->sortable(),
-                       TextColumn::make('pacs_station')
-                           ->searchable(),
-                       TextColumn::make('deleted_at')
-                           ->dateTime()
-                           ->sortable()
-                           ->toggleable(isToggledHiddenByDefault: true),
-                       TextColumn::make('created_at')
-                           ->dateTime()
-                           ->sortable()
-                           ->toggleable(isToggledHiddenByDefault: true),
-                       TextColumn::make('updated_at')
-                           ->dateTime()
-                           ->sortable()
-                           ->toggleable(isToggledHiddenByDefault: true),
-                       TextColumn::make('software_version')
-                           ->searchable(),
                    ])
+                   ->groups([
+                       'facility.facility',
+                       'location.location',
+                       'modality.modality',
+                       'manufacturer.manufacturer',
+                   ])
+                   ->defaultGroup('facility.facility')
                    ->filters([
                            TrashedFilter::make(),
                            Filter::make('active')

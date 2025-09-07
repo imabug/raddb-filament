@@ -11,8 +11,7 @@ class TestTypeForm
     {
         return $schema
             ->components([
-                TextInput::make('test_type')
-                    ->default(null),
+                TextInput::make('test_type'),
             ]);
     }
 }

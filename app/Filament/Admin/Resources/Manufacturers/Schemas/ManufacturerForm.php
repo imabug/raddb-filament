@@ -11,8 +11,7 @@ class ManufacturerForm
     {
         return $schema
             ->components([
-                TextInput::make('manufacturer')
-                    ->default(null),
+                TextInput::make('manufacturer'),
             ]);
     }
 }

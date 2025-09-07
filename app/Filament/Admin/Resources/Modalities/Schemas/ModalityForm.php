@@ -11,8 +11,7 @@ class ModalityForm
     {
         return $schema
             ->components([
-                TextInput::make('modality')
-                    ->default(null),
+                TextInput::make('modality'),
             ]);
     }
 }

@@ -12,7 +12,9 @@ class TestTypeForm
         return $schema
             ->components([
                 TextInput::make('test_type')
-                    ->required(),
+                    ->required()
+                    ->string()
+                    ->maxLength(30),
             ]);
     }
 }

@@ -11,7 +11,10 @@ class FacilityForm
     {
         return $schema
             ->components([
-                TextInput::make('facility')->required(),
+                TextInput::make('facility')
+                    ->required()
+                    ->string()
+                    ->maxLength(100),
             ]);
     }
 }

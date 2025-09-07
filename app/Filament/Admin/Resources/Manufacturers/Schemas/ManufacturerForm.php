@@ -12,7 +12,9 @@ class ManufacturerForm
         return $schema
             ->components([
                 TextInput::make('manufacturer')
-                    ->required(),
+                    ->required()
+                    ->string()
+                    ->maxLength(50),
             ]);
     }
 }

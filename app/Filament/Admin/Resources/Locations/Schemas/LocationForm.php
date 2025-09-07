@@ -16,7 +16,9 @@ class LocationForm
                     ->relationship(name: 'facility', titleAttribute: 'facility')
                     ->required(),
                 TextInput::make('location')
-                    ->required(),
+                    ->required()
+                    ->string()
+                    ->maxLength(100),
             ]);
     }
 }

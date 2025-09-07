@@ -12,7 +12,9 @@ class ModalityForm
         return $schema
             ->components([
                 TextInput::make('modality')
-                    ->required(),
+                    ->required()
+                    ->string()
+                    ->maxLength(50),
             ]);
     }
 }

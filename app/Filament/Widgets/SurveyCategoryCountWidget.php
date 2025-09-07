@@ -46,8 +46,7 @@ class SurveyCategoryCountWidget extends ChartWidget
 
         if (count($years) == 0) {
             $yearFilter[] = 0;
-        }
-        else {
+        } else {
             foreach ($years as $y) {
                 $yearFilter[$y['years']] = $y['years'];
             }
@@ -90,8 +89,7 @@ class SurveyCategoryCountWidget extends ChartWidget
 
         if (count($categoryCounts) == 0) {
             $data[] = 0;
-        }
-        else {
+        } else {
             foreach ($categoryCounts as $k => $v) {
                 $data[] = $v;
             }

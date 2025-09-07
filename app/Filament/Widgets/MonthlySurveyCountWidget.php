@@ -28,8 +28,7 @@ class MonthlySurveyCountWidget extends ChartWidget
 
         if (count($years) == 0) {
             $yearFilter[] = 0;
-        }
-        else {
+        } else {
             foreach ($years as $y) {
                 $yearFilter[$y['years']] = $y['years'];
             }
@@ -54,8 +53,7 @@ class MonthlySurveyCountWidget extends ChartWidget
 
         if (count($monthlyCount) == 0) {
             $data[] = 0;
-        }
-        else {
+        } else {
             foreach ($monthlyCount as $c) {
                 $data[] = $c['c'];
             }

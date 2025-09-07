@@ -18,7 +18,8 @@ class ModalitiesTable
         return $table
             ->columns([
                 TextColumn::make('modality')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

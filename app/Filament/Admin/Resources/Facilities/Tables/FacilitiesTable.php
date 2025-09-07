@@ -18,7 +18,8 @@ class FacilitiesTable
         return $table
             ->columns([
                 TextColumn::make('facility')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

@@ -19,7 +19,8 @@ class LocationsTable
         return $table
             ->columns([
                 TextColumn::make('location')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->groups([
                 Group::make('facility.facility')

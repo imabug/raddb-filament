@@ -18,7 +18,8 @@ class ManufacturersTable
         return $table
             ->columns([
                 TextColumn::make('manufacturer')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

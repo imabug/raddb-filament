@@ -18,7 +18,8 @@ class TestTypesTable
         return $table
             ->columns([
                 TextColumn::make('test_type')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

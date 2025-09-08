@@ -26,7 +26,8 @@ class MachineForm
                     ->relationship(
                         name: 'location',
                         titleAttribute: 'location',
-                        modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('facility_id', $get('facility_id')))
+                        modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('facility_id', $get('facility_id'))
+                    )
                     ->required(),
                 Select::make('modality_id')
                     ->label('Modality')

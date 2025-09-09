@@ -29,11 +29,11 @@ class TestDate extends Model implements HasMedia
      * @var array<string>
      */
     protected $fillable = [
+        'machine_id',
+        'testtype_id',
         'test_date',
-        'report_sent_date',
-        'notes',
         'accession',
-        'report_file_path',
+        'notes',
     ];
 
     /*
@@ -63,14 +63,14 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(Machine::class);
     }
 
-    public function type(): BelongsTo
+    public function testtype(): BelongsTo
     {
-        return $this->belongsTo(TestType::class);
+        return $this->belongsTo(TestType::class, 'testtype_id');
     }
 
     public function thisyear(): BelongsTo
     {
-        return $this->belongsTo(ThisYear::class, 'survey_id');
+        return $this->hasMany(ThisYear::class, 'survey_id');
     }
 
     public function lastyear(): BelongsTo
@@ -78,10 +78,6 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(LastYear::class, 'survey_id');
     }
 
-    public function testedBy(): BelongsTo
-    {
-        return $this->belongsTo(TestedBy::class, 'survey_id');
-    }
     /**
      * Scope function to return the test date year
      *

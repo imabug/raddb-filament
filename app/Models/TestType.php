@@ -39,6 +39,6 @@ class TestType extends Model
     // Relationships
     public function testdate(): HasMany
     {
-        return $this->hasMany(TestDate::class);
+        return $this->hasMany(TestDate::class, 'testtype_id');
     }
 }

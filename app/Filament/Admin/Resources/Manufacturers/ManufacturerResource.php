@@ -34,6 +34,11 @@ class ManufacturerResource extends Resource
         return ManufacturersTable::configure($table);
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function getRelations(): array
     {
         return [

@@ -41,6 +41,11 @@ class MachineResource extends Resource
         return MachinesTable::configure($table);
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return Machine::active()->count();
+    }
+
     public static function getRelations(): array
     {
         return [

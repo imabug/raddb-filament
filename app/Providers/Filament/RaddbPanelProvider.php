@@ -5,10 +5,12 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -35,6 +37,12 @@ class RaddbPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Raddb/Widgets'), for: 'App\Filament\Raddb\Widgets')
             ->widgets([
                 FilamentInfoWidget::class,
+            ])
+            ->navigationItems([
+                NavigationItem::make('RadDB Dashboard')
+                    ->url('/dashboard')
+                    ->icon(Heroicon::OutlinedPresentationChartBar)
+                    ->sort(1),
             ])
             ->middleware([
                 EncryptCookies::class,

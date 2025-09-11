@@ -5,12 +5,14 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -36,6 +38,12 @@ class DashboardPanelProvider extends PanelProvider
                 Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->navigationItems([
+                NavigationItem::make('RadDB')
+                    ->url('/raddb')
+                    ->icon(Heroicon::OutlinedHome)
+                    ->sort(1),
+            ])
             ->widgets([
                 \App\Filament\Widgets\YearlySurveyCountWidget::class,
                 \App\Filament\Widgets\MonthlySurveyCountWidget::class,

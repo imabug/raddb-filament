@@ -8,6 +8,8 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
@@ -28,8 +30,11 @@ class LocationsTable
             ])
             ->defaultGroup('facility.facility')
             ->filters([
+                SelectFilter::make('facility')
+                    ->relationship('facility', 'facility'),
                 TrashedFilter::make(),
             ])
+            ->deferFilters(false)
             ->recordActions([
                 EditAction::make(),
             ])

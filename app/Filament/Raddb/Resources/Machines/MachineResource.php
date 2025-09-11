@@ -46,6 +46,11 @@ class MachineResource extends Resource
         return Machine::active()->count();
     }
 
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Number of active machines';
+    }
+    
     public static function getRelations(): array
     {
         return [

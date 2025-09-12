@@ -8,9 +8,13 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TubesTable
 {
@@ -18,28 +22,38 @@ class TubesTable
     {
         return $table
             ->columns([
-                TextColumn::make('machine.id')
+                IconColumn::make('tube_status')
+                    ->icon(fn (string $state): Heroicon => match ($state) {
+                            'Active' => Heroicon::Check,
+                            'Removed' => Heroicon::Trash,
+                        })
+                    ->color(fn (string $state): string => match ($state) {
+                            'Active' => 'success',
+                            'Removed' => 'danger',
+                            default => 'info',
+                        }),
+                TextColumn::make('machine.description')
                     ->searchable(),
-                TextColumn::make('housing_manuf.id')
+                TextColumn::make('housing_manuf.manufacturer')
                     ->searchable(),
                 TextColumn::make('housing_model')
                     ->searchable(),
                 TextColumn::make('housing_sn')
                     ->searchable(),
-                TextColumn::make('insert_manuf.id')
+                TextColumn::make('insert_manuf.manufacturer')
                     ->searchable(),
                 TextColumn::make('insert_model')
                     ->searchable(),
                 TextColumn::make('insert_sn')
                     ->searchable(),
                 TextColumn::make('manuf_date')
-                    ->date()
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('install_date')
-                    ->date()
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('remove_date')
-                    ->date()
+                    ->date('Y-m-d')
                     ->sortable(),
                 TextColumn::make('lfs')
                     ->numeric()
@@ -52,20 +66,16 @@ class TubesTable
                     ->sortable(),
                 TextColumn::make('tube_status')
                     ->badge(),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->groups([
+                'machine.description',
+            ])
+            ->defaultGroup('machine.description')
             ->filters([
+                Filter::make('active')
+                    ->query(fn (Builder $query): Builder => $query->where('tube_status', 'Active'))
+                    ->toggle()
+                    ->default(),
                 TrashedFilter::make(),
             ])
             ->recordActions([

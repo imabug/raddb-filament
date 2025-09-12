@@ -44,6 +44,11 @@ class TubeResource extends Resource
         return Tube::active()->count();
     }
 
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Number of active tubes';
+    }
+
     public static function getRelations(): array
     {
         return [

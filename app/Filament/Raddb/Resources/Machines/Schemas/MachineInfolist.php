@@ -11,9 +11,9 @@ class MachineInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('modality.id'),
+                TextEntry::make('modality.modality'),
                 TextEntry::make('description'),
-                TextEntry::make('manufacturer.id'),
+                TextEntry::make('manufacturer.manufacturer'),
                 TextEntry::make('vend_site_id'),
                 TextEntry::make('model'),
                 TextEntry::make('serial_number'),
@@ -23,7 +23,7 @@ class MachineInfolist
                     ->date(),
                 TextEntry::make('remove_date')
                     ->date(),
-                TextEntry::make('location.id'),
+                TextEntry::make('location.location'),
                 TextEntry::make('room'),
                 TextEntry::make('machine_status'),
                 TextEntry::make('photo'),

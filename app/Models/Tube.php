@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -75,6 +76,15 @@ class Tube extends Model
     public function insert_manuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
+    }
+
+    /*
+     * Scopes
+     */
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->where('tube_status', 'Active');
     }
 
     /*

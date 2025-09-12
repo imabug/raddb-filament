@@ -26,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->brandName('RadDB Filament')
             ->colors([
                 'primary' => Color::Amber,
             ])

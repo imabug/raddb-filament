@@ -26,6 +26,7 @@ class RaddbPanelProvider extends PanelProvider
         return $panel
             ->id('raddb')
             ->path('raddb')
+            ->brandName('RadDB Filament')
             ->colors([
                 'primary' => Color::Amber,
             ])

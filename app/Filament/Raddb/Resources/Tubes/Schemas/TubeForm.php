@@ -15,25 +15,36 @@ class TubeForm
         return $schema
             ->components([
                 Select::make('machine_id')
-                    ->relationship('machine', 'id')
+                    ->relationship('machine', 'description')
                     ->required(),
                 Select::make('housing_manuf_id')
-                    ->relationship('housing_manuf', 'id')
+                    ->label('Housing manufacturer')
+                    ->relationship(name: 'housing_manuf', titleAttribute: 'manufacturer')
                     ->default(null),
                 TextInput::make('housing_model')
                     ->default(null),
                 TextInput::make('housing_sn')
                     ->default(null),
                 Select::make('insert_manuf_id')
-                    ->relationship('insert_manuf', 'id')
+                    ->label('Insert manufacturer')
+                    ->relationship(name: 'insert_manuf', titleAttribute: 'manufacturer')
                     ->default(null),
                 TextInput::make('insert_model')
                     ->default(null),
                 TextInput::make('insert_sn')
                     ->default(null),
-                DatePicker::make('manuf_date'),
-                DatePicker::make('install_date'),
-                DatePicker::make('remove_date'),
+                DatePicker::make('manuf_date')
+                    ->label('Manufacture date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
+                DatePicker::make('install_date')
+                    ->label('Installation date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
+                DatePicker::make('remove_date')
+                    ->label('Removal date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
                 TextInput::make('lfs')
                     ->required()
                     ->numeric()

@@ -15,6 +15,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class OpNotesTable
 {
@@ -33,6 +34,7 @@ class OpNotesTable
             ->filters([
                 TrashedFilter::make(),
             ])
+            ->deferFilters(false)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

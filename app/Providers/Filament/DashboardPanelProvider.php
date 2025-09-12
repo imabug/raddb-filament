@@ -28,6 +28,7 @@ class DashboardPanelProvider extends PanelProvider
             ->default()
             ->id('dashboard')
             ->path('dashboard')
+            ->brandName('RadDB Filament')
             // ->login()
             ->colors([
                 'primary' => Color::Amber,

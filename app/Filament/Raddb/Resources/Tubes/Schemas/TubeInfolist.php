@@ -12,16 +12,16 @@ class TubeInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('machine.id')
+                TextEntry::make('machine.description')
                     ->label('Machine'),
-                TextEntry::make('housing_manuf.id')
+                TextEntry::make('housing_manuf.manufacturer')
                     ->label('Housing manuf')
                     ->placeholder('-'),
                 TextEntry::make('housing_model')
                     ->placeholder('-'),
                 TextEntry::make('housing_sn')
                     ->placeholder('-'),
-                TextEntry::make('insert_manuf.id')
+                TextEntry::make('insert_manuf.manufacturer')
                     ->label('Insert manuf')
                     ->placeholder('-'),
                 TextEntry::make('insert_model')

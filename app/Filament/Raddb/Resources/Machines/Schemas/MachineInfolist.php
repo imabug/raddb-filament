@@ -2,6 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
+use App\Models\Machine;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -11,6 +12,7 @@ class MachineInfolist
     {
         return $schema
             ->components([
+                TextEntry::make('facility.facility'),
                 TextEntry::make('modality.modality'),
                 TextEntry::make('description'),
                 TextEntry::make('manufacturer.manufacturer'),
@@ -18,23 +20,29 @@ class MachineInfolist
                 TextEntry::make('model'),
                 TextEntry::make('serial_number'),
                 TextEntry::make('manuf_date')
-                    ->date(),
+                    ->date('Y-m-d')
+                    ->placeholder('-'),
                 TextEntry::make('install_date')
-                    ->date(),
+                    ->date('Y-m-d')
+                    ->placeholder('-'),
                 TextEntry::make('remove_date')
-                    ->date(),
+                    ->date('Y-m-d')
+                    ->placeholder('-'),
                 TextEntry::make('location.location'),
                 TextEntry::make('room'),
                 TextEntry::make('machine_status'),
-                TextEntry::make('photo'),
-                TextEntry::make('deleted_at')
-                    ->dateTime(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
                 TextEntry::make('software_version'),
                 TextEntry::make('pacs_station'),
+                TextEntry::make('deleted_at')
+                    ->dateTime()
+                    ->visible(fn (Machine $record): bool => $record->trashed())
+                    ->placeholder('-'),
+                TextEntry::make('created_at')
+                    ->dateTime()
+                    ->placeholder('-'),
+                TextEntry::make('updated_at')
+                    ->dateTime()
+                    ->placeholder('-'),
             ]);
     }
 }

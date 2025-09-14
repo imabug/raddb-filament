@@ -50,7 +50,7 @@ class MachineResource extends Resource
     {
         return 'Number of active machines';
     }
-    
+
     public static function getRelations(): array
     {
         return [

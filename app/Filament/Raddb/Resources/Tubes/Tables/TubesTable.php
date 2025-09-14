@@ -24,14 +24,14 @@ class TubesTable
             ->columns([
                 IconColumn::make('tube_status')
                     ->icon(fn (string $state): Heroicon => match ($state) {
-                            'Active' => Heroicon::Check,
-                            'Removed' => Heroicon::Trash,
-                        })
+                        'Active' => Heroicon::Check,
+                        'Removed' => Heroicon::Trash,
+                    })
                     ->color(fn (string $state): string => match ($state) {
-                            'Active' => 'success',
-                            'Removed' => 'danger',
-                            default => 'info',
-                        }),
+                        'Active' => 'success',
+                        'Removed' => 'danger',
+                        default => 'info',
+                    }),
                 TextColumn::make('machine.description')
                     ->searchable(),
                 TextColumn::make('housing_manuf.manufacturer')

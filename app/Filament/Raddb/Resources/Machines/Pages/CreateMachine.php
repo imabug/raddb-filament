@@ -12,7 +12,8 @@ class CreateMachine extends CreateRecord
 
     protected function preserveFormDataWhenCreatingAnother(array $data): array
     {
-        return Arr::only($data,
+        return Arr::only(
+            $data,
             [
                 'facility_id',
                 'location_id',

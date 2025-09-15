@@ -35,10 +35,10 @@ class YearlySurveyCountWidget extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Yearly survey counts',
-                    'data' => $yearCounts->flatten(),
+                    'data' => $yearCounts->flatten()->all(),
                 ],
             ],
-            'labels' => $yearCounts->keys(),
+            'labels' => $yearCounts->keys()->all(),
         ];
     }
 

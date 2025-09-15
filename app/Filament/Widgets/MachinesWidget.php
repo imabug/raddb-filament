@@ -3,7 +3,6 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Machine;
-use App\Models\TestType;
 use Filament\Widgets\ChartWidget;
 
 class MachinesWidget extends ChartWidget

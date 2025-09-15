@@ -46,9 +46,6 @@ class DashboardPanelProvider extends PanelProvider
                     ->sort(1),
             ])
             ->widgets([
-                \App\Filament\Widgets\YearlySurveyCountWidget::class,
-                \App\Filament\Widgets\MonthlySurveyCountWidget::class,
-                \App\Filament\Widgets\SurveyCategoryCountWidget::class,
             //    FilamentInfoWidget::class,
             ])
             ->middleware([

@@ -62,47 +62,26 @@ class SurveyCategoryCountWidget extends ChartWidget
             $this->filter = date("Y");
         }
 
-
-        // Get a collection of all the test type categories
-        // Don't count these survey types:
-        // 8 - Other
-        // 10 - Calibration
-        // If the testtypes database table changes, the test type IDs to be excluded
-        // will need to be modified.
-        $categories = TestType::whereNotIn('id', [8, 10])
-                          ->orderBy('id')
-                          ->get('test_type')
-                          ->all();
-
-        foreach ($categories as $c) {
-            $categoryLabels[] = $c['test_type'];
-        }
-
-        // Count the surveys for each test type
+        /*
+         * Count the surveys for each test type
+         * Don't count these survey types:
+         * 8 - Other
+         * 10 - Calibration
+         */
         $categoryCounts = TestDate::with('type')
                               ->year($this->filter)
                               ->whereNotIn('testtype_id', [8, 10])
-                              ->orderBy('testtype_id')
                               ->get()
-                              ->countBy('testtype_id')
-                              ->all();
-
-        if (count($categoryCounts) == 0) {
-            $data[] = 0;
-        } else {
-            foreach ($categoryCounts as $k => $v) {
-                $data[] = $v;
-            }
-        }
+                              ->countBy('type.test_type')
+                              ->sortDesc();
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Monthly survey counts',
-                    'data' => $data,
+                    'data' => $categoryCounts->flatten(1)->all(),
                 ],
             ],
-            'labels' => $categoryLabels,
+            'labels' => $categoryCounts->keys()->all(),
         ];
     }
 

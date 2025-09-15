@@ -64,6 +64,7 @@ class MonthlySurveyCountWidget extends ChartWidget
         return [
             'datasets' => [
                 [
+                    'label' => 'Monthly survey counts',
                     'data' => $monthlyCount->flatten(1)->all(),
                 ],
             ],

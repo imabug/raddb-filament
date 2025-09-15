@@ -45,28 +45,30 @@ class MonthlySurveyCountWidget extends ChartWidget
         }
 
         // Count the surveys for each month of the selected year
-        $monthlyCount = TestDate::selectRaw('count(test_date) as c')
-                            ->whereRaw('year(test_date)=?', $this->filter)
-                            ->groupByRaw('month(test_date)')
-                            ->get()
-                            ->all();
+        // $monthlyCount = TestDate::selectRaw('count(test_date) as c')
+        //                     ->whereRaw('year(test_date)=?', $this->filter)
+        //                     ->groupByRaw('month(test_date)')
+        //                     ->get()
+        //                     ->all();
 
-        if (count($monthlyCount) == 0) {
-            $data[] = 0;
-        } else {
-            foreach ($monthlyCount as $c) {
-                $data[] = $c['c'];
-            }
-        }
+        $monthlyCount = TestDate::year($this->filter)
+                            ->orderBy('test_date')
+                            ->get()
+                            // Count by month
+                            ->countBy(
+                                function ($item, $key) {
+                                    return (int) substr($item['test_date'], 5, 2);            
+                                }
+                            );
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Monthly survey counts',
-                    'data' => $data,
+                    'data' => $monthlyCount->flatten(1)->all(),
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            //'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'labels' => $monthlyCount->keys()->all(),
         ];
     }
 

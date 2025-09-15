@@ -68,11 +68,11 @@ class SurveyCategoryCountWidget extends ChartWidget
          * 8 - Other
          * 10 - Calibration
          */
-        $categoryCounts = TestDate::with('type')
+        $categoryCounts = TestDate::with('testtype')
                               ->year($this->filter)
                               ->whereNotIn('testtype_id', [8, 10])
                               ->get()
-                              ->countBy('type.test_type')
+                              ->countBy('testtype.test_type')
                               ->sortDesc();
 
         return [

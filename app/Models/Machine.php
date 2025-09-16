@@ -38,7 +38,7 @@ class Machine extends Model implements HasMedia
         'install_date',
         'remove_date',
         'room',
-        'status',
+        'machine_status',
         'software_version',
         'pacs_station',
         'notes',
@@ -50,6 +50,7 @@ class Machine extends Model implements HasMedia
     protected function casts(): array
     {
         return [
+            'machine_status' => \App\Enums\Status::class,
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',

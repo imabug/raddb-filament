@@ -34,7 +34,7 @@ class FacilityMachinesWidget extends ChartWidget
                         ->active()
                         ->get()
                         ->countBy('facility.facility')
-                        ->sort();
+                        ->sortDesc();
         
         return [
             'datasets' => [

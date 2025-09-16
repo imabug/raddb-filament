@@ -30,7 +30,8 @@ class MachineInfolist
                     ->placeholder('-'),
                 TextEntry::make('location.location'),
                 TextEntry::make('room'),
-                TextEntry::make('machine_status'),
+                TextEntry::make('machine_status')
+                    ->badge(),
                 TextEntry::make('software_version'),
                 TextEntry::make('pacs_station'),
                 TextEntry::make('deleted_at')

@@ -3,6 +3,7 @@
 namespace App\Enums;
 
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
@@ -22,6 +23,15 @@ enum Status: string implements HasColor,HasIcon,HasLabel
         };
     }
 
+    public function getDescription(): ? string
+    {
+        return match ($this) {
+            self::Active => 'In use',
+            self::Inactive => 'Not in use, but has not been removed yet',
+            self::Removed => 'No longer in use and has been removed'
+        };
+    }
+    
     public function getIcon(): ?string
     {
         return match ($this) {
@@ -33,10 +43,6 @@ enum Status: string implements HasColor,HasIcon,HasLabel
 
     public function getLabel(): ?string
     {
-        return match ($this) {
-            self::Active => "Active",
-            self::Inactive => "Inactive",
-            self::Removed => "Removed"
-        };
+        return $this->name;
     }
 }

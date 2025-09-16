@@ -2,6 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Schemas;
 
+use App\Enums\Status;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -66,14 +67,14 @@ class MachineForm
                     ->label('Install date')
                     ->format('Y-m-d')
                     ->displayFormat('Y-m-d'),
+                DatePicker::make('remove_date')
+                    ->label('Removal date')
+                    ->format('Y-m-d')
+                    ->displayFormat('Y-m-d'),
                 Select::make('machine_status')
-                    ->options([
-                        'Active' => 'Active',
-                        'Inactive' => 'Inactive',
-                        'Removed' => 'Removed',
-                    ])
-                    ->required()
-                    ->default('Active'),
+                    ->options(Status::class)
+                    ->default(Status::Active)
+                    ->required(),
                 TextInput::make('software_version')
                     ->string()
                     ->maxLength(50)

@@ -24,18 +24,7 @@ class MachinesTable
     {
         return $table
             ->columns([
-                IconColumn::make('machine_status')
-                    ->icon(fn (string $state): Heroicon => match ($state) {
-                        'Active' => Heroicon::Check,
-                        'Inactive' => Heroicon::XCircle,
-                        'Removed' => Heroicon::Trash,
-                    })
-                    ->color(fn (string $state): string => match ($state) {
-                        'Active' => 'success',
-                        'Inactive' => 'warning',
-                        'Removed' => 'danger',
-                        default => 'info',
-                    }),
+                IconColumn::make('machine_status'),
                 TextColumn::make('location.location')
                     ->searchable(),
                 TextColumn::make('modality.modality')

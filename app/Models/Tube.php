@@ -44,6 +44,7 @@ class Tube extends Model
     protected function casts(): array
     {
         return [
+            'tube_status' => \App\Enums\Status::class,
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',

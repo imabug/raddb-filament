@@ -22,16 +22,7 @@ class TubesTable
     {
         return $table
             ->columns([
-                IconColumn::make('tube_status')
-                    ->icon(fn (string $state): Heroicon => match ($state) {
-                        'Active' => Heroicon::Check,
-                        'Removed' => Heroicon::Trash,
-                    })
-                    ->color(fn (string $state): string => match ($state) {
-                        'Active' => 'success',
-                        'Removed' => 'danger',
-                        default => 'info',
-                    }),
+                IconColumn::make('tube_status'),
                 TextColumn::make('machine.description')
                     ->searchable(),
                 TextColumn::make('housing_manuf.manufacturer')
@@ -64,8 +55,6 @@ class TubesTable
                 TextColumn::make('sfs')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('tube_status')
-                    ->badge(),
             ])
             ->groups([
                 'machine.description',

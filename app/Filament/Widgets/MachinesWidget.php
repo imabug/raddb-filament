@@ -27,7 +27,7 @@ class MachinesWidget extends ChartWidget
             ],
         ];
     }
-    
+
     protected function getData(): array
     {
         $machines = Machine::with('modality')

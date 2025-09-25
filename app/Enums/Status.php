@@ -8,7 +8,7 @@ use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
 
-enum Status: string implements HasColor,HasIcon,HasLabel
+enum Status: string implements HasColor, HasIcon, HasLabel
 {
     case Active = 'Active';
     case Inactive = 'Inactive';
@@ -23,7 +23,7 @@ enum Status: string implements HasColor,HasIcon,HasLabel
         };
     }
 
-    public function getDescription(): ? string
+    public function getDescription(): ?string
     {
         return match ($this) {
             self::Active => 'In use',
@@ -31,7 +31,7 @@ enum Status: string implements HasColor,HasIcon,HasLabel
             self::Removed => 'No longer in use and has been removed'
         };
     }
-    
+
     public function getIcon(): ?string
     {
         return match ($this) {

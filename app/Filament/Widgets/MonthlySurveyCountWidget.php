@@ -57,7 +57,7 @@ class MonthlySurveyCountWidget extends ChartWidget
                             // Count by month
                             ->countBy(
                                 function ($item, $key) {
-                                    return (int) substr($item['test_date'], 5, 2);            
+                                    return (int) substr($item['test_date'], 5, 2);
                                 }
                             );
 

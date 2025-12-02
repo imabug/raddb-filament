@@ -20,10 +20,10 @@ class UserForm
                     ->label('Email address')
                     ->email()
                     ->required(),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->required(),
+                // DateTimePicker::make('email_verified_at'),
+                // TextInput::make('password')
+                //     ->password()
+                //     ->required(),
                 Select::make('role')
                     ->options(Role::class)
                     ->required(),

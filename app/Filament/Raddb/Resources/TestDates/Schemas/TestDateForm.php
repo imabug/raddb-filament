@@ -7,6 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class TestDateForm
 {
@@ -16,7 +17,10 @@ class TestDateForm
             ->components([
                 Select::make('machine_id')
                     ->label('Machine')
-                    ->relationship(name: 'machine', titleAttribute: 'description')
+                    ->relationship(
+                        name: 'machine',
+                        titleAttribute: 'description',
+                        modifyQueryUsing: fn (Builder $query) => $query->active())
                     ->required(),
                 Select::make('testtype_id')
                     ->label('Test type')

@@ -18,7 +18,7 @@ class OpNoteForm
                     ->relationship(
                         name: 'machine',
                         titleAttribute: 'description',
-                        modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('machine_status', 'Active')
+                        modifyQueryUsing: fn (Builder $query, Get $get) => $query-active()
                     )
                     ->required(),
                 Textarea::make('note')

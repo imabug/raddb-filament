@@ -42,7 +42,7 @@ class AdminPanelProvider extends PanelProvider
                     ->icon(Heroicon::OutlinedHome)
                     ->sort(1),
                 NavigationItem::make('RadDB dashboard')
-                    ->url('/dashboard')
+                    ->url('/')
                     ->icon(Heroicon::OutlinedPresentationChartBar)
                     ->sort(2),
             ])

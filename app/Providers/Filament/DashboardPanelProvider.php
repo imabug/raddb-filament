@@ -27,7 +27,7 @@ class DashboardPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('dashboard')
-            ->path('dashboard')
+            ->path('')
             ->brandName('RadDB Filament')
             // ->login()
             ->colors([
@@ -40,6 +40,10 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->navigationItems([
+                NavigationItem::make('Survey Schedule')
+                    ->url('/raddb/survey-schedule-views')
+                    ->icon(Heroicon::OutlinedHome)
+                    ->sort(1),
                 NavigationItem::make('RadDB')
                     ->url('/raddb')
                     ->icon(Heroicon::OutlinedHome)

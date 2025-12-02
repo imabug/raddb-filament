@@ -42,7 +42,7 @@ class RaddbPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('RadDB Dashboard')
-                    ->url('/dashboard')
+                    ->url('/')
                     ->icon(Heroicon::OutlinedPresentationChartBar)
                     ->sort(1),
             ])

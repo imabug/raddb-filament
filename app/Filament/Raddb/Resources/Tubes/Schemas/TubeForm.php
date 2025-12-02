@@ -20,7 +20,7 @@ class TubeForm
                     ->relationship(
                         name: 'machine',
                         titleAttribute: 'description',
-                        modifyQueryUsing: fn (Builder $query) => $query->where('machine_status', Status::Active)
+                        modifyQueryUsing: fn (Builder $query) => $query->active()
                     )
                     ->required(),
                 Select::make('housing_manuf_id')

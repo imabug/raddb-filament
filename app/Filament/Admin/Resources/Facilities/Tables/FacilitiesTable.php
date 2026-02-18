@@ -16,23 +16,25 @@ class FacilitiesTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('facility')
-                    ->searchable()
-                    ->sortable(),
-            ])
-            ->filters([
-                TrashedFilter::make(),
-            ])
-            ->recordActions([
-                EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
-            ]);
+                   ->columns([
+                       TextColumn::make('id'),
+                       TextColumn::make('facility')
+                           ->searchable()
+                           ->sortable(),
+                   ])
+                   ->filters([
+                       TrashedFilter::make(),
+                   ])
+                   ->recordActions([
+                       EditAction::make(),
+                   ])
+                   ->toolbarActions([
+                       BulkActionGroup::make([
+                           DeleteBulkAction::make(),
+                           ForceDeleteBulkAction::make(),
+                           RestoreBulkAction::make(),
+                       ]),
+                   ])
+                   ->defaultSort('facility', 'asc');
     }
 }

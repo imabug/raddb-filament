@@ -17,6 +17,7 @@ class TestTypesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('test_type')
                     ->searchable()
                     ->sortable(),
@@ -33,6 +34,7 @@ class TestTypesTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('test_type', 'asc');
     }
 }

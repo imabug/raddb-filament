@@ -17,6 +17,7 @@ class ManufacturersTable
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('manufacturer')
                     ->searchable()
                     ->sortable(),
@@ -33,6 +34,7 @@ class ManufacturersTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('manufacturer', 'asc');
     }
 }

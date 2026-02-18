@@ -11,6 +11,7 @@ enum Role: string implements HasLabel
     case Staff = 'Staff';
     case PhysAssist = 'Physics Assistant';
     case Resident = 'Resident';
+    case FmrResident = 'Former Resident';
     case Technologist = 'Technologist';
 
     public function getDescription(): ?string
@@ -19,6 +20,7 @@ enum Role: string implements HasLabel
             self::Staff => 'Staff physicist',
             self::PhysAssist => 'Physics assistant',
             self::Resident => 'Resident',
+            self::FmrResident => 'Former Resident',
             self::Technologist => 'Technologist'
         };
     }

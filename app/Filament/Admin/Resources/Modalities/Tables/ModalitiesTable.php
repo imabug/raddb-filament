@@ -17,6 +17,7 @@ class ModalitiesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('modality')
                     ->searchable()
                     ->sortable(),
@@ -33,6 +34,7 @@ class ModalitiesTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('modality', 'asc');
     }
 }

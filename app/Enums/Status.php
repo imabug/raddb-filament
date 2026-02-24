@@ -14,7 +14,7 @@ enum Status: string implements HasColor, HasIcon, HasLabel
     case Inactive = 'Inactive';
     case Removed = 'Removed';
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::Active => 'success',

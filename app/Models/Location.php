@@ -18,7 +18,7 @@ class Location extends Model
      */
     protected $fillable = [
         'facility_id',
-        'location'
+        'location',
     ];
 
     /*

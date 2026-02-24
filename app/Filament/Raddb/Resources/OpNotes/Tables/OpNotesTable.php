@@ -24,7 +24,7 @@ class OpNotesTable
         return $table
             ->columns([
                 TextColumn::make('note')
-                    ->searchable()
+                    ->searchable(),
             ])
             ->groups([
                 Group::make('machine.description')

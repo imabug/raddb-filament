@@ -28,12 +28,12 @@ class TestDatesTable
                     ->sortable(),
                 TextColumn::make('accession')
                     ->searchable(),
-                TextColumn::make('notes')
+                TextColumn::make('notes'),
             ])
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('pending')
-                    ->query(fn (Builder $query): Builder => $query->where('test_date', '>=', date('Y-m-d')))
+                    ->query(fn(Builder $query): Builder => $query->where('test_date', '>=', date('Y-m-d')))
                     ->toggle()
                     ->default(),
             ])

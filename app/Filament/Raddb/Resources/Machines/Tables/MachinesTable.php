@@ -67,7 +67,7 @@ class MachinesTable
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('active')
-                    ->query(fn (Builder $query): Builder => $query->where('machine_status', "Active"))
+                    ->query(fn(Builder $query): Builder => $query->where('machine_status', "Active"))
                     ->toggle()
                     ->default(),
                 SelectFilter::make('facility')

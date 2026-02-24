@@ -29,7 +29,7 @@ class SurveyCategoryCountWidget extends ChartWidget
             'plugins' => [
                 'colors' => [
                     'enabled' => "true",
-                    'forceOverride' => "true"
+                    'forceOverride' => "true",
                 ],
             ],
         ];

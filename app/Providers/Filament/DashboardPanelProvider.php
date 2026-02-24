@@ -50,7 +50,7 @@ class DashboardPanelProvider extends PanelProvider
                     ->sort(1),
             ])
             ->widgets([
-            //    FilamentInfoWidget::class,
+                //    FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -64,7 +64,7 @@ class DashboardPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-            //    Authenticate::class,
+                //    Authenticate::class,
             ]);
     }
 }

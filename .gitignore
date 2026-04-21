@@ -18,6 +18,7 @@
 /public/build
 /public/hot
 /public/storage
+/sqldump
 /storage/*.key
 /storage/pail
 /vendor

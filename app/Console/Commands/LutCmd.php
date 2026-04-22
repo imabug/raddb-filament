@@ -16,7 +16,6 @@ use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
 
-#[Signature('raddb:lut {cmd : Command to execute, one of add, edit, or delete} {table : Lookup table to manage} {--h|help : Display help message and exit.}')]
 #[Description('Command to manage lookup tables')]
 class LutCmd extends Command
 {
@@ -26,9 +25,8 @@ class LutCmd extends Command
      * @var string
      */
     protected $signature = 'raddb:lut
-{cmd : Command to execute (add, edit, or delete)
-{table : Lookup table to manage}
-{--h|help : Display help message and exit.}}';
+{cmd : Command to execute (add, delete, edit, or list)}
+{table : Lookup table to manage}';
     
     /**
      * Execute the console command.
@@ -38,8 +36,19 @@ class LutCmd extends Command
         $cmd = $this->argument('cmd');
         $table = $this->argument('table');
 
-        if ($this->option('help')) {
-            
+        switch ($cmd) {
+            case 'add':
+                break;
+            case 'ediit':
+                break;
+            case 'delete':
+                break;
+            case 'list':
+                break;
+            default:
+                $this->error('Invalid command specified.  Valid commands are: add, delete, edit, list');
+                return 1;
+                break;
         }
     }
 }

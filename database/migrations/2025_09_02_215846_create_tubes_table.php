@@ -25,7 +25,7 @@ return new class () extends Migration {
             $table->decimal('lfs', total:2, places:1)->default('0.0');
             $table->decimal('mfs', total:2, places:1)->default('0.0');
             $table->decimal('sfs', total:2, places:1)->default('0.0');
-            $table->enum('tube_status', ['Active', 'Removed'])->index();
+            $table->string('tube_status', 20)->index();
             $table->text('notes')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\Machines\Tables;
 
+use App\Enums\Status;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -67,7 +68,7 @@ class MachinesTable
                    ->filters([
                        TrashedFilter::make(),
                        Filter::make('active')
-                           ->query(fn(Builder $query): Builder => $query->where('machine_status', "Active"))
+                           ->query(fn(Builder $query): Builder => $query->where('machine_status', Status::Active))
                            ->toggle()
                            ->default(),
                        SelectFilter::make('facility')

@@ -13,6 +13,10 @@ return new class () extends Migration {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('facility', 100)->nullable(false);
+            $table->string('street_address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code', 10)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

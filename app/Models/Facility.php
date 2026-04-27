@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Location;
+use Machine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +15,13 @@ class Facility extends Model
     /**
      * Mass assignable attributes
      */
-    protected $fillable = ['facility'];
+    protected $fillable = [
+        'facility',
+        'street_address',
+        'city',
+        'state',
+        'zip_code',
+    ];
 
     /*
      * Attribute casting

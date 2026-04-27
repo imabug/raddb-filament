@@ -24,7 +24,7 @@ return new class () extends Migration {
             $table->date('install_date')->nullable();
             $table->date('manuf_date')->nullable();
             $table->date('remove_date')->nullable();
-            $table->enum('machine_status', ['Active', 'Inactive', 'Removed'])
+            $table->string('machine_status', 20)
                 ->nullable(false)
                 ->index();
             $table->string('software_version', length:50)->nullable();

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -50,7 +51,7 @@ class Machine extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'machine_status' => \App\Enums\Status::class,
+            'machine_status' => Status::class,
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
@@ -142,7 +143,7 @@ class Machine extends Model implements HasMedia
     #[Scope]
     protected function active(Builder $query): void
     {
-        $query->where('machine_status', 'Active');
+        $query->where('machine_status', Status::Active);
     }
 
     /**
@@ -151,7 +152,7 @@ class Machine extends Model implements HasMedia
     #[Scope]
     protected function inactive(Builder $query): void
     {
-        $query->where('machine_status', 'Inactive');
+        $query->where('machine_status', Status::Inactive);
     }
 
     /**
@@ -160,7 +161,7 @@ class Machine extends Model implements HasMedia
     #[Scope]
     protected function removed(Builder $query): void
     {
-        $query->where('machine_status', 'Removed');
+        $query->where('machine_status', Status::Removed);
     }
 
     /**

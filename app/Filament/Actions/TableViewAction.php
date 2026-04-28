@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Filament\Actions;
+
+use Filament\Actions\ViewAction;
+ 
+class TableViewAction extends ViewAction
+{
+    protected function setUp(): void
+    {
+        parent::setUp();
+ 
+        $this->iconButton();
+    }
+}

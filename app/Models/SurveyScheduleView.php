@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -22,6 +24,17 @@ class SurveyScheduleView extends Model
     public $incrementing = false;
 
     /*
+     * Attribute casting
+     */
+    protected function casts(): array
+    {
+        return [
+            'prevSurveyDate' => 'date:Y-m-d',
+            'currSurveyDate' => 'date:Y-m-d',
+        ];
+    }
+
+    /*
      * Relationships
      */
     public function machine(): BelongsTo
@@ -38,4 +51,31 @@ class SurveyScheduleView extends Model
     {
         return $this->belongsTo(TestDate::class, 'currSurveyID');
     }
+
+    /*
+     * Scopes
+     */
+
+    /**
+     * Scope function to return pending surveys (scheduled after the current date).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     */
+    #[Scope]
+    protected function pending(Builder $query): void
+    {
+        $query->where('currSurveyDate', '>=', date('Y-m-d'));
+    }
+
+    /**
+     * Scope function to return machines needing surveys.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     */
+    #[Scope]
+    protected function surveyNeeded(Builder $query): void
+    {
+        $query->where('currSurveyDate', null);
+    }
+    
 }

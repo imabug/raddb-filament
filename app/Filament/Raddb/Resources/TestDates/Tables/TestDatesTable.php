@@ -34,9 +34,13 @@ class TestDatesTable
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('pending')
-                    ->query(fn(Builder $query): Builder => $query->where('test_date', '>=', date('Y-m-d')))
+                    ->query(fn(Builder $query): Builder => $query->activeMachines()->pending())
                     ->toggle()
                     ->default(),
+                Filter::make('activeMachines')
+                    ->label("Active machines")
+                    ->query(fn(Builder $query): Builder => $query->activeMachines())
+                    ->toggle(),
             ])
             ->deferFilters(false)
             ->recordActions([

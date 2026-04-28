@@ -3,12 +3,12 @@
 namespace App\Filament\Raddb\Resources\OpNotes\Tables;
 
 use App\Enums\Status;
+use App\Filament\Actions\TableEditAction;
+use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\ViewAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -41,8 +41,8 @@ class OpNotesTable
             ])
             ->deferFilters(false)
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                TableEditAction::make(),
+                TableViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

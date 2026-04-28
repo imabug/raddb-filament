@@ -2,6 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\OpNotes\Tables;
 
+use App\Enums\Status;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -33,6 +34,11 @@ class OpNotesTable
             ->defaultGroup('machine.description')
             ->filters([
                 TrashedFilter::make(),
+                Filter::make('active')
+                    ->query(fn(builder $query): Builder => $query->active())
+                    // ->query(fn(Builder $query): Builder => $query->with('machine')->where('machine.machine_status', Status::Active))
+                    ->toggle()
+                    ->default(),
             ])
             ->deferFilters(false)
             ->recordActions([

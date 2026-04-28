@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,5 +46,13 @@ class OpNote extends Model
     public function machine(): BelongsTo
     {
         return $this->belongsTo(Machine::class);
+    }
+
+    // Scopes
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->whereHas('machine', function($q) {$q->where('machine_status', Status::Active);
+        });
     }
 }

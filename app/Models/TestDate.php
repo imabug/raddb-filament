@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -111,5 +112,19 @@ class TestDate extends Model implements HasMedia
         $query->where('type_id', 1)
             ->orderby('test_date', 'desc')
             ->limit($n);
+    }
+
+    /**
+     * Scope function to return surveys for active machines.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     */
+    #[Scope]
+    protected function activeMachines(Builder $query): void
+    {
+        $query->whereHas('machine', function ($q) {
+            $q->where('machine_status', Status::Active);
+        });
     }
 }

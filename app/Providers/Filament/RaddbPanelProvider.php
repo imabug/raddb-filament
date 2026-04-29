@@ -37,8 +37,7 @@ class RaddbPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Raddb/Widgets'), for: 'App\Filament\Raddb\Widgets')
             ->widgets([
-                \App\Filament\Widgets\MachinesWidget::class,
-                \App\Filament\Widgets\FacilityMachinesWidget::class,
+                \App\Filament\Widgets\SurveyScheduleWidget::class,
             ])
             ->navigationItems([
                 NavigationItem::make('RadDB Dashboard')

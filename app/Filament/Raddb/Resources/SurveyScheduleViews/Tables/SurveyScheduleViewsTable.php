@@ -2,10 +2,6 @@
 
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
-//use Filament\Actions\BulkActionGroup;
-//use Filament\Actions\DeleteBulkAction;
-//use Filament\Actions\EditAction;
-//use Filament\Support\Icons\Heroicon;
 use App\Models\SurveyScheduleView;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -17,27 +13,22 @@ class SurveyScheduleViewsTable
         return $table
                    ->heading('Survey Schedule')
                    ->columns([
-                       TextColumn::make('id'),
-                       TextColumn::make('description'),
-                       TextColumn::make('prevSurveyId'),
+                       TextColumn::make('id')
+                           ->label('Machine ID'),
+                       TextColumn::make('description')
+                           ->label('Machine'),
+                       TextColumn::make('prevSurveyId')
+                           ->label('Prev Survey ID'),
                        TextColumn::make('prevSurveyDate')
+                           ->label('Prev Survey Date')
                            ->date('Y-m-d'),
-                       TextColumn::make('currSurveyId'),
+                       TextColumn::make('currSurveyId')
+                           ->label('Current Survey ID'),
                        TextColumn::make('currSurveyDate')
+                           ->label('Current Survey Date')
                            ->date('Y-m-d'),
                    ])
                    ->paginated(false)
                    ->striped();
-        // ->filters([
-        //     //
-        // ]);
-        // ->recordActions([
-        //     EditAction::make(),
-        // ])
-        // ->toolbarActions([
-        //     BulkActionGroup::make([
-        //         DeleteBulkAction::make(),
-        //     ]),
-        // ]);
     }
 }

@@ -21,19 +21,60 @@ use Illuminate\Database\Eloquent\Builder;
 
 class MachinesTable
 {
+    private function filtered($livewire, string $filter): bool
+    {
+        $filterState = $livewire->getTableFilterState($filter);
+        if ($filterState == null) {
+            return true;
+        }
+        else if (is_array($filterState)) {
+            if ($filterState["value"] == "") return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     public static function configure(Table $table): Table
     {
         return $table
                    ->columns([
+                       TextColumn::make('filterstate')
+                           ->state(fn ($livewire) => var_dump($livewire->getTableFilterState('modality')["value"]))
+                           ->hidden(true),
                        IconColumn::make('machine_status'),
                        TextColumn::make('location.location')
                            ->searchable(),
                        TextColumn::make('modality.modality')
-                           ->searchable(),
+                           ->searchable()
+                           ->visible(function ($livewire) {
+                           $filterState = $livewire->getTableFilterState('modality');
+                               if ($filterState == null) {
+                                   return true;
+                               }
+                               else if (is_array($filterState)) {
+                                   if ($filterState["value"] == "") return true;
+                               }
+                               else {
+                                   return false;
+                               }                           
+                       }),
                        TextColumn::make('description')
                            ->searchable(),
                        TextColumn::make('manufacturer.manufacturer')
-                           ->searchable(),
+                           ->searchable()
+                           ->visible(function ($livewire) {
+                           $filterState = $livewire->getTableFilterState('manufacturer');
+                               if ($filterState == null) {
+                                   return true;
+                               }
+                               else if (is_array($filterState)) {
+                                   if ($filterState["value"] == "") return true;
+                               }
+                               else {
+                                   return false;
+                               }                           
+                       }),
                        TextColumn::make('model')
                            ->searchable(),
                        TextColumn::make('serial_number')

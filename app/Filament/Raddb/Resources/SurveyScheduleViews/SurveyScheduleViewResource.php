@@ -31,7 +31,7 @@ class SurveyScheduleViewResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->orderBy('prevSurveyDate', 'asc');
+        return parent::getEloquentQuery()->with('machine')->orderBy('prevSurveyDate', 'asc');
     }
 
     public static function form(Schema $schema): Schema

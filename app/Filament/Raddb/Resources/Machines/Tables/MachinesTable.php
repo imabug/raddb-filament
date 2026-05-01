@@ -39,9 +39,6 @@ class MachinesTable
     {
         return $table
                    ->columns([
-                       TextColumn::make('filterstate')
-                           ->state(fn ($livewire) => var_dump($livewire->getTableFilterState('modality')["value"]))
-                           ->hidden(true),
                        IconColumn::make('machine_status'),
                        TextColumn::make('location.location')
                            ->searchable(),
@@ -49,11 +46,9 @@ class MachinesTable
                            ->searchable()
                            ->visible(function ($livewire) {
                            $filterState = $livewire->getTableFilterState('modality');
-                               if ($filterState == null) {
+                               if ($filterState == null ||
+                                   (is_array($filterState) && $filterState["value"] == "")) {
                                    return true;
-                               }
-                               else if (is_array($filterState)) {
-                                   if ($filterState["value"] == "") return true;
                                }
                                else {
                                    return false;
@@ -65,11 +60,9 @@ class MachinesTable
                            ->searchable()
                            ->visible(function ($livewire) {
                            $filterState = $livewire->getTableFilterState('manufacturer');
-                               if ($filterState == null) {
+                               if ($filterState == null ||
+                                   (is_array($filterState) && $filterState["value"] == "")) {
                                    return true;
-                               }
-                               else if (is_array($filterState)) {
-                                   if ($filterState["value"] == "") return true;
                                }
                                else {
                                    return false;

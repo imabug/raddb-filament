@@ -3,6 +3,7 @@
 namespace App\Filament\Raddb\Resources\Machines\Tables;
 
 use App\Enums\Status;
+use App\Filament\Actions\TableDeleteAction;
 use App\Filament\Actions\TableEditAction;
 use App\Filament\Actions\TableViewAction;
 use Filament\Actions\BulkActionGroup;
@@ -116,6 +117,7 @@ class MachinesTable
                    ->recordActions([
                        TableEditAction::make(),
                        TableViewAction::make(),
+                       TableDeleteAction::make(),
                    ])
                    ->toolbarActions([
                        BulkActionGroup::make([

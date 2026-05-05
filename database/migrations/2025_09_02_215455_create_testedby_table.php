@@ -12,8 +12,18 @@ return new class () extends Migration {
     {
         Schema::create('testedby', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable(false)->index();
-            $table->foreignId('survey_id')->nullable(false)->index();
+            $table->foreignId('user_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'users')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('survey_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'testdates')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

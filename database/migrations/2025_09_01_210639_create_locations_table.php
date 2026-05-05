@@ -12,7 +12,11 @@ return new class () extends Migration {
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facility_id')->nullable(false);
+            $table->foreignId('facility_id')
+                ->nullable(false)
+                ->constrained(table: 'facilities')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->string('location', 100)->nullable(false);
             $table->softDeletes();
             $table->timestamps();

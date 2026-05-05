@@ -12,11 +12,26 @@ return new class () extends Migration {
     {
         Schema::create('tubes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->nullable(false)->index();
-            $table->foreignId('housing_manuf_id')->nullable()->index();
+            $table->foreignId('machine_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('housing_manuf_id')
+                ->nullable()
+                ->index()
+                ->constrained(table: 'manufacturers')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->string('housing_model', length:50)->nullable();
             $table->string('housing_sn', length:20)->nullable();
-            $table->foreignId('insert_manuf_id')->nullable()->index();
+            $table->foreignId('insert_manuf_id')
+                ->nullable()
+                ->index()
+                ->constrained(table: 'manufacturers')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->string('insert_model', length:50)->nullable();
             $table->string('insert_sn', length:20)->nullable();
             $table->date('manuf_date')->nullable();

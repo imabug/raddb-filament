@@ -12,8 +12,18 @@ return new class () extends Migration {
     {
         Schema::create('testdates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('machine_id')->nullable(false)->index();
-            $table->foreignId('testtype_id')->nullable(false)->index();
+            $table->foreignId('machine_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('testtype_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'testtypes')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->date('test_date')->nullable(false);
             $table->string('accession', length:50)->nullable();
             $table->text('notes')->nullable();

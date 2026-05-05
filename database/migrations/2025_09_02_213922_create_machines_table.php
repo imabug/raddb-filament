@@ -12,10 +12,30 @@ return new class () extends Migration {
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facility_id')->nullable(false)->index();
-            $table->foreignId('location_id')->nullable(false)->index();
-            $table->foreignId('manufacturer_id')->nullable(false)->index();
-            $table->foreignId('modality_id')->nullable(false)->index();
+            $table->foreignId('facility_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'facilities')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('location_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'locations')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('manufacturer_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'manufacturers')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->foreignId('modality_id')
+                ->nullable(false)
+                ->index()
+                ->constrained(table: 'modalities')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->string('description', length:100)->nullable();
             $table->string('model', length:100)->nullable();
             $table->string('serial_number', length:50)->nullable();

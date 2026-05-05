@@ -20,7 +20,7 @@ return new class () extends Migration {
          */
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('facility', 100)->nullable(false);
+            $table->string('facility')->nullable(false);
             $table->string('street_address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

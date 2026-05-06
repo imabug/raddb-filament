@@ -10,15 +10,20 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        /*
+         * Table to track who participated in surveys
+         */
         Schema::create('testedby', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
+                ->comment('Foreign key to users table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'users')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('survey_id')
+                ->comment('Foreign key to testdates table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'testdates')

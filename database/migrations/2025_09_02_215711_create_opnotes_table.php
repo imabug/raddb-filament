@@ -10,9 +10,13 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        /*
+         * Table to store operational notes for machines
+         */
         Schema::create('opnotes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('machine_id')
+                ->comment('Foreign key to machines table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'machines')

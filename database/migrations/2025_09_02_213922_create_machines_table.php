@@ -10,36 +10,46 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        /*
+         * Table to store machine information
+         */
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
             $table->foreignId('facility_id')
+                ->comment('Foreign key to facilities table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'facilities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('location_id')
+                ->comment('Foreign key to locations table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'locations')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('manufacturer_id')
+                ->comment('Foreign key to manufacturers table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'manufacturers')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('modality_id')
+                ->commment('Foreign key to modalities table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'modalities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('description', length:100)->nullable()->index();
-            $table->string('model', length:100)->nullable()->index();
-            $table->string('serial_number', length:50)->nullable();
-            $table->string('vend_site_id', length:25)->nullable();
+            $table->tinyText('description')
+                ->comment('Commonly understood unit identifier')
+                ->nullable()
+                ->index();
+            $table->tinyText('model')->nullable()->index();
+            $table->tinyText('serial_number')->nullable();
+            $table->tinyText('vend_site_id')->nullable();
             $table->string('room', length:20)->nullable();
             $table->date('install_date')->nullable();
             $table->date('manuf_date')->nullable();

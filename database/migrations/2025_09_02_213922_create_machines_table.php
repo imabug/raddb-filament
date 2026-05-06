@@ -36,8 +36,8 @@ return new class () extends Migration {
                 ->constrained(table: 'modalities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('description', length:100)->nullable();
-            $table->string('model', length:100)->nullable();
+            $table->string('description', length:100)->nullable()->index();
+            $table->string('model', length:100)->nullable()->index();
             $table->string('serial_number', length:50)->nullable();
             $table->string('vend_site_id', length:25)->nullable();
             $table->string('room', length:20)->nullable();

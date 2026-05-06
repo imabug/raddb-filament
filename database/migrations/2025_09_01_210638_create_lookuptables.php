@@ -20,7 +20,7 @@ return new class () extends Migration {
          */
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->tinyText('facility')->nullable(false);
+            $table->tinyText('facility')->nullable(false)->index();
             $table->string('street_address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -40,6 +40,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('facility_id')
                 ->nullable(false)
+                ->index()
                 ->constrained(table: 'facilities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
@@ -54,7 +55,7 @@ return new class () extends Migration {
          */
         Schema::create('modalities', function (Blueprint $table) {
             $table->id();
-            $table->string('modality', 50)->nullable(false);
+            $table->string('modality', 50)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -65,7 +66,7 @@ return new class () extends Migration {
          */
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
-            $table->string('manufacturer', 50)->nullable(false);
+            $table->string('manufacturer', 50)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -76,7 +77,7 @@ return new class () extends Migration {
          */
         Schema::create('testtypes', function (Blueprint $table) {
             $table->id();
-            $table->string('test_type', 30)->nullable(false);
+            $table->string('test_type', 30)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });

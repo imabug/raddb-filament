@@ -51,9 +51,9 @@ return new class () extends Migration {
             $table->tinyText('serial_number')->nullable();
             $table->tinyText('vend_site_id')->nullable();
             $table->string('room', length:20)->nullable();
-            $table->date('install_date')->nullable();
-            $table->date('manuf_date')->nullable();
-            $table->date('remove_date')->nullable();
+            $table->date('install_date')->index()->nullable();
+            $table->date('manuf_date')->index()->nullable();
+            $table->date('remove_date')->index()->nullable();
             $table->string('machine_status', 20)
                 ->nullable(false)
                 ->index();

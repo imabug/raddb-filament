@@ -10,15 +10,20 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        /*
+         * Table to store equipment survey dates
+         */
         Schema::create('testdates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('machine_id')
+                ->comment('Foreign key to machines table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'machines')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('testtype_id')
+                ->comment('Foreign key to testtypes table')
                 ->nullable(false)
                 ->index()
                 ->constrained(table: 'testtypes')

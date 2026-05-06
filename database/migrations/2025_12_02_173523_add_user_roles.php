@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        /*
+         * Add a role field to the users table.
+         * The list of roles is defined in app/enums/Role.php
+         */
         Schema::table('users', function (Blueprint $table) {
             $table->string('role', 100)
                 ->nullable(false)

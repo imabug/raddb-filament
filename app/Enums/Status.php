@@ -41,11 +41,11 @@ enum Status: string implements HasColor, HasIcon, HasLabel
     public function getIcon(): ?string
     {
         return match ($this) {
-            self::Active => 'heroicon-s-check',
-            self::Inactive => 'heroicon-s-x-circle',
-            self::Removed => 'heroicon-s-trash',
-            self::InProgress => 'heroicon-s-document',
-            self::Complete => 'heroicon-s-check',
+            self::Active => Heroicon::Check,
+            self::Inactive => Heroicon::XCircle,
+            self::Removed => Heroicon::Trash,
+            self::InProgress => Heroicon::Document,
+            self::Complete => Heroicon::Check,
         };
     }
 

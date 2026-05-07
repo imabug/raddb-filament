@@ -45,7 +45,7 @@ enum Status: string implements HasColor, HasIcon, HasLabel
             self::Inactive => Heroicon::XCircle,
             self::Removed => Heroicon::Trash,
             self::InProgress => Heroicon::Document,
-            self::Complete => Heroicon::Check,
+            self::Complete => Heroicon::DocumentCheck,
         };
     }
 

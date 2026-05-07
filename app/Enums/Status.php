@@ -13,13 +13,17 @@ enum Status: string implements HasColor, HasIcon, HasLabel
     case Active = 'Active';
     case Inactive = 'Inactive';
     case Removed = 'Removed';
+    case InProgress = 'In progress';
+    case Complete = 'Complete';
 
     public function getColor(): string|array|null
     {
         return match ($this) {
             self::Active => 'success',
             self::Inactive => 'warning',
-            self::Removed => 'danger'
+            self::Removed => 'danger',
+            self::InProgress => 'info',
+            self::Complete => 'success',
         };
     }
 
@@ -28,7 +32,9 @@ enum Status: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Active => 'In use',
             self::Inactive => 'Not in use, but has not been removed yet',
-            self::Removed => 'No longer in use and has been removed'
+            self::Removed => 'No longer in use and has been removed',
+            self::InProgress => 'In progress',
+            self::Complete => 'Complete'
         };
     }
 
@@ -37,7 +43,9 @@ enum Status: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Active => 'heroicon-s-check',
             self::Inactive => 'heroicon-s-x-circle',
-            self::Removed => 'heroicon-s-trash'
+            self::Removed => 'heroicon-s-trash',
+            self::InProgress => 'heroicon-s-document',
+            self::Complete => 'heroicon-s-check',
         };
     }
 

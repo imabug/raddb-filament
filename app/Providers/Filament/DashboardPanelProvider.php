@@ -56,6 +56,10 @@ class DashboardPanelProvider extends PanelProvider
                            ->url('/raddb')
                            ->icon(Heroicon::OutlinedHome)
                            ->sort(1),
+                       NavigationItem::make('Shielding Requests')
+                           ->url('/shielding')
+                           ->icon(Heroicon::OutlinedShieldCheck)
+                           ->sort(1),
                    ])
                    ->middleware([
                        EncryptCookies::class,

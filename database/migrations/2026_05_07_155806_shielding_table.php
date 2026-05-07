@@ -22,6 +22,13 @@ return new class extends Migration
             $table->date('request_date')
                 ->nullable(false)
                 ->index();
+            $table->foreignId('machine_id')
+                ->comment('Foreign key to machines table')
+                ->nullable()
+                ->index()
+                ->constrained(table: 'machines')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
             $table->foreignId('user_id')
                 ->comment('Foreign key to users table')
                 ->nullable(false)

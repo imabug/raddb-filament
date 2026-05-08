@@ -45,6 +45,10 @@ class AdminPanelProvider extends PanelProvider
                     ->url('/')
                     ->icon(Heroicon::OutlinedPresentationChartBar)
                     ->sort(2),
+                NavigationItem::make('Shielding Requests')
+                    ->url('/shielding')
+                    ->icon(Heroicon::OutlinedShieldCheck)
+                    ->sort(3),
             ])
             ->widgets([
                 FilamentInfoWidget::class,

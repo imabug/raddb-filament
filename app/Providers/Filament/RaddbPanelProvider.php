@@ -44,6 +44,10 @@ class RaddbPanelProvider extends PanelProvider
                     ->url('/')
                     ->icon(Heroicon::OutlinedPresentationChartBar)
                     ->sort(1),
+                NavigationItem::make('Shielding Requests')
+                    ->url('/shielding')
+                    ->icon(Heroicon::OutlinedShieldCheck)
+                    ->sort(1),
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use BackedEnum;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasIcon;
@@ -41,7 +42,7 @@ enum Status: string implements HasColor, HasIcon, HasLabel
         };
     }
 
-    public function getIcon(): ?string
+    public function getIcon(): string|BackedEnum
     {
         return match ($this) {
             self::Active => Heroicon::Check,

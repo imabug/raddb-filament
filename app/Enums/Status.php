@@ -18,7 +18,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
     case NeedInfo = 'Need info';
     case Complete = 'Complete';
 
-    public function getColor(): string|array|null
+    public function getColor(): string|null
     {
         return match ($this) {
             self::Active => 'success',

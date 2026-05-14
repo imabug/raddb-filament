@@ -6,7 +6,7 @@ use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
 
-enum Role: string implements HasLabel
+enum Role: string implements HasDescription, HasLabel
 {
     case Staff = 'Staff';
     case PhysAssist = 'Physics Assistant';

@@ -35,12 +35,12 @@ class Manufacturer extends Model
         return $this->hasMany(Machine::class);
     }
 
-    public function tube_housing_manuf(): HasMany
+    public function tubeHousingManuf(): HasMany
     {
         return $this->hasMany(Tube::class);
     }
 
-    public function tube_ins_manuf(): HasMany
+    public function tubeInsManuf(): HasMany
     {
         return $this->hasMany(Tube::class);
     }

@@ -69,12 +69,12 @@ class Tube extends Model
         return $this->belongsTo(Machine::class);
     }
 
-    public function housing_manuf(): BelongsTo
+    public function housingManuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
-    public function insert_manuf(): BelongsTo
+    public function insertManuf(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
     }

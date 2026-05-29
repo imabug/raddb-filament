@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     // Relationships
-    public function testedBy(): hasMany
+    public function testedBy(): HasMany
     {
         return $this->hasMany(TestedBy::class);
     }

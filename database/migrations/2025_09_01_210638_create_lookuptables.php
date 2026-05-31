@@ -21,10 +21,10 @@ return new class () extends Migration {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->tinyText('facility')->nullable(false)->index();
-            $table->string('street_address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip_code', 10)->nullable();
+            $table->string('street_address')->nullable()->index();
+            $table->string('city')->nullable()->index();
+            $table->string('state')->nullable()->index();
+            $table->string('zip_code', 10)->nullable()->index();
             $table->softDeletes();
             $table->timestamps();
         });

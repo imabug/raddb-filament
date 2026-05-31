@@ -28,6 +28,7 @@ class DashboardPanelProvider extends PanelProvider
                    ->default()
                    ->id('dashboard')
                    ->path('')
+            ->viteTheme('resources/css/filament/dashboard/theme.css')
                    ->brandName('RadDB Filament')
                    // ->login()
                    ->colors([

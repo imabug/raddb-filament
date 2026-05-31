@@ -6,7 +6,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('app:tube-cmd')]
+#[Signature('raddb:tube-cmd')]
 #[Description('Command description')]
 class TubeCmd extends Command
 {

@@ -6,7 +6,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('app:machine-cmd')]
+#[Signature('raddb:machine-cmd')]
 #[Description('Command description')]
 class MachineCmd extends Command
 {

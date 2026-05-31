@@ -6,7 +6,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
-#[Signature('app:survey-cmd')]
+#[Signature('raddb:survey-cmd')]
 #[Description('Command description')]
 class SurveyCmd extends Command
 {

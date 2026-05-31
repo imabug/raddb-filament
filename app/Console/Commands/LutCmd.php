@@ -201,22 +201,22 @@ class LutCmd extends Command implements PromptsForMissingInput
                 );
                 $lut->street_address = text(
                     label: 'Enter a new street address (enter to leave unchanged)',
-                    default: $lut->street_address,
+                    default: $lut->street_address ?? '',
                     required: false
                 );
                 $lut->city = text(
                     label: 'Enter a new city (enter to leave uchanged).',
-                    default: $lut->city,
+                    default: $lut->city ?? '',
                     required: false
                 );
                 $lut->state = text(
                     label: 'Enter a new state (enter to leave unchanged.)',
-                    default: $lut->state,
+                    default: $lut->state ?? '',
                     required: false
                 );
                 $lut->zip_code = text(
                     label: 'Enter a new zip code (enter to leave unchanged).',
-                    default: $lut->zip_code,
+                    default: $lut->zip_code ?? '',
                     required: false
                 );
 

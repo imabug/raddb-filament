@@ -16,6 +16,17 @@ class Tube extends Model
     use SoftDeletes;
 
     /**
+     * Eager loaded relationships
+     * 
+     * @var array
+     */
+    protected $with = [
+        'machine',
+        'housingManuf',
+        'insertManuf',
+    ];
+
+    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class TestDate extends Model implements HasMedia
 {
@@ -23,6 +24,16 @@ class TestDate extends Model implements HasMedia
      * @var string
      */
     protected $table = 'testdates';
+
+    /**
+     * Eager loaded relationships
+     * 
+     * @var array
+     */
+    protected $with = [
+        'machine',
+        'testtype',
+    ];
 
     /**
      * Attributes that are mass assignable.
@@ -71,7 +82,7 @@ class TestDate extends Model implements HasMedia
 
     public function thisyear(): BelongsTo
     {
-        return $this->hasMany(ThisYear::class, 'survey_id');
+        return $this->belongsTo(ThisYear::class, 'survey_id');
     }
 
     public function lastyear(): BelongsTo

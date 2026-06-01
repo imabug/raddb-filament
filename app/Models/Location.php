@@ -12,6 +12,15 @@ class Location extends Model
     use SoftDeletes;
 
     /**
+     * Eager loaded relationships
+     * 
+     * @var array
+     */
+    protected $with = [
+        'facility',
+    ];
+
+    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>

@@ -17,6 +17,17 @@ class SurveyScheduleView extends Model
     protected $table = 'surveyschedule_view';
 
     /**
+     * Eager loaded relationships
+     * 
+     * @var array
+     */
+    protected $with = [
+        'machine',
+        'prevSurvey',
+        'currSurvey',
+    ];
+
+    /**
      * Indicates if the model's ID is auto-incrementing.
      *
      * @var bool

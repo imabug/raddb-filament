@@ -23,6 +23,20 @@ class Machine extends Model implements HasMedia
     use InteractsWithMedia;
 
     /**
+     * Eager loaded relationships
+     * 
+     * @var array
+     */
+    protected $with = [
+        'facility',
+        'location',
+        'modality',
+        'manufacturer',
+        'tube',
+        'opnote',
+    ];
+
+    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>

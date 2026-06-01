@@ -72,7 +72,6 @@ class LutCmd extends Command implements PromptsForMissingInput
         // Display the table so the user can see what's already in the table
         $this->list($table);
 
-
         switch ($table) {
             case 'Facility':
                 $lut = new Facility();
@@ -173,8 +172,11 @@ class LutCmd extends Command implements PromptsForMissingInput
 
     public function edit(string $table): int
     {
+        // Fully qualified model name from the $table provided
         $modelClass = "\App\Models\\" . $table;
+        // Attribute in the database table
         $tableAttr = Str::lower($table);
+        // Lookup table model instance
         $lut = null;
 
         // Display the table so the user can see what's in the table
@@ -220,6 +222,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                     required: false
                 );
 
+                // Run the entered data through the validator
                 $validator = Validator::make($lut->toArray(), [
                     'facility' => 'required|string|max:255',
                     'street_address' => 'string|max:255',
@@ -228,6 +231,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                     'zip_code' => 'string|max:10',
                 ]);
 
+                // Validation failed on something.  Show the errors and exit.
                 if ($validator->fails()) {
                     $errors = $validator->errors();
                     foreach ($errors->all() as $message) {
@@ -236,9 +240,13 @@ class LutCmd extends Command implements PromptsForMissingInput
                     return 1;
                 }
 
+                // Ask for confirmation before saving the model
                 if (confirm('Save these changes?')) {
                     $lut->save();
                     info('Changes have been saved.');
+                }
+                else {
+                    info('No changes made');
                 }
                 break;
             case 'location':
@@ -256,9 +264,14 @@ class LutCmd extends Command implements PromptsForMissingInput
                     default: $lut->location,
                     required: true
                 );
+
+                // Ask for confirmation before saving the model
                 if (confirm('Save these changes?')) {
                     $lut->save();
                     info('Changes have been saved.');
+                }
+                else {
+                    info('No changes made.');
                 }
                 break;
             case 'manufacturer':
@@ -288,8 +301,11 @@ class LutCmd extends Command implements PromptsForMissingInput
 
     public function delete(string $table): int
     {
+        // Fully qualified model name from the provided $table
         $modelClass = "\App\Models\\" . $table;
+        // Attribute in the database table
         $tableAttr = Str::lower($table);
+        // Lookup table model instance
         $lut = null;
 
         // Display the table so the user can select an ID to delete
@@ -313,12 +329,13 @@ class LutCmd extends Command implements PromptsForMissingInput
 
     public function list(string $table): int
     {
+        // Fully qualified model name from the provided table
         $modelClass = "\App\Models\\" . $table;
-        $header = ['ID', $table];
-        $body = null;
 
-        $body = $modelClass::all(['id', $table])->toArray();
-        table($header, $body);
+        table(
+            ['ID', $table], 
+            $modelClass::all(['id', $table])->toArray()
+        );
 
         return 0;
     }

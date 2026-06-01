@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -80,14 +81,14 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(TestType::class, 'testtype_id');
     }
 
-    public function thisyear(): BelongsTo
+    public function thisyear(): HasOne
     {
-        return $this->belongsTo(ThisYear::class, 'survey_id');
+        return $this->hasOne(ThisYear::class, 'survey_id');
     }
 
-    public function lastyear(): BelongsTo
+    public function lastyear(): HasOne
     {
-        return $this->belongsTo(LastYear::class, 'survey_id');
+        return $this->hasOne(LastYear::class, 'survey_id');
     }
 
     /**

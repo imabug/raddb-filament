@@ -192,22 +192,21 @@ class MachineCmd extends Command
                 error($message);
             }
             return 1;
+        }
+        
+        if (confirm(label: 'Save this new machine?')) {
+            // Save the machine
+            $machine->save();
+            // Check to see if the an x-ray tube needs to be added
+            // for the machine.  If the modality_id is not in the
+            // array, then it's an x-ray modality.
+            // These modality IDs will need to be changed if the
+            // modalities table ever gets rearranged.
+            if (!in_array($machine->modality_id, [6, 9, 10, 11, 12, 19, 21, 22])) {
+                $this->call('raddb:tube add', ['id' => $machine->id]);
+            }
         } else {
-            if (confirm(label: 'Save this new machine?')) {
-                // Save the machine
-                $machine->save();
-                // Check to see if the an x-ray tube needs to be added
-                // for the machine.  If the modality_id is not in the
-                // array, then it's an x-ray modality.
-                // These modality IDs will need to be changed if the
-                // modalities table ever gets rearranged.
-                if (!in_array($machine->modality_id, [6, 9, 10, 11, 12, 19, 21, 22])) {
-                    $this->call('raddb:tube add', ['id' => $machine->id]);
-                }
-            }
-            else {
-                info('New machine not saved');
-            }
+            info('New machine not saved');
         }
         return 0;
     }
@@ -254,7 +253,7 @@ class MachineCmd extends Command
         );
         $machine->model = text(
             label: 'Enter the model name of the machine',
-            default: $machine->model,
+            default: $machine->model ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
@@ -262,7 +261,7 @@ class MachineCmd extends Command
         );
         $machine->serial_number = text(
             label: 'Enter the serial number of the machine',
-            default: $machine->serial_number,
+            default: $machine->serial_number ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
@@ -271,7 +270,7 @@ class MachineCmd extends Command
         );
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for the machine',
-            default: $machine->vend_site_id,
+            default: $machine->vend_site_id ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
                 default => null
@@ -288,15 +287,15 @@ class MachineCmd extends Command
         );
         $machine->manuf_date = text(
             label: 'Enter the manufacture date of the machine (YYYY-MM-DD)',
-            default: $machine->manuf_date
+            default: $machine->manuf_date ?? ''
         );
         $machine->install_date = text(
             label: 'Enter the installation date for the machine (YYYY-MM-DD)',
-            default: $machine->install_date
+            default: $machine->install_date ?? ''
         );
         $machine->software_version = text(
             label: 'Enter the machine software version',
-            default: $machine->software_version,
+            default: $machine->software_version ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Software version must be less than 50 characters',
                 default => null
@@ -304,7 +303,7 @@ class MachineCmd extends Command
         );
         $machine->pacs_station = text(
             label: 'Enter the PACS station name for the machine',
-            default: $machine->pacs_station,
+            default: $machine->pacs_station ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'PACS station must be less than 50 characters',
                 default => null
@@ -312,7 +311,7 @@ class MachineCmd extends Command
         );
         $machine->notes = textarea(
             label: 'Enter any special notes for the  machine',
-            default: $machine->notes,
+            default: $machine->notes ?? '',
             validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
@@ -337,15 +336,15 @@ class MachineCmd extends Command
                 error($message);
             }
             return 1;
-        } else {
-            if (confirm(label: 'Save this new machine?')) {
-                // Save the machine
-                $machine->save();
-            }
-            else {
-                info('No changes made');
-            }
         }
+
+        if (confirm(label: 'Save this new machine?')) {
+            // Save the machine
+            $machine->save();
+        } else {
+            info('No changes made');
+        }
+
         return 0;
     }
 

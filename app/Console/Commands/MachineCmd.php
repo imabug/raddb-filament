@@ -275,8 +275,7 @@ class MachineCmd extends Command
             validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
                 default => null
-            },
-            default: $machine->serial_number
+            }
         );
         $machine->room = text(
             label: 'Enter the room number for the machine',

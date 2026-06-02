@@ -34,6 +34,11 @@ class LocationSeeder extends Seeder
             'BMET X-ray Repair',
             'MUSC E Cooper Urology',
             'MUSC Children\s After Hours Care North Charleston',
+            'Pediatric Cardiology Lab',
+            'Adult Cardiology Lab',
+            'Children\'s Hospital',
+            'MUSC Health West Ashley',
+            'MUSC East Cooper',
         ],
         // Medical University Hospital
         2 => [

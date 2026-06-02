@@ -39,6 +39,7 @@ class LocationSeeder extends Seeder
             'Children\'s Hospital',
             'MUSC Health West Ashley',
             'MUSC East Cooper',
+            'Research',
         ],
         // Medical University Hospital
         2 => [
@@ -48,8 +49,6 @@ class LocationSeeder extends Seeder
             'Nuclear medicine',
             'Ultrasound',
             'Rutledge Tower',
-            'Trauma',
-            'Angiography',
             'MRI',
             'CT',
             'Pain Management',
@@ -72,6 +71,7 @@ class LocationSeeder extends Seeder
             'Vascular Interventional Radiology',
             'Ultrasound',
             'Endoscopy',
+            'Bronchoscopy',
         ],
         // MUSC Shawn Jenkins Children's Hospital
         4 => [
@@ -89,6 +89,7 @@ class LocationSeeder extends Seeder
             'MRI',
             'Mammography',
             'Nuclear medicine',
+            'Ultrasound',
         ],
         // MUSC Health West Ashley
         6 => [

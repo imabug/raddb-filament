@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class ModalitySeeder extends Seeder
 {
-    // Array of modalities to seed the modalities table with
+    /**
+     * Array of modalities to seed the table with
+     * 
+     * @var array $modalities
+     */
     protected $modalities = [
         'Portable',
         'C-Arm',

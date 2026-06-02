@@ -15,6 +15,12 @@ class FacilitySeeder extends Seeder
      */
 
     protected $facilities = [
+        'Inactive Facility' => [
+            'street_address' => '',
+            'city' => '',
+            'state' => 'SC',
+            'zip_code' => '',
+        ],
         'Medical University Hospital' => [
             'street_address' => '169 Ashley Ave',
             'city' => 'Charleston',

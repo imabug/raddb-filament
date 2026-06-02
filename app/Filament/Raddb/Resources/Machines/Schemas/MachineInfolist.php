@@ -36,7 +36,7 @@ class MachineInfolist
                 TextEntry::make('pacs_station'),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn(Machine $record): bool => $record->trashed())
+                    ->visible(fn (Machine $record): bool => $record->trashed())
                     ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()

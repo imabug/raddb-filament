@@ -23,9 +23,9 @@ class ListSurveyScheduleViews extends ListRecords
         return [
             'all' => Tab::make('All'),
             'pending' => Tab::make('Pending')
-                             ->modifyQueryUsing(fn(Builder $query) => $query->pending()),
+                             ->modifyQueryUsing(fn (Builder $query) => $query->pending()),
             'needSurvey' => Tab::make('Need to survey')
-                                ->modifyQueryUsing(fn(Builder $query) => $query->surveyNeeded()),
+                                ->modifyQueryUsing(fn (Builder $query) => $query->surveyNeeded()),
         ];
     }
 }

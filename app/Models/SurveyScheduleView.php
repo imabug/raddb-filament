@@ -18,7 +18,7 @@ class SurveyScheduleView extends Model
 
     /**
      * Eager loaded relationships
-     * 
+     *
      * @var array
      */
     protected $with = [
@@ -88,5 +88,5 @@ class SurveyScheduleView extends Model
     {
         $query->where('currSurveyDate', null);
     }
-    
+
 }

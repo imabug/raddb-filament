@@ -13,7 +13,7 @@ class Location extends Model
 
     /**
      * Eager loaded relationships
-     * 
+     *
      * @var array
      */
     protected $with = [

@@ -24,7 +24,7 @@ class Machine extends Model implements HasMedia
 
     /**
      * Eager loaded relationships
-     * 
+     *
      * @var array
      */
     protected $with = [

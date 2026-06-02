@@ -50,7 +50,7 @@ class TubeInfolist
                     ->columnSpanFull(),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn(Tube $record): bool => $record->trashed()),
+                    ->visible(fn (Tube $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

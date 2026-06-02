@@ -41,7 +41,7 @@ class SurveyCmd extends Command
                     $machine = Machine::find(
                         search(
                             label: 'Search for the machine description to edit',
-                            options: fn(string $value) => strlen($value) > 0 ?
+                            options: fn (string $value) => strlen($value) > 0 ?
                                 Machine::whereLike('description', '%{$value}%')
                                 ->active()
                                 ->orderBy('description')
@@ -76,7 +76,7 @@ class SurveyCmd extends Command
                 if (is_null($this->argument('id'))) {
                     $id = text(
                         label: 'Enter a survey ID to cancel',
-                        validate: fn(int $value) => match (true) {
+                        validate: fn (int $value) => match (true) {
                             TestDate::find($value) == null => 'Survey ID was not found'
                         },
                         required: true
@@ -112,14 +112,14 @@ class SurveyCmd extends Command
         );
         $survey->accession = text(
             label: 'Enter the accession number',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
                 default => null
             }
         );
         $survey->notes = text(
             label: 'Enter notes for this test',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
             }
@@ -157,7 +157,7 @@ class SurveyCmd extends Command
         $survey->accession = text(
             label: 'Change the accession number',
             default: $survey->accession ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
                 default => null
             }
@@ -165,7 +165,7 @@ class SurveyCmd extends Command
         $survey->notes = text(
             label: 'Edit the survey note',
             default: $survey->notes ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
                 default => null
             }

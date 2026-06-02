@@ -62,7 +62,7 @@ class TubesTable
             ->defaultGroup('machine.description')
             ->filters([
                 Filter::make('active')
-                    ->query(fn(Builder $query): Builder => $query->where('tube_status', 'Active'))
+                    ->query(fn (Builder $query): Builder => $query->where('tube_status', 'Active'))
                     ->toggle()
                     ->default(),
                 TrashedFilter::make(),

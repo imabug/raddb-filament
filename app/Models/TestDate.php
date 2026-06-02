@@ -28,7 +28,7 @@ class TestDate extends Model implements HasMedia
 
     /**
      * Eager loaded relationships
-     * 
+     *
      * @var array
      */
     protected $with = [

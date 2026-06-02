@@ -52,7 +52,8 @@ class OpNote extends Model
     #[Scope]
     protected function activeMachines(Builder $query): void
     {
-        $query->whereHas('machine', function($q) {$q->where('machine_status', Status::Active);
+        $query->whereHas('machine', function ($q) {
+            $q->where('machine_status', Status::Active);
         });
     }
 }

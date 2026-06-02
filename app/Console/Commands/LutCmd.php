@@ -32,7 +32,7 @@ class LutCmd extends Command implements PromptsForMissingInput
     protected $signature = 'raddb:lut
 {cmd : Command to execute (add, delete, edit, or list)}
 {table : Lookup table to manage}';
-    
+
     /**
      * Execute the console command.
      */
@@ -84,28 +84,28 @@ class LutCmd extends Command implements PromptsForMissingInput
                 );
                 $lut->street_address = text(
                     label: 'Enter the street address',
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility address must be less than 255 characters',
                         default => null
                     }
                 );
                 $lut->city = text(
                     label: 'Enter the city',
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility city must be less than 255 characters',
                         default => null
                     }
                 );
                 $lut->state = text(
                     label: 'Enter the state',
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility state must be less than 255 characters',
                         default => null
                     }
                 );
                 $lut->zip_code = text(
                     label: 'Enter the zip code',
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 10 => 'Facility zip code must be less than 10 characters',
                         default => null
                     }
@@ -116,7 +116,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->location = text(
                     label: 'Enter a new location',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 100 => 'The location must be less than 100 characters',
                         default                   => null
                     }
@@ -127,7 +127,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->manufacturer = text(
                     label: 'Enter a new manufacturer',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 50 => 'The manufacturer must be less than 50 characters',
                         default                  => null
                     }
@@ -138,7 +138,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->modality = text(
                     label: 'Enter a new modality',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 25 => 'The modality must be less than 50 characters',
                         default                  => null
                     }
@@ -149,7 +149,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->test_type = text(
                     label: 'Enter a new test type',
                     required: true,
-                    validate: fn(string $value) => match (true) {
+                    validate: fn (string $value) => match (true) {
                         Str::length($value) > 30 => 'The test type must be less than 30 characters',
                         default                  => null
                     }
@@ -194,7 +194,7 @@ class LutCmd extends Command implements PromptsForMissingInput
 
         switch ($tableAttr) {
             case 'facility':
-                // Ask the user to edit each facility attribute.  
+                // Ask the user to edit each facility attribute.
                 // Current values are set as the default
                 $lut->facility = text(
                     label: 'Enter a new facility name (enter to leave unchanged).',
@@ -244,8 +244,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 if (confirm('Save these changes?')) {
                     $lut->save();
                     info('Changes have been saved.');
-                }
-                else {
+                } else {
                     info('No changes made');
                 }
                 break;
@@ -269,8 +268,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 if (confirm('Save these changes?')) {
                     $lut->save();
                     info('Changes have been saved.');
-                }
-                else {
+                } else {
                     info('No changes made.');
                 }
                 break;
@@ -281,8 +279,10 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $value = text(label: "What should the new value be?", required: true);
 
                 // Confirm the change
-                if (confirm(label: 'Changing ' . $lut->$tableAttr . ' to ' . $value . '.',
-                            default: false)) {
+                if (confirm(
+                    label: 'Changing ' . $lut->$tableAttr . ' to ' . $value . '.',
+                    default: false
+                )) {
                     $lut->$tableAttr = $value;
                     $lut->save();
                     // Display the updated table
@@ -294,7 +294,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 break;
             default:
                 error('Usage: php artisan raddb:lut edit <table>');
-        } 
+        }
 
         return 0;
     }
@@ -315,12 +315,13 @@ class LutCmd extends Command implements PromptsForMissingInput
         $lut = $modelClass::find(text(label: 'Enter the ID to remove', required: true));
 
         // Confirm the selection
-        if (confirm(label: 'Deleting from ' . $table . ' ID: ' . $lut->id . ' Value: ' . $lut->$tableAttr, 
-                    default: false)) {
+        if (confirm(
+            label: 'Deleting from ' . $table . ' ID: ' . $lut->id . ' Value: ' . $lut->$tableAttr,
+            default: false
+        )) {
             $lut->delete();
             info($table . ' ID: ' . $lut->id . ' deleted');
-        }
-        else {
+        } else {
             info('No changes made');
         }
 
@@ -333,7 +334,7 @@ class LutCmd extends Command implements PromptsForMissingInput
         $modelClass = "\App\Models\\" . $table;
 
         table(
-            ['ID', $table], 
+            ['ID', $table],
             $modelClass::all(['id', $table])->toArray()
         );
 

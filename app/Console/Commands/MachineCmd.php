@@ -25,7 +25,7 @@ class MachineCmd extends Command
 {
     /**
      * Command signature
-     * 
+     *
      * @var string
      */
     protected $signature = 'raddb:machine 
@@ -48,7 +48,7 @@ class MachineCmd extends Command
                 $machine = Machine::find(
                     search(
                         label: 'Search for the machine description to edit',
-                        options: fn(string $value) => strlen($value) > 0 ?
+                        options: fn (string $value) => strlen($value) > 0 ?
                             Machine::whereLike('description', '%{$value}%')
                             ->active()
                             ->orderBy('description')
@@ -122,14 +122,14 @@ class MachineCmd extends Command
         );
         $machine->model = text(
             label: 'Enter the model name of the machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
         );
         $machine->serial_number = text(
             label: 'Enter the serial number of the machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             },
@@ -137,7 +137,7 @@ class MachineCmd extends Command
         );
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for the machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
                 default => null
             },
@@ -145,7 +145,7 @@ class MachineCmd extends Command
         );
         $machine->room = text(
             label: 'Enter the room number for the machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 20 => 'Room must be less than 20 characters',
                 default => null
             },
@@ -159,21 +159,21 @@ class MachineCmd extends Command
         );
         $machine->software_version = text(
             label: 'Enter the machine software version',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'Software version must be less than 50 characters',
                 default => null
             },
         );
         $machine->pacs_station = text(
             label: 'Enter the PACS station name for the machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'PACS station must be less than 50 characters',
                 default => null
             },
         );
         $machine->notes = textarea(
             label: 'Enter any special notes for the  machine',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
             },
@@ -184,7 +184,7 @@ class MachineCmd extends Command
         $validator = Validator::make($machine->toArray(), [
             'manuf_date' => 'date_format:y-m-d',
             'install_date' => 'date_format:y-m-d',
-            
+
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -193,7 +193,7 @@ class MachineCmd extends Command
             }
             return 1;
         }
-        
+
         if (confirm(label: 'Save this new machine?')) {
             // Save the machine
             $machine->save();
@@ -254,7 +254,7 @@ class MachineCmd extends Command
         $machine->model = text(
             label: 'Enter the model name of the machine',
             default: $machine->model ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
@@ -262,7 +262,7 @@ class MachineCmd extends Command
         $machine->serial_number = text(
             label: 'Enter the serial number of the machine',
             default: $machine->serial_number ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             },
@@ -271,7 +271,7 @@ class MachineCmd extends Command
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for the machine',
             default: $machine->vend_site_id ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
                 default => null
             }
@@ -279,7 +279,7 @@ class MachineCmd extends Command
         $machine->room = text(
             label: 'Enter the room number for the machine',
             default: $machine->room,
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 20 => 'Room must be less than 20 characters',
                 default => null
             },
@@ -296,7 +296,7 @@ class MachineCmd extends Command
         $machine->software_version = text(
             label: 'Enter the machine software version',
             default: $machine->software_version ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'Software version must be less than 50 characters',
                 default => null
             },
@@ -304,7 +304,7 @@ class MachineCmd extends Command
         $machine->pacs_station = text(
             label: 'Enter the PACS station name for the machine',
             default: $machine->pacs_station ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 50 => 'PACS station must be less than 50 characters',
                 default => null
             },
@@ -312,7 +312,7 @@ class MachineCmd extends Command
         $machine->notes = textarea(
             label: 'Enter any special notes for the  machine',
             default: $machine->notes ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
             },

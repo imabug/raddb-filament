@@ -17,7 +17,7 @@ class Tube extends Model
 
     /**
      * Eager loaded relationships
-     * 
+     *
      * @var array
      */
     protected $with = [

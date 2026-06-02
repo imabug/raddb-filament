@@ -22,7 +22,7 @@ class TubeCmd extends Command
 {
     /**
      * Command signature
-     * 
+     *
      * @var string
      */
     protected $signature = 'raddb:tube 
@@ -42,7 +42,7 @@ class TubeCmd extends Command
             $machine = Machine::find(
                 search(
                     label: 'Search for the machine description to edit',
-                    options: fn(string $value) => strlen($value) > 0 ?
+                    options: fn (string $value) => strlen($value) > 0 ?
                         Machine::whereLike('description', '%{$value}%')
                         ->active()
                         ->orderBy('description')
@@ -87,14 +87,14 @@ class TubeCmd extends Command
         );
         $tube->housing_model = text(
             label: 'Enter the tube housing model',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
         );
         $tube->housing_sn = text(
             label: 'Enter the tube housing serial number',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             }
@@ -107,14 +107,14 @@ class TubeCmd extends Command
         );
         $tube->insert_model = text(
             label: 'Enter the tube insert model',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
         );
         $tube->insert_sn = text(
             label: 'Enter the tube insert serial number',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             }
@@ -128,28 +128,28 @@ class TubeCmd extends Command
         );
         $tube->lfs = text(
             label: 'Enter the large focal spot size (mm)',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Large focal spot size must be numeric',
                 default => null
             }
         );
         $tube->mfs = text(
             label: 'Enter the medium focal spot size (mm).',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Medium focal spot size must be numeric',
                 default => null
             }
         );
         $tube->sfs = text(
             label: 'Enter the small focal spot size (mm)',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Small focal spot size must be numeric',
                 default => null
             }
         );
         $tube->notes = text(
             label: 'Enter any notes for the tube',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
             },
@@ -190,8 +190,7 @@ class TubeCmd extends Command
                     options: $machine->tube()->pluck('notes', 'id')
                 )
             );
-        }
-        else {
+        } else {
             $tube = $machine->tube()->get();
         }
 
@@ -204,7 +203,7 @@ class TubeCmd extends Command
         $tube->housing_model = text(
             label: 'Enter the tube housing model',
             default: $tube->housing_model ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
@@ -212,7 +211,7 @@ class TubeCmd extends Command
         $tube->housing_sn = text(
             label: 'Enter the tube housing serial number',
             default: $tube->housing_sn ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             }
@@ -226,7 +225,7 @@ class TubeCmd extends Command
         $tube->insert_model = text(
             label: 'Enter the tube insert model',
             default: $tube->insert_model ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
                 default => null
             }
@@ -234,7 +233,7 @@ class TubeCmd extends Command
         $tube->insert_sn = text(
             label: 'Enter the tube insert serial number',
             default: $tube->insert_sn ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
                 default => null
             }
@@ -250,7 +249,7 @@ class TubeCmd extends Command
         $tube->lfs = text(
             label: 'Enter the large focal spot size (mm)',
             default: $tube->lfs ?? '',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Large focal spot size must be numeric',
                 default => null
             }
@@ -258,7 +257,7 @@ class TubeCmd extends Command
         $tube->mfs = text(
             label: 'Enter the medium focal spot size (mm).',
             default: $tube->mfs ?? '',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Medium focal spot size must be numeric',
                 default => null
             }
@@ -266,7 +265,7 @@ class TubeCmd extends Command
         $tube->sfs = text(
             label: 'Enter the small focal spot size (mm)',
             default: $tube->sfs ?? '',
-            validate: fn(float $value) => match (true) {
+            validate: fn (float $value) => match (true) {
                 is_numeric($value) => 'Small focal spot size must be numeric',
                 default => null
             }
@@ -274,7 +273,7 @@ class TubeCmd extends Command
         $tube->notes = text(
             label: 'Enter any notes for the tube',
             default: $tube->notes ?? '',
-            validate: fn(string $value) => match (true) {
+            validate: fn (string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
                 default => null
             },

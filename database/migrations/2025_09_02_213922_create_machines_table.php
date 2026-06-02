@@ -17,28 +17,28 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('facility_id')
                 ->comment('Foreign key to facilities table')
-                ->nullable(false)
+                ->nullable()
                 ->index()
                 ->constrained(table: 'facilities')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('location_id')
                 ->comment('Foreign key to locations table')
-                ->nullable(false)
+                ->nullable()
                 ->index()
                 ->constrained(table: 'locations')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('manufacturer_id')
                 ->comment('Foreign key to manufacturers table')
-                ->nullable(false)
+                ->nullable()
                 ->index()
                 ->constrained(table: 'manufacturers')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('modality_id')
                 ->commment('Foreign key to modalities table')
-                ->nullable(false)
+                ->nullable()
                 ->index()
                 ->constrained(table: 'modalities')
                 ->noActionOnUpdate()
@@ -55,7 +55,7 @@ return new class () extends Migration {
             $table->date('manuf_date')->index()->nullable();
             $table->date('remove_date')->index()->nullable();
             $table->string('machine_status', 20)
-                ->nullable(false)
+                ->nullable()
                 ->index();
             $table->string('software_version', length:50)->nullable();
             $table->string('pacs_station', length:50)->nullable();

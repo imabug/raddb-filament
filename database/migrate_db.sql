@@ -63,123 +63,163 @@ from raddb.tubes;
 # Machines at inactive facilities
 update machines set facility_id=1 where id in (
     select id from raddb.machines where raddb.machines.location_id in (
-        7,8,18,22,23,24,25,26,27,29,32,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,56
+        2,7,8,9,18,22,23,24,25,26,27,29,32,34,36,37,39,41,42,43,
+        46,47,48,49,56
     )
 );
 # Medical University Hospital
 update machines set facility_id=2 where id in (
     select id from raddb.machines where raddb.machines.location_id in (
-        1,2,3,4,5,6,9,11,12,13,15,16,35,44,50,52,62,64
+        1,3,4,5,6,9,11,12,13,15,16,35,41,44,50,52,62,64
     )
 );
-update machines set location_id=24 where facility_id=2 and modality_id in (1,3,5,6,18);
-update machines set location_id=24 where facility_id=2 and id in (
+update machines set location_id=27 where facility_id=2 and modality_id in (1,3,5,6,18);
+update machines set location_id=27 where facility_id=2 and id in (
     select id from raddb.machines where raddb.machines.location_id=9
 );
-
-update machines set location_id=26 where facility_id=2 and id in (
+update machines set location_id=27 where facility_id=2 and id in (178,224);
+update machines set location_id=28 where facility_id=2 and id in (
     select id from raddb.machines where raddb.machines.location_id=3
 );
-update machines set location_id=27 where facility_id=2 and modality_id=16;
-update machines set location_id=28 where facility_id=2 and modality_id=11;
-update machines set location_id=29 where facility_id=2 and id in (
+update machines set location_id=28 where facility_id=2 and id=284;
+update machines set location_id=29 where facility_id=2 and modality_id=16;
+update machines set location_id=30 where facility_id=2 and modality_id=11;
+update machines set location_id=31 where facility_id=2 and id in (
     select id from raddb.machines where raddb.machines.location_id=6
 );
-update machines set location_id=30 where facility_id=2 and modality_id=10;
-update machines set location_id=31 where facility_id=2 and modality_id=7;
-update machines set location_id=32 where facility_id=2 and id in (
+update machines set location_id=32 where facility_id=2 and modality_id=10;
+update machines set location_id=33 where facility_id=2 and modality_id=7;
+update machines set location_id=34 where facility_id=2 and id in (
     select id from raddb.machines where raddb.machines.location_id=15
 );
-
-update machines set location_id=34 where facility_id=2 and modality_id=14;
+update machines set location_id=35 where facility_id=2 and id in (48,146,305,317,557,559,581);
 update machines set location_id=36 where facility_id=2 and id in (
+    select id from raddb.machines where raddb.machines.location_id in (22,23,24)
+);
+update machines set location_id=37 where facility_id=2 and modality_id=14;
+update machines set location_id=39 where facility_id=2 and id in (
     select id from raddb.machines where raddb.machines.location_id=44
 );
-update machines set location_id=37 where facility_id=2 and modality_id=19;
-update machines set location_id=38 where facility_id=2 and modality_id=17;
-update machines set location_id=39 where facility_id=2 and modality_id=20;
+update machines set location_id=40 where facility_id=2 and modality_id=19;
+update machines set location_id=41 where facility_id=2 and modality_id=17;
+update machines set location_id=42 where facility_id=2 and modality_id=20;
+update machines set facility_id=1 where facility_id=2 and room like "HVC%";
 # Ashley River Tower
 update machines set facility_id=3 where id in (
     select id from raddb.machines where raddb.machines.location_id=40
 );
-update machines set location_id=40 where facility_id=3 and modality_id in (1,3,5,6);
-update machines set location_id=41 where facility_id=3 and (room="OR" or room like "ART 4%");
-update machines set location_id=42 where facility_id=3 and modality_id=16;
-update machines set location_id=43 where facility_id=3 and modality_id=7;
-update machines set location_id=44 where facility_id=3 and modality_id=10;
-update machines set location_id=45 where facility_id=3 and modality_id=13;
-update machines set location_id=46 where facility_id=3 and modality_id=14;
-update machines set location_id=47 where facility_id=3 and modality_id=11;
-update machines set location_id=48 where facility_id=3 and description like "ART ERCP%";
+update machines set location_id=43 where facility_id=3 and modality_id in (1,3,5,6);
+update machines set location_id=44 where facility_id=3 and (room="OR" or room like "ART 4%");
+update machines set location_id=45 where facility_id=3 and modality_id=16;
+update machines set location_id=46 where facility_id=3 and modality_id=7;
+update machines set location_id=47 where facility_id=3 and modality_id=10;
+update machines set location_id=48 where facility_id=3 and modality_id=13;
+update machines set location_id=48 where facility_id=3 and id in (385,435,540);
+update machines set location_id=49 where facility_id=3 and modality_id=14;
+update machines set location_id=50 where facility_id=3 and modality_id=11;
+update machines set location_id=51 where facility_id=3 and description like "ART ERCP%";
+update machines set location_id=51 where facility_id=3 and id in (204,585);
+update machines set location_id=52 where facility_id=3 and id in (129,205);
 # SJCH
 update machines set facility_id=4 where id in (
     select id from raddb.machines where raddb.machines.location_id=59
 );
-update machines set location_id=50 where facility_id=4 and modality_id in (1,5);
-update machines set location_id=51 where facility_id=4 and modality_id=7;
-update machines set location_id=52 where facility_id=4 and modality_id=10;
-update machines set location_id=54 where facility_id=4 and modality_id in (2,13);
-update machines set location_id=55 where facility_id=4 and modality_id=11;
+update machines set location_id=53 where facility_id=4 and modality_id in (1,5);
+update machines set location_id=54 where facility_id=4 and modality_id=7;
+update machines set location_id=55 where facility_id=4 and modality_id=10;
+update machines set location_id=57 where facility_id=4 and modality_id in (2,13);
+update machines set location_id=58 where facility_id=4 and modality_id=11;
 # Health East
 update machines set facility_id=5 where id in (
     select id from raddb.machines where raddb.machines.location_id=51
 );
-update machines set location_id=56 where facility_id=5 and modality_id in (2,3,18);
-update machines set location_id=57 where facility_id=5 and modality_id=7;
-update machines set location_id=58 where facility_id=5 and modality_id=10;
-update machines set location_id=59 where facility_id=5 and modality_id in (8, 20);
-
+update machines set location_id=59 where facility_id=5 and modality_id in (2,3,18);
+update machines set location_id=60 where facility_id=5 and modality_id=7;
+update machines set location_id=61 where facility_id=5 and modality_id=10;
+update machines set location_id=62 where facility_id=5 and modality_id in (8,15,20,21);
+update machines set location_id=63 where facility_id=5 and modality_id=16;
+update machines set location_id=64 where facility_id=5 and modality_id =11;
 # Health West
 update machines set facility_id=6 where id in (
     select id from raddb.machines where raddb.machines.location_id=58
 );
-
+update machines set location_id=65 where facility_id=6 and modality_id in (1,3,5,18);
+update machines set location_id=66 where facility_id=6 and modality_id=7;
+update machines set location_id=67 where facility_id=6 and modality_id=10;
+update machines set location_id=68 where facility_id=6 and modality_id in (8,15,20);
+update machines set location_id=69 where facility_id=6 and modality_id in (13,14);
+update machines set location_id=69 where id in (
+    select id from raddb.machines where raddb.machines.room like "%OR%"
+);
+update machines set location_id=69 where facility_id=6 and id in (291,576);
+update machines set location_id=70 where facility_id=6 and modality_id=11;
+update machines set location_id=71 where facility_id=6 and room like "SK1080%";
+update machines set location_id=65 where facility_id=6 and id in (394,582);
 # Health North
 update machines set facility_id=7 where id in (
     select id from raddb.machines where raddb.machines.location_id=38
 );
+update machines set location_id=72 where facility_id=7 and modality_id in (1,3,18);
+update machines set location_id=73 where facility_id=7 and modality_id=7;
+update machines set location_id=74 where facility_id=7 and modality_id=10;
+update machines set location_id=75 where facility_id=7 and modality_id in (8,20);
+update machines set location_id=76 where facility_id=7 and modality_id=16;
+update machines set location_id=77 where facility_id=7 and modality_id=11;
 # Chuck Dawley
 update machines set facility_id=8 where id in (
     select id from raddb.machines where raddb.machines.location_id=60
 );
+update machines set location_id=78 where facility_id=8 and modality_id =3;
+update machines set location_id=79 where facility_id=8 and modality_id =2;
 # Clements Ferry
 update machines set facility_id=9 where id in (
     select id from raddb.machines where raddb.machines.location_id=65
 );
+update machines set location_id=80 where facility_id=9 and modality_id in (1,2,3,5,18);
+update machines set location_id=81 where facility_id=9 and modality_id =7;
+update machines set location_id=82 where facility_id=9 and modality_id =10;
+update machines set location_id=83 where facility_id=9 and modality_id in (8,15,20);
 # Nexton Medical Park
 update machines set facility_id=10 where id in (
     select id from raddb.machines where raddb.machines.location_id=61
 );
+update machines set location_id=84 where facility_id=10 and modality_id in (1,3);
+update machines set location_id=85 where facility_id=10 and modality_id=2;
 # Citadel infirmary
-update machines set facility_id=11, location_id=80 where id in (
+update machines set facility_id=11, location_id=86 where id in (
     select id from raddb.machines where raddb.machines.location_id=63
 );
 # Kiawah Partners
-update machines set facility_id=12, location_id=81 where id in (
+update machines set facility_id=12, location_id=87 where id in (
     select id from raddb.machines where raddb.machines.location_id=66
 );
 # SMP
 update machines set facility_id=13 where id in (
     select id from raddb.machines where raddb.machines.location_id=57 
 );
+update machines set location_id=88 where facility_id=13 and modality_id in (1,3,5);
+update machines set location_id=89 where facility_id=13 and modality_id =7;
+update machines set location_id=90 where facility_id=13 and modality_id =10;
+update machines set location_id=91 where facility_id=13 and modality_id =11;
+update machines set location_id=92 where facility_id=13 and modality_id =2;
 # AHC Summerville
-update machines set facility_id=14, location_id=86 where id in (
+update machines set facility_id=14, location_id=93 where id in (
     select id from raddb.machines where raddb.machines.location_id=54
 );
 # AHC Mt Pleasant
-update machines set facility_id=15, location_id=87 where id in (
+update machines set facility_id=15, location_id=94 where id in (
     select id from raddb.machines where raddb.machines.location_id=53
 );
 # AHC Brighton Park
-update machines set facility_id=16, location_id=88 where id in (
+update machines set facility_id=16, location_id=95 where id in (
     select id from raddb.machines where raddb.machines.location_id=67
 );
 # HCC
 update machines set facility_id=19 where id in (
-    select id from raddb.machines where raddb.machines.location_id=20
+    select id from raddb.machines where raddb.machines.location_id in (20,33)
 );
-update machines set facility_id=19, location_id=99 where id in (
+update machines set facility_id=19, location_id=106 where id in (
     select id from raddb.machines where raddb.machines.location_id=17
 );
-update machines set facility_id=19, location_id=100 where id in (285,337,343,486,527);
-update machines set facility_id=20, location_id=101 where id in (287,347);
+update machines set facility_id=19, location_id=107 where id in (24,92,170,229,285,337,343,486,527);
+update machines set facility_id=20, location_id=108 where id in (287,347);

@@ -15,16 +15,22 @@ class LocationSeeder extends Seeder
      */
 
     protected $locations = [
-        // Inactive facilities
+        // Inactive facilities/locations
         1 => [
+            'Pediatric Radiology',
             '30 Bee',
             'CMH',
+            'Trauma',
             'Leeds Ave',
+            'Adult Cardiology Lab',
+            'Pediatric Cardiology Lab',
+            'Children\'s Hospital',
             'Clinical Sciences Building',
             'Module 3',
             'Lowcountry Medical Associates',
             'MUSC Women\'s Health Center',
             'CFC James Island',
+            'Heart Vascular Center',
             'CFC Mt Pleasant',
             'CFC Carnes Crossroads',
             'GCRC',
@@ -33,10 +39,7 @@ class LocationSeeder extends Seeder
             'Charleston Hand Group',
             'BMET X-ray Repair',
             'MUSC E Cooper Urology',
-            'MUSC Children\s After Hours Care North Charleston',
-            'Pediatric Cardiology Lab',
-            'Adult Cardiology Lab',
-            'Children\'s Hospital',
+            'MUSC Children\'s After Hours Care North Charleston',
             'MUSC Health West Ashley',
             'MUSC East Cooper',
             'Research',
@@ -44,7 +47,6 @@ class LocationSeeder extends Seeder
         // Medical University Hospital
         2 => [
             'Radiology',
-            'Pediatric Radiology',
             'OR',
             'Nuclear medicine',
             'Ultrasound',
@@ -52,8 +54,9 @@ class LocationSeeder extends Seeder
             'MRI',
             'CT',
             'Pain Management',
+            'Bronchoscopy',
             'University Hospital Extension',
-            'Vascular/Interventional Radiology',
+            'Vascular Interventional Radiology',
             'Neuroradiology',
             'Strom Thurmond Research',
             'Radiology Physics',
@@ -105,8 +108,10 @@ class LocationSeeder extends Seeder
         7 => [
             'Radiology',
             'CT',
+            'MRI',
             'Mammography',
             'Nuclear medicine',
+            'Ultrasound',
         ],
         // MUSC Health Chuck Dawley
         8 => [
@@ -138,6 +143,7 @@ class LocationSeeder extends Seeder
             'Radiology',
             'CT',
             'MRI',
+            'Ultrasound',
             'OR',
         ],
         // MUSC Health AHC Summerville

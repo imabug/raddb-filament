@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Status;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,17 +14,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+#[Table('testdates')]
 class TestDate extends Model implements HasMedia
 {
     use SoftDeletes;
     use InteractsWithMedia;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'testdates';
 
     /**
      * Eager loaded relationships
@@ -61,11 +56,11 @@ class TestDate extends Model implements HasMedia
         ];
     }
 
-    public function registerMediaCollections(?Media $media = null): void
-    {
-        $this->addMediaCollection('survey_reports')
-            ->useDisk('SurveyReports');
-    }
+   public function registerMediaCollections(?Media $media = null): void
+   {
+       $this->addMediaCollection('survey_reports')
+           ->useDisk('SurveyReports');
+   }
 
     /*
      * Relationships

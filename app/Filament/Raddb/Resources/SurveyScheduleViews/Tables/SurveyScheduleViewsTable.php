@@ -39,7 +39,7 @@ class SurveyScheduleViewsTable
                        SelectFilter::make('facility')
                            ->label('Facility')
                            ->multiple()
-                           ->options(fn (): array => Facility::query()
+                           ->options(fn(): array => Facility::query()
                                                          ->pluck('facility', 'id')
                                                          ->all()),
                        Filter::make('surveyDateRange')
@@ -54,11 +54,11 @@ class SurveyScheduleViewsTable
                                return $query
                                           ->when(
                                               $data['surveyStart'],
-                                              fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
+                                              fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '>=', $date),
                                           )
                                           ->when(
                                               $data['surveyEnd'],
-                                              fn (Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
+                                              fn(Builder $query, $date): Builder => $query->whereDate('currSurveyDate', '<=', $date),
                                           );
                            }),
                    ]);

@@ -48,13 +48,13 @@ class MachineCmd extends Command
                 $machine = Machine::find(
                     search(
                         label: 'Search for the machine description to edit',
-                        options: fn (string $value) => strlen($value) > 0 ?
-                            Machine::whereLike('description', '%{$value}%')
+                        options: fn(string $value) => strlen($value) > 0
+                            ? Machine::whereLike('description', '%{$value}%')
                             ->active()
                             ->orderBy('description')
                             ->pluck('description', 'id')
-                            ->all() : []
-                    )
+                            ->all() : [],
+                    ),
                 );
             } else {
                 // Fetch the machine based on the ID provided.
@@ -91,91 +91,91 @@ class MachineCmd extends Command
             label: 'Select the facility where this machine is located',
             options: Facility::pluck('facility', 'id'),
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->location_id = select(
             label: 'Select the location in the facility',
             options: Location::where('facility_id', '=', $machine->facility_id)
             ->pluck('location', 'id'),
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->description = text(
             label: 'Give a descriptive name for the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Description must be less than 255 characters',
-                default => null
+                default => null,
             },
-            required: true
+            required: true,
         );
         $machine->modality_id = select(
             label: 'Select a modality for this machine',
             options: Modality::pluck('modality', 'id'),
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->manufacturer_id = select(
             label: 'Select the manufacturer of the machine',
             options: Manufacturer::pluck('manufacturer', 'id'),
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->model = text(
             label: 'Enter the model name of the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $machine->serial_number = text(
             label: 'Enter the serial number of the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
+                default => null,
             },
-            required: true
+            required: true,
         );
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
-                default => null
+                default => null,
             },
-            default: $machine->serial_number
+            default: $machine->serial_number,
         );
         $machine->room = text(
             label: 'Enter the room number for the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 20 => 'Room must be less than 20 characters',
-                default => null
+                default => null,
             },
-            required: true
+            required: true,
         );
         $machine->manuf_date = text(
-            label: 'Enter the manufacture date of the machine (YYYY-MM-DD)'
+            label: 'Enter the manufacture date of the machine (YYYY-MM-DD)',
         );
         $machine->install_date = text(
-            label: 'Enter the installation date for the machine (YYYY-MM-DD)'
+            label: 'Enter the installation date for the machine (YYYY-MM-DD)',
         );
         $machine->software_version = text(
             label: 'Enter the machine software version',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Software version must be less than 50 characters',
-                default => null
+                default => null,
             },
         );
         $machine->pacs_station = text(
             label: 'Enter the PACS station name for the machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'PACS station must be less than 50 characters',
-                default => null
+                default => null,
             },
         );
         $machine->notes = textarea(
             label: 'Enter any special notes for the  machine',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
-                default => null
+                default => null,
             },
         );
         $machine->machine_status = Status::Active;
@@ -222,7 +222,7 @@ class MachineCmd extends Command
             options: Facility::pluck('facility', 'id'),
             default: $machine->facility_id,
             required: true,
-            scroll: 10
+            scroll: 10,
         );
         $machine->location_id = select(
             label: 'Select the location in the facility',
@@ -230,98 +230,98 @@ class MachineCmd extends Command
                 ->pluck('location', 'id'),
             default: $machine->location_id,
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->description = text(
             label: 'Enter a new description for the machine',
             default: $machine->description,
-            required: true
+            required: true,
         );
         $machine->modality_id = select(
             label: 'Select a modality for this machine',
             options: Modality::pluck('modality', 'id'),
             default: $machine->modality_id,
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->manufacturer_id = select(
             label: 'Select the manufacturer of the machine',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $machine->manufacturer_id,
             scroll: 10,
-            required: true
+            required: true,
         );
         $machine->model = text(
             label: 'Enter the model name of the machine',
             default: $machine->model ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $machine->serial_number = text(
             label: 'Enter the serial number of the machine',
             default: $machine->serial_number ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
+                default => null,
             },
-            required: true
+            required: true,
         );
         $machine->vend_site_id = text(
             label: 'Enter the vendor site ID for the machine',
             default: $machine->vend_site_id ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Vendor site ID must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $machine->room = text(
             label: 'Enter the room number for the machine',
             default: $machine->room,
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 20 => 'Room must be less than 20 characters',
-                default => null
+                default => null,
             },
-            required: true
+            required: true,
         );
         $machine->manuf_date = text(
             label: 'Enter the manufacture date of the machine (YYYY-MM-DD)',
-            default: $machine->manuf_date ?? ''
+            default: $machine->manuf_date ?? '',
         );
         $machine->install_date = text(
             label: 'Enter the installation date for the machine (YYYY-MM-DD)',
-            default: $machine->install_date ?? ''
+            default: $machine->install_date ?? '',
         );
         $machine->software_version = text(
             label: 'Enter the machine software version',
             default: $machine->software_version ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Software version must be less than 50 characters',
-                default => null
+                default => null,
             },
         );
         $machine->pacs_station = text(
             label: 'Enter the PACS station name for the machine',
             default: $machine->pacs_station ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'PACS station must be less than 50 characters',
-                default => null
+                default => null,
             },
         );
         $machine->notes = textarea(
             label: 'Enter any special notes for the  machine',
             default: $machine->notes ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
-                default => null
+                default => null,
             },
         );
         $machine->machine_status = select(
             label: 'Edit the machine status',
             options: [Status::Active, Status::Inactive, Status::Removed],
             default: $machine->machine_status,
-            required: true
+            required: true,
         );
 
         // Validate some of the fields

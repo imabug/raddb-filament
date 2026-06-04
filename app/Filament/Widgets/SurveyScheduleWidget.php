@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class SurveyScheduleWidget extends TableWidget
 {
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table
     {
         return $table
-                   ->query(fn (): Builder => SurveyScheduleView::query())
+                   ->query(fn(): Builder => SurveyScheduleView::query())
                    ->columns([
                        TextColumn::make('id')
                            ->label('Machine ID')

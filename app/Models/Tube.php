@@ -114,7 +114,7 @@ class Tube extends Model
                 } elseif (!is_null($attributes['install_date'])) {
                     return Carbon::createFromFormat('Y-m-d', $attributes['install_date'])->age;
                 }
-            }
+            },
         );
     }
 }

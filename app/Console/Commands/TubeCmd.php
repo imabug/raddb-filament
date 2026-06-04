@@ -42,13 +42,13 @@ class TubeCmd extends Command
             $machine = Machine::find(
                 search(
                     label: 'Search for the machine description to edit',
-                    options: fn (string $value) => strlen($value) > 0 ?
-                        Machine::whereLike('description', '%{$value}%')
+                    options: fn(string $value) => strlen($value) > 0
+                        ? Machine::whereLike('description', '%{$value}%')
                         ->active()
                         ->orderBy('description')
                         ->pluck('description', 'id')
-                        ->all() : []
-                )
+                        ->all() : [],
+                ),
             );
         } else {
             // Fetch the machine based on the ID provided.
@@ -83,75 +83,75 @@ class TubeCmd extends Command
         $tube->housing_manuf_id = select(
             label: 'Select the manufacturer of the tube housing',
             options: Manufacturer::pluck('manufacturer', 'id'),
-            scroll: 10
+            scroll: 10,
         );
         $tube->housing_model = text(
             label: 'Enter the tube housing model',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->housing_sn = text(
             label: 'Enter the tube housing serial number',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->insert_manuf_id = select(
             label: 'Select the manufacturer of the tube insert',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $tube->housing_manuf_id,
-            scroll: 10
+            scroll: 10,
         );
         $tube->insert_model = text(
             label: 'Enter the tube insert model',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->insert_sn = text(
             label: 'Enter the tube insert serial number',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->manuf_date = text(
-            label: 'Enter the tube manufacture date (YYYY-mm-dd)'
+            label: 'Enter the tube manufacture date (YYYY-mm-dd)',
         );
         $tube->install_date = text(
             label: 'Enter the tube installation date (YYYY-mm-dd)',
-            default: $machine->install_date ?? ''
+            default: $machine->install_date ?? '',
         );
         $tube->lfs = text(
             label: 'Enter the large focal spot size (mm)',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Large focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->mfs = text(
             label: 'Enter the medium focal spot size (mm).',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Medium focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->sfs = text(
             label: 'Enter the small focal spot size (mm)',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Small focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->notes = text(
             label: 'Enter any notes for the tube',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
-                default => null
+                default => null,
             },
         );
 
@@ -187,8 +187,8 @@ class TubeCmd extends Command
             $tube = Tube::find(
                 select(
                     label: 'Select the tube to edit',
-                    options: $machine->tube()->pluck('notes', 'id')
-                )
+                    options: $machine->tube()->pluck('notes', 'id'),
+                ),
             );
         } else {
             $tube = $machine->tube()->get();
@@ -198,91 +198,91 @@ class TubeCmd extends Command
             label: 'Select the manufacturer of the tube housing',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $tube->housing_manuf_id ?? '',
-            scroll: 10
+            scroll: 10,
         );
         $tube->housing_model = text(
             label: 'Enter the tube housing model',
             default: $tube->housing_model ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->housing_sn = text(
             label: 'Enter the tube housing serial number',
             default: $tube->housing_sn ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->insert_manuf_id = select(
             label: 'Select the manufacturer of the tube insert',
             options: Manufacturer::pluck('manufacturer', 'id'),
             default: $tube->housing_manuf_id ?? '',
-            scroll: 10
+            scroll: 10,
         );
         $tube->insert_model = text(
             label: 'Enter the tube insert model',
             default: $tube->insert_model ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Model name must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->insert_sn = text(
             label: 'Enter the tube insert serial number',
             default: $tube->insert_sn ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 255 => 'Serial number must be less than 255 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->manuf_date = text(
             label: 'Enter the tube manufacture date (YYYY-mm-dd)',
-            default: $tube->manuf_date ?? ''
+            default: $tube->manuf_date ?? '',
         );
         $tube->install_date = text(
             label: 'Enter the tube installation date (YYYY-mm-dd)',
-            default: $tube->install_date ?? ''
+            default: $tube->install_date ?? '',
         );
         $tube->lfs = text(
             label: 'Enter the large focal spot size (mm)',
             default: $tube->lfs ?? '',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Large focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->mfs = text(
             label: 'Enter the medium focal spot size (mm).',
             default: $tube->mfs ?? '',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Medium focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->sfs = text(
             label: 'Enter the small focal spot size (mm)',
             default: $tube->sfs ?? '',
-            validate: fn (float $value) => match (true) {
+            validate: fn(float $value) => match (true) {
                 is_numeric($value) => 'Small focal spot size must be numeric',
-                default => null
-            }
+                default => null,
+            },
         );
         $tube->notes = text(
             label: 'Enter any notes for the tube',
             default: $tube->notes ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
-                default => null
+                default => null,
             },
         );
         $tube->tube_status = select(
             label: 'Edit the tube status',
             options: [Status::Active, Status::Inactive, Status::Removed],
             default: $tube->tube_status,
-            required: true
+            required: true,
         );
 
         // Validate some of the input

@@ -56,11 +56,11 @@ class TestDate extends Model implements HasMedia
         ];
     }
 
-   public function registerMediaCollections(?Media $media = null): void
-   {
-       $this->addMediaCollection('survey_reports')
-           ->useDisk('SurveyReports');
-   }
+    public function registerMediaCollections(?Media $media = null): void
+    {
+        $this->addMediaCollection('survey_reports')
+            ->useDisk('SurveyReports');
+    }
 
     /*
      * Relationships

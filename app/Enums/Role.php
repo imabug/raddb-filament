@@ -21,7 +21,7 @@ enum Role: string implements HasDescription, HasLabel
             self::PhysAssist => 'Physics assistant',
             self::Resident => 'Resident',
             self::FmrResident => 'Former Resident',
-            self::Technologist => 'Technologist'
+            self::Technologist => 'Technologist',
         };
     }
 

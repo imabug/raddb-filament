@@ -35,7 +35,7 @@ class OpNotesTable
             ->filters([
                 TrashedFilter::make(),
                 Filter::make('active')
-                    ->query(fn (builder $query): Builder => $query->activeMachines())
+                    ->query(fn(builder $query): Builder => $query->activeMachines())
                     ->toggle()
                     ->default(),
             ])

@@ -18,7 +18,7 @@ class CreateMachine extends CreateRecord
                 'facility_id',
                 'location_id',
                 'modality_id',
-            ]
+            ],
         );
     }
 }

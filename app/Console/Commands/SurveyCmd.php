@@ -41,13 +41,13 @@ class SurveyCmd extends Command
                     $machine = Machine::find(
                         search(
                             label: 'Search for the machine description to edit',
-                            options: fn (string $value) => strlen($value) > 0 ?
-                                Machine::whereLike('description', '%{$value}%')
+                            options: fn(string $value) => strlen($value) > 0
+                                ? Machine::whereLike('description', '%{$value}%')
                                 ->active()
                                 ->orderBy('description')
                                 ->pluck('description', 'id')
-                                ->all() : []
-                        )
+                                ->all() : [],
+                        ),
                     );
                 } else {
                     // Fetch the machine based on the ID provided.
@@ -60,10 +60,10 @@ class SurveyCmd extends Command
                 if (is_null($this->argument('id'))) {
                     $id = text(
                         label: 'Enter a survey ID to edit',
-                        validate: fn (int $value) => match(true) {
-                            TestDate::find($value) == null => 'Survey ID was not found'
+                        validate: fn(int $value) => match (true) {
+                            TestDate::find($value) == null => 'Survey ID was not found',
                         },
-                        required: true
+                        required: true,
                     );
                     $survey = TestDate::find($id);
                 } else {
@@ -76,10 +76,10 @@ class SurveyCmd extends Command
                 if (is_null($this->argument('id'))) {
                     $id = text(
                         label: 'Enter a survey ID to cancel',
-                        validate: fn (int $value) => match (true) {
-                            TestDate::find($value) == null => 'Survey ID was not found'
+                        validate: fn(int $value) => match (true) {
+                            TestDate::find($value) == null => 'Survey ID was not found',
                         },
-                        required: true
+                        required: true,
                     );
                     $survey = TestDate::find($id);
                 } else {
@@ -104,25 +104,25 @@ class SurveyCmd extends Command
         $survey->testtype_id = select(
             label: 'Enter the test type',
             options: TestType::pluck('test_type', 'id'),
-            required: true
+            required: true,
         );
         $survey->test_date = text(
             label: 'Enter the test date (YYYY-MM-DD)',
-            required: true
+            required: true,
         );
         $survey->accession = text(
             label: 'Enter the accession number',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $survey->notes = text(
             label: 'Enter notes for this test',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 65535 => 'Notes must be less than 65535 characters',
-                default => null
-            }
+                default => null,
+            },
         );
 
         if (confirm('Save this survey?')) {
@@ -141,34 +141,34 @@ class SurveyCmd extends Command
             label: 'Change the machine for this survey',
             options: Machine::pluck('description', 'id'),
             default: $survey->machine_id,
-            required: true
+            required: true,
         );
         $survey->testtype_id = select(
             label: 'Change the survey type',
             options: TestType::pluck('test_type', 'id'),
             default: $survey->testtype_id,
-            required: true
+            required: true,
         );
         $survey->test_date = text(
             label: 'Change the survey date (YYYY-MM-DD)',
             default: $survey->test_date,
-            required: true
+            required: true,
         );
         $survey->accession = text(
             label: 'Change the accession number',
             default: $survey->accession ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
-                default => null
-            }
+                default => null,
+            },
         );
         $survey->notes = text(
             label: 'Edit the survey note',
             default: $survey->notes ?? '',
-            validate: fn (string $value) => match (true) {
+            validate: fn(string $value) => match (true) {
                 strlen($value) > 50 => 'Accession number must be less than 50 characters',
-                default => null
-            }
+                default => null,
+            },
         );
 
         if (confirm('Save these changes?')) {

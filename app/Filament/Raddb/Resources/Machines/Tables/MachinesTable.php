@@ -47,8 +47,8 @@ class MachinesTable
                            ->searchable()
                            ->visible(function ($livewire) {
                                $filterState = $livewire->getTableFilterState('modality');
-                               if ($filterState == null ||
-                                   (is_array($filterState) && $filterState["value"] == "")) {
+                               if ($filterState == null
+                                   || (is_array($filterState) && $filterState["value"] == "")) {
                                    return true;
                                } else {
                                    return false;
@@ -60,8 +60,8 @@ class MachinesTable
                            ->searchable()
                            ->visible(function ($livewire) {
                                $filterState = $livewire->getTableFilterState('manufacturer');
-                               if ($filterState == null ||
-                                   (is_array($filterState) && $filterState["value"] == "")) {
+                               if ($filterState == null
+                                   || (is_array($filterState) && $filterState["value"] == "")) {
                                    return true;
                                } else {
                                    return false;
@@ -88,41 +88,41 @@ class MachinesTable
                            ->sortable(),
                    ])
                    ->groups([
-                           Group::make('facility.facility')
-                               ->collapsible(),
-                           Group::make('location.location')
-                               ->collapsible(),
-                           Group::make('modality.modality')
-                               ->collapsible(),
-                           Group::make('manufacturer.manufacturer')
-                               ->collapsible(),
+                       Group::make('facility.facility')
+                           ->collapsible(),
+                       Group::make('location.location')
+                           ->collapsible(),
+                       Group::make('modality.modality')
+                           ->collapsible(),
+                       Group::make('manufacturer.manufacturer')
+                           ->collapsible(),
                    ])
                    ->defaultGroup('facility.facility')
                    ->filters([
-                           TrashedFilter::make(),
-                           Filter::make('active')
-                               ->query(fn (Builder $query): Builder => $query->where('machine_status', Status::Active))
-                               ->toggle()
-                               ->default(),
-                           SelectFilter::make('facility')
-                               ->relationship('facility', 'facility'),
-                           SelectFilter::make('modality')
-                               ->relationship('modality', 'modality'),
-                           SelectFilter::make('manufacturer')
-                               ->relationship('manufacturer', 'manufacturer'),
+                       TrashedFilter::make(),
+                       Filter::make('active')
+                           ->query(fn(Builder $query): Builder => $query->where('machine_status', Status::Active))
+                           ->toggle()
+                           ->default(),
+                       SelectFilter::make('facility')
+                           ->relationship('facility', 'facility'),
+                       SelectFilter::make('modality')
+                           ->relationship('modality', 'modality'),
+                       SelectFilter::make('manufacturer')
+                           ->relationship('manufacturer', 'manufacturer'),
                    ])
                    ->deferFilters(false)
                    ->recordActions([
-                           TableEditAction::make(),
-                           TableViewAction::make(),
-                           TableDeleteAction::make(),
+                       TableEditAction::make(),
+                       TableViewAction::make(),
+                       TableDeleteAction::make(),
                    ])
                    ->toolbarActions([
-                           BulkActionGroup::make([
-                               DeleteBulkAction::make(),
-                               ForceDeleteBulkAction::make(),
-                               RestoreBulkAction::make(),
-                           ]),
+                       BulkActionGroup::make([
+                           DeleteBulkAction::make(),
+                           ForceDeleteBulkAction::make(),
+                           RestoreBulkAction::make(),
+                       ]),
                    ]);
     }
 }

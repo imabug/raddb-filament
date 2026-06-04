@@ -42,19 +42,19 @@ class LutCmd extends Command implements PromptsForMissingInput
 
         switch ($cmd) {
             case 'add':
-                info('Adding to '.$table);
+                info('Adding to ' . $table);
                 $this->add($table);
                 break;
             case 'edit':
-                info('Editing '.$table);
+                info('Editing ' . $table);
                 $this->edit($table);
                 break;
             case 'delete':
-                info('Deleting from '.$table);
+                info('Deleting from ' . $table);
                 $this->delete($table);
                 break;
             case 'list':
-                info('Listing '.$table);
+                info('Listing ' . $table);
                 $this->list($table);
                 break;
             default:
@@ -77,37 +77,37 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->facility = text(
                     label: 'Enter a new facility',
                     required: true,
-                    validate: fn (string $value) => match (true) {
-                        Str::length($value) > 255 => 'Facility name must be less than 255 characters'
-                    }
+                    validate: fn(string $value) => match (true) {
+                        Str::length($value) > 255 => 'Facility name must be less than 255 characters',
+                    },
                 );
                 $lut->street_address = text(
                     label: 'Enter the street address',
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility address must be less than 255 characters',
-                        default => null
-                    }
+                        default => null,
+                    },
                 );
                 $lut->city = text(
                     label: 'Enter the city',
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility city must be less than 255 characters',
-                        default => null
-                    }
+                        default => null,
+                    },
                 );
                 $lut->state = text(
                     label: 'Enter the state',
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 255 => 'Facility state must be less than 255 characters',
-                        default => null
-                    }
+                        default => null,
+                    },
                 );
                 $lut->zip_code = text(
                     label: 'Enter the zip code',
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 10 => 'Facility zip code must be less than 10 characters',
-                        default => null
-                    }
+                        default => null,
+                    },
                 );
                 break;
             case 'Location':
@@ -115,10 +115,10 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->location = text(
                     label: 'Enter a new location',
                     required: true,
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 100 => 'The location must be less than 100 characters',
-                        default                   => null
-                    }
+                        default                   => null,
+                    },
                 );
                 break;
             case 'Manufacturer':
@@ -126,10 +126,10 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->manufacturer = text(
                     label: 'Enter a new manufacturer',
                     required: true,
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 50 => 'The manufacturer must be less than 50 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             case 'Modality':
@@ -137,10 +137,10 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->modality = text(
                     label: 'Enter a new modality',
                     required: true,
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 25 => 'The modality must be less than 50 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             case 'Testtype':
@@ -148,10 +148,10 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->test_type = text(
                     label: 'Enter a new test type',
                     required: true,
-                    validate: fn (string $value) => match (true) {
+                    validate: fn(string $value) => match (true) {
                         Str::length($value) > 30 => 'The test type must be less than 30 characters',
-                        default                  => null
-                    }
+                        default                  => null,
+                    },
                 );
                 break;
             default:
@@ -185,7 +185,7 @@ class LutCmd extends Command implements PromptsForMissingInput
         $id = select(
             label: 'Select the ' . $tableAttr . ' to edit',
             options: $modelClass::pluck($tableAttr, 'id'),
-            scroll: 10
+            scroll: 10,
         );
 
         // Retrieve the selected model
@@ -198,27 +198,27 @@ class LutCmd extends Command implements PromptsForMissingInput
                 $lut->facility = text(
                     label: 'Enter a new facility name (enter to leave unchanged).',
                     default: $lut->facility,
-                    required: true
+                    required: true,
                 );
                 $lut->street_address = text(
                     label: 'Enter a new street address (enter to leave unchanged)',
                     default: $lut->street_address ?? '',
-                    required: false
+                    required: false,
                 );
                 $lut->city = text(
                     label: 'Enter a new city (enter to leave uchanged).',
                     default: $lut->city ?? '',
-                    required: false
+                    required: false,
                 );
                 $lut->state = text(
                     label: 'Enter a new state (enter to leave unchanged.)',
                     default: $lut->state ?? '',
-                    required: false
+                    required: false,
                 );
                 $lut->zip_code = text(
                     label: 'Enter a new zip code (enter to leave unchanged).',
                     default: $lut->zip_code ?? '',
-                    required: false
+                    required: false,
                 );
 
                 // Run the entered data through the validator
@@ -255,12 +255,12 @@ class LutCmd extends Command implements PromptsForMissingInput
                     options: Facility::pluck('facility', 'id'),
                     default: $lut->facility_id,
                     scroll: 10,
-                    required: true
+                    required: true,
                 );
                 $lut->location = text(
                     label: 'Enter a new location (enter to leave unchanged).',
                     default: $lut->location,
-                    required: true
+                    required: true,
                 );
 
                 // Ask for confirmation before saving the model
@@ -280,7 +280,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 // Confirm the change
                 if (confirm(
                     label: 'Changing ' . $lut->$tableAttr . ' to ' . $value . '.',
-                    default: false
+                    default: false,
                 )) {
                     $lut->$tableAttr = $value;
                     $lut->save();
@@ -316,7 +316,7 @@ class LutCmd extends Command implements PromptsForMissingInput
         // Confirm the selection
         if (confirm(
             label: 'Deleting from ' . $table . ' ID: ' . $lut->id . ' Value: ' . $lut->$tableAttr,
-            default: false
+            default: false,
         )) {
             $lut->delete();
             info($table . ' ID: ' . $lut->id . ' deleted');
@@ -334,7 +334,7 @@ class LutCmd extends Command implements PromptsForMissingInput
 
         table(
             ['ID', $table],
-            $modelClass::all(['id', $table])->toArray()
+            $modelClass::all(['id', $table])->toArray(),
         );
 
         return 0;

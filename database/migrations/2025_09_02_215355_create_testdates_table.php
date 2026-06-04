@@ -30,6 +30,7 @@ return new class () extends Migration {
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->date('test_date')->nullable(false)->index();
+            $table->time('test_time', precision: 0)->nullable()->index();
             $table->string('accession', length:50)->nullable()->index();
             $table->text('notes')->nullable();
             $table->softDeletes();

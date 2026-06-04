@@ -6,7 +6,6 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
-.php-cs-fixer.dist.php
 /.fleet
 /.idea
 /.nova

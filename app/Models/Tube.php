@@ -20,7 +20,6 @@ class Tube extends Model
      * @var array
      */
     protected $with = [
-        'machine',
         'housingManuf',
         'insertManuf',
     ];

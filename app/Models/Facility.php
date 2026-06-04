@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Location;
-use Machine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;

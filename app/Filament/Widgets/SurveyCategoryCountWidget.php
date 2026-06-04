@@ -37,6 +37,7 @@ class SurveyCategoryCountWidget extends ChartWidget
 
     protected function getFilters(): ?array
     {
+        $yearFilter[] = 0;
         // Get a collection of all the survey years in the database
         $years = TestDate::selectRaw('year(test_date) as years')
                      ->distinct()
@@ -44,9 +45,7 @@ class SurveyCategoryCountWidget extends ChartWidget
                      ->get()
                      ->all();
 
-        if (count($years) == 0) {
-            $yearFilter[] = 0;
-        } else {
+        if (count($years) > 0) {
             foreach ($years as $y) {
                 $yearFilter[$y['years']] = $y['years'];
             }

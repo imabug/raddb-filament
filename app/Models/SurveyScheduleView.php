@@ -3,19 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[Table('surveyschedule_view', incrementing: false)]
 class SurveyScheduleView extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'surveyschedule_view';
-
     /**
      * Eager loaded relationships
      *
@@ -26,13 +21,6 @@ class SurveyScheduleView extends Model
         'prevSurvey',
         'currSurvey',
     ];
-
-    /**
-     * Indicates if the model's ID is auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
 
     /*
      * Attribute casting

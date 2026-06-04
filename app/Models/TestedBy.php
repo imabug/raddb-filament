@@ -2,20 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[Table('testedby')]
 class TestedBy extends Model
 {
     use SoftDeletes;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'testedby';
 
     /**
      * Attributes that are mass assignable.
@@ -38,11 +33,11 @@ class TestedBy extends Model
     // Relationships
     public function user(): belongsTo
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function survey(): belongsTo
     {
-        return $this->hasMany(TestDate::class);
+        return $this->belongsTo(TestDate::class);
     }
 }

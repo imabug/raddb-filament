@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Table('shielding_requests')]
-#[Table(dateFormat: 'Y-m-d')]
+#[Table('shielding_requests', dateFormat: 'Y-m-d')]
 class ShieldingRequests extends Model
 {
     use SoftDeletes;

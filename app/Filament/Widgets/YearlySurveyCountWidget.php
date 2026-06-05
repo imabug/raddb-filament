@@ -22,7 +22,7 @@ class YearlySurveyCountWidget extends ChartWidget
                           ->get()
                           ->countBy(
                               function ($item, $key) {
-                                  return substr($item['test_date'], 0, 4);
+                                  return substr($item['testdate'], 0, 4);
                               },
                           )
                           ->sortKeys();

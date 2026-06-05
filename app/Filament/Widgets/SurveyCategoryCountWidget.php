@@ -39,7 +39,7 @@ class SurveyCategoryCountWidget extends ChartWidget
     {
         $yearFilter[] = 0;
         // Get a collection of all the survey years in the database
-        $years = TestDate::selectRaw('year(test_date) as years')
+        $years = TestDate::selectRaw('year(testdate) as years')
                      ->distinct()
                      ->orderBy('years', 'desc')
                      ->get()

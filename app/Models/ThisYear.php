@@ -15,7 +15,7 @@ class ThisYear extends Model
     protected function casts(): array
     {
         return [
-            'test_date' => 'date:Y-m-d',
+            'testdate' => 'date:Y-m-d',
         ];
     }
 
@@ -24,7 +24,7 @@ class ThisYear extends Model
      */
     public function machine(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Machine::class, 'machine_id');
+        return $this->belongsTo(Machine::class, 'machine_id');
     }
 
     public function survey(): BelongsTo

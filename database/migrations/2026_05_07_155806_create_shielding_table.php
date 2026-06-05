@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('machine_id')
                 ->comment('Foreign key to machines table')
                 ->nullable()
+                ->default(null)
                 ->index()
                 ->constrained(table: 'machines')
                 ->noActionOnUpdate()
@@ -41,6 +42,7 @@ return new class extends Migration
                 ->index();
             $table->date('completion_date')
                 ->nullable()
+                ->default(null)
                 ->index();
             $table->text('notes')->nullable()->fullText();
             $table->softDeletes();

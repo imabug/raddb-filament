@@ -25,6 +25,7 @@ class ShieldingPanelProvider extends PanelProvider
         return $panel
                    ->id('shielding')
                    ->path('shielding')
+            ->viteTheme('resources/css/filament/shielding/theme.css')
                    ->colors([
                        'primary' => Color::Amber,
                    ])

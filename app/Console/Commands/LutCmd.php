@@ -29,8 +29,19 @@ class LutCmd extends Command implements PromptsForMissingInput
      * @var string
      */
     protected $signature = 'raddb:lut
-{cmd : Command to execute (add, delete, edit, or list)}
-{table : Lookup table to manage}';
+        {cmd : Command to execute (add, delete, edit, or list)}
+        {table : Lookup table to manage}';
+
+    /**
+     * Prompt for missing arguments
+     */
+    protected function promptForMissingArgumentsUsing(): array
+    {
+        return [
+            'cmd' => 'Enter a command to run (add, edit, delete, list)',
+            'table' => 'Enter a table to work on',
+        ];
+    }
 
     /**
      * Execute the console command.
@@ -112,6 +123,12 @@ class LutCmd extends Command implements PromptsForMissingInput
                 break;
             case 'Location':
                 $lut = new Location();
+                $lut->facility_id = select(
+                    label: 'Select a facility for this location',
+                    options: Facility::pluck('facility', 'id'),
+                    scroll: 10,
+                    required: true,
+                );
                 $lut->location = text(
                     label: 'Enter a new location',
                     required: true,

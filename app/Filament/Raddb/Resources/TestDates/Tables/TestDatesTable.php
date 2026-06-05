@@ -25,7 +25,7 @@ class TestDatesTable
                 TextColumn::make('testtype.test_type')
                     ->sortable(),
                 TextColumn::make('testdate')
-                    ->date('Y-m-d')
+                    ->dateTime('Y-m-d H:i:s')
                     ->sortable(),
                 TextColumn::make('accession')
                     ->searchable(),

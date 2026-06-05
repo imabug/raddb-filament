@@ -2,7 +2,7 @@
 
 namespace App\Filament\Raddb\Resources\TestDates\Schemas;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -27,10 +27,10 @@ class TestDateForm
                     ->label('Test type')
                     ->relationship(name: 'testtype', titleAttribute: 'test_type')
                     ->required(),
-                DatePicker::make('testdate')
+                DateTimePicker::make('testdate')
                     ->label('Survey date')
-                    ->format('Y-m-d')
-                    ->displayFormat('Y-m-d')
+                    ->format('Y-m-d H:i:s')
+                    ->displayFormat('Y-m-d H:i:s')
                     ->required(),
                 TextInput::make('accession')
                     ->string()

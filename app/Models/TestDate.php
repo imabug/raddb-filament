@@ -49,7 +49,7 @@ class TestDate extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'test_date'  => 'date:Y-m-d',
+            'testdate'  => 'datetime:Y-m-d H:i:s',
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',

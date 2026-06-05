@@ -29,8 +29,7 @@ return new class () extends Migration {
                 ->constrained(table: 'testtypes')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->date('test_date')->nullable(false)->index();
-            $table->time('test_time', precision: 0)->nullable()->index();
+            $table->dateTime('testdate', precision: 0)->nullable(false)->index();
             $table->string('accession', length:50)->nullable()->index();
             $table->text('notes')->nullable();
             $table->softDeletes();

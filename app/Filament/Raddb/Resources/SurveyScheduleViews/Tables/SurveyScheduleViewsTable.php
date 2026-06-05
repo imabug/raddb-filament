@@ -3,7 +3,6 @@
 namespace App\Filament\Raddb\Resources\SurveyScheduleViews\Tables;
 
 use App\Models\Facility;
-use App\Models\SurveyScheduleView;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -26,12 +25,12 @@ class SurveyScheduleViewsTable
                            ->label('Prev Survey ID'),
                        TextColumn::make('prevSurveyDate')
                            ->label('Prev Survey Date')
-                           ->date('Y-m-d'),
+                           ->date('Y-m-d H:i:s'),
                        TextColumn::make('currSurveyId')
                            ->label('Current Survey ID'),
                        TextColumn::make('currSurveyDate')
                            ->label('Current Survey Date')
-                           ->date('Y-m-d'),
+                           ->date('Y-m-d H:i:s'),
                    ])
                    ->paginated(false)
                    ->striped()

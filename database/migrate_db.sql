@@ -41,7 +41,7 @@ insert into testdates (
     deleted_at,created_at,updated_at
 )
 select
-    id,machine_id,type_id,testdate,accession,notes,
+    id,machine_id,type_id,test_date,accession,notes,
     deleted_at,created_at,updated_at
 from raddb.testdates;
 

@@ -59,7 +59,7 @@ return new class () extends Migration {
                 ->index();
             $table->string('software_version', length:50)->nullable();
             $table->string('pacs_station', length:50)->nullable();
-            $table->text('notes')->nullable();
+            $table->text('notes')->nullable()->fulltext();
             $table->softDeletes();
             $table->timestamps();
         });

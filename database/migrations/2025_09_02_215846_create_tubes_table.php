@@ -51,7 +51,7 @@ return new class () extends Migration {
             $table->decimal('mfs', total:2, places:1)->default('0.0');
             $table->decimal('sfs', total:2, places:1)->default('0.0');
             $table->string('tube_status', 20)->index();
-            $table->text('notes')->nullable();
+            $table->text('notes')->nullable()->fulltext();
             $table->softDeletes();
             $table->timestamps();
         });

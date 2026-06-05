@@ -22,7 +22,9 @@ return new class () extends Migration {
                 ->constrained(table: 'machines')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->text('note')->nullable();
+            $table->text('note')
+                ->nullable()
+                ->fulltext();
             $table->softDeletes();
             $table->timestamps();
         });

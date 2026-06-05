@@ -38,7 +38,7 @@ class TestDate extends Model implements HasMedia
     protected $fillable = [
         'machine_id',
         'testtype_id',
-        'test_date',
+        'testdate',
         'accession',
         'notes',
     ];
@@ -92,7 +92,7 @@ class TestDate extends Model implements HasMedia
     #[Scope]
     protected function year(Builder $query, int $y): void
     {
-        $query->whereYear('test_date', '=', $y);
+        $query->whereYear('testdate', '=', $y);
     }
 
     /**
@@ -103,7 +103,7 @@ class TestDate extends Model implements HasMedia
     #[Scope]
     protected function pending(Builder $query): void
     {
-        $query->where('testdates.test_date', '>=', date('Y-m-d'));
+        $query->where('testdate', '>=', date('Y-m-d'));
     }
 
     /**
@@ -116,7 +116,7 @@ class TestDate extends Model implements HasMedia
     protected function recent(Builder $query, $n): void
     {
         $query->where('type_id', 1)
-            ->orderby('test_date', 'desc')
+            ->orderby('testdate', 'desc')
             ->limit($n);
     }
 

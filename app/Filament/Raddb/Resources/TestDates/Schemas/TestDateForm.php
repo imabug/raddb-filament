@@ -27,7 +27,7 @@ class TestDateForm
                     ->label('Test type')
                     ->relationship(name: 'testtype', titleAttribute: 'test_type')
                     ->required(),
-                DatePicker::make('test_date')
+                DatePicker::make('testdate')
                     ->label('Survey date')
                     ->format('Y-m-d')
                     ->displayFormat('Y-m-d')

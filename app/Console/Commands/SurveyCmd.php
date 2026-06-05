@@ -106,7 +106,7 @@ class SurveyCmd extends Command
             options: TestType::pluck('test_type', 'id'),
             required: true,
         );
-        $survey->test_date = text(
+        $survey->testdate = text(
             label: 'Enter the test date (YYYY-MM-DD)',
             required: true,
         );
@@ -149,7 +149,7 @@ class SurveyCmd extends Command
             default: $survey->testtype_id,
             required: true,
         );
-        $survey->test_date = text(
+        $survey->testdate = text(
             label: 'Change the survey date (YYYY-MM-DD)',
             default: $survey->test_date,
             required: true,

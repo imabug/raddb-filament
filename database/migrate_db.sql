@@ -37,11 +37,11 @@ from raddb.opnotes;
 
 # Migrate the testdates table
 insert into testdates (
-    id,machine_id,testtype_id,test_date,accession,notes,
+    id,machine_id,testtype_id,testdate,accession,notes,
     deleted_at,created_at,updated_at
 )
 select
-    id,machine_id,type_id,test_date,accession,notes,
+    id,machine_id,type_id,testdate,accession,notes,
     deleted_at,created_at,updated_at
 from raddb.testdates;
 

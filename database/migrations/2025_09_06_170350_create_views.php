@@ -19,31 +19,31 @@ return new class () extends Migration {
          * Should find a better way to do this.
          */
         DB::statement("
-CREATE VIEW lastyear_view (machine_id, survey_id, test_date) AS
-SELECT machine_id, testdates.id as survey_id, test_date
+CREATE VIEW lastyear_view (machine_id, survey_id, testdate) AS
+SELECT machine_id, id as survey_id, testdate
 FROM testdates
-WHERE test_date
+WHERE testdate
 BETWEEN MAKEDATE(YEAR(CURDATE())-1, 1) AND MAKEDATE(YEAR(CURDATE()), 1)
-AND testdates.deleted_at IS NULL
-AND (testdates.testtype_id=1 OR testdates.testtype_id=2)
+AND deleted_at IS NULL
+AND (testtype_id=1 OR testtype_id=2)
 ");
 
         DB::statement("
-CREATE VIEW thisyear_view (machine_id, survey_id, test_date) AS
-SELECT machine_id, testdates.id as survey_id, test_date
+CREATE VIEW thisyear_view (machine_id, survey_id, testdate) AS
+SELECT machine_id, id as survey_id, testdate
 FROM testdates
-WHERE testdates.test_date BETWEEN
+WHERE testdate BETWEEN
 MAKEDATE(YEAR(CURDATE()), 1) AND MAKEDATE(YEAR(CURDATE())+1, 1)
-AND testdates.deleted_at IS NULL
-AND (testdates.testtype_id=1 OR testdates.testtype_id=2)
+AND deleted_at IS NULL
+AND (testtype_id=1 OR testtype_id=2)
 ");
 
         // surveyschedule view
         DB::statement("
 CREATE VIEW surveyschedule_view (id, description, prevSurveyId, prevSurveyDate, currSurveyId, currSurveyDate) AS
 SELECT machines.id, machines.description,
-lastyear_view.survey_id as prevSurveyId, lastyear_view.test_date as prevSurveyDate,
-thisyear_view.survey_id as currSurveyId, thisyear_view.test_date as currSurveyDate
+lastyear_view.survey_id as prevSurveyId, lastyear_view.testdate as prevSurveyDate,
+thisyear_view.survey_id as currSurveyId, thisyear_view.testdate as currSurveyDate
 FROM machines
 LEFT JOIN thisyear_view on machines.id = thisyear_view.machine_id
 LEFT JOIN lastyear_view on machines.id = lastyear_view.machine_id

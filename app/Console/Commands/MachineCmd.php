@@ -47,9 +47,9 @@ class MachineCmd extends Command
             if (is_null($this->argument('id'))) {
                 $machine = Machine::find(
                     search(
-                        label: 'Search for the machine description to edit',
+                        label: 'Search for the machine to work on',
                         options: fn(string $value) => strlen($value) > 0
-                            ? Machine::whereLike('description', '%{$value}%')
+                            ? Machine::whereLike('description', '%' . $value . '%')
                             ->active()
                             ->orderBy('description')
                             ->pluck('description', 'id')

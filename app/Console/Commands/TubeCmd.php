@@ -43,7 +43,7 @@ class TubeCmd extends Command
                 search(
                     label: 'Search for the machine description to edit',
                     options: fn(string $value) => strlen($value) > 0
-                        ? Machine::whereLike('description', '%{$value}%')
+                        ? Machine::whereLike('description', '%' . $value . '%')
                         ->active()
                         ->orderBy('description')
                         ->pluck('description', 'id')

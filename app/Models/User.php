@@ -59,7 +59,7 @@ class User extends Authenticatable
         return $this->hasMany(TestedBy::class);
     }
 
-    public function test_dates(): BelongsToMany
+    public function testDates(): BelongsToMany
     {
         return $this->belongsToMany(TestDate::class);
     }

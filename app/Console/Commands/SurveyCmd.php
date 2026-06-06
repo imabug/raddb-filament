@@ -103,7 +103,7 @@ class SurveyCmd extends Command
 
         $survey->testtype_id = select(
             label: 'Enter the test type',
-            options: TestType::pluck('test_type', 'id'),
+            options: TestType::pluck('testtype', 'id'),
             required: true,
         );
         $survey->testdate = text(
@@ -145,7 +145,7 @@ class SurveyCmd extends Command
         );
         $survey->testtype_id = select(
             label: 'Change the survey type',
-            options: TestType::pluck('test_type', 'id'),
+            options: TestType::pluck('testtype', 'id'),
             default: $survey->testtype_id,
             required: true,
         );

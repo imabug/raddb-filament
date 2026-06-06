@@ -71,7 +71,7 @@ class SurveyCategoryCountWidget extends ChartWidget
                               ->year($this->filter)
                               ->whereNotIn('testtype_id', [8, 10])
                               ->get()
-                              ->countBy('testtype.test_type')
+                              ->countBy('testtype.testtype')
                               ->sortDesc();
 
         return [

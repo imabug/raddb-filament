@@ -77,7 +77,7 @@ return new class () extends Migration {
          */
         Schema::create('testtypes', function (Blueprint $table) {
             $table->id();
-            $table->string('test_type', 30)->nullable(false)->index();
+            $table->string('testtype', 30)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });

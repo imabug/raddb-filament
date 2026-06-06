@@ -22,7 +22,7 @@ class TestTypeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
-    protected static ?string $recordTitleAttribute = 'test_type';
+    protected static ?string $recordTitleAttribute = 'testtype';
 
     public static function form(Schema $schema): Schema
     {

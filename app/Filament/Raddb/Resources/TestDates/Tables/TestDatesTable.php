@@ -22,7 +22,7 @@ class TestDatesTable
             ->columns([
                 TextColumn::make('machine.description')
                     ->searchable(),
-                TextColumn::make('testtype.test_type')
+                TextColumn::make('testtype.testtype')
                     ->sortable(),
                 TextColumn::make('testdate')
                     ->dateTime('Y-m-d H:i:s')

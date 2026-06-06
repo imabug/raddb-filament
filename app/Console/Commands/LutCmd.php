@@ -162,7 +162,7 @@ class LutCmd extends Command implements PromptsForMissingInput
                 break;
             case 'Testtype':
                 $lut = new TestType();
-                $lut->test_type = text(
+                $lut->testtype = text(
                     label: 'Enter a new test type',
                     required: true,
                     validate: fn(string $value) => match (true) {

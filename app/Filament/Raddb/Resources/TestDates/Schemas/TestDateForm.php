@@ -25,7 +25,7 @@ class TestDateForm
                     ->required(),
                 Select::make('testtype_id')
                     ->label('Test type')
-                    ->relationship(name: 'testtype', titleAttribute: 'test_type')
+                    ->relationship(name: 'testtype', titleAttribute: 'testtype')
                     ->required(),
                 DateTimePicker::make('testdate')
                     ->label('Survey date')

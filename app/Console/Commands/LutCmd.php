@@ -49,7 +49,7 @@ class LutCmd extends Command implements PromptsForMissingInput
     public function handle()
     {
         $cmd = Str::lower($this->argument('cmd'));
-        $table = Str::ucfirst($this->argument('table'));
+        $table = Str::studly($this->argument('table'));
 
         switch ($cmd) {
             case 'add':
@@ -191,7 +191,7 @@ class LutCmd extends Command implements PromptsForMissingInput
         // Fully qualified model name from the $table provided
         $modelClass = "\App\Models\\" . $table;
         // Attribute in the database table
-        $tableAttr = Str::lower($table);
+        $tableAttr = Str::snake($table);
         // Lookup table model instance
         $lut = null;
 
@@ -320,7 +320,7 @@ class LutCmd extends Command implements PromptsForMissingInput
         // Fully qualified model name from the provided $table
         $modelClass = "\App\Models\\" . $table;
         // Attribute in the database table
-        $tableAttr = Str::lower($table);
+        $tableAttr = Str::snake($table);
         // Lookup table model instance
         $lut = null;
 
@@ -351,7 +351,7 @@ class LutCmd extends Command implements PromptsForMissingInput
 
         table(
             ['ID', $table],
-            $modelClass::all(['id', Str::lower($table)])->toArray(),
+            $modelClass::all(['id', Str::snake($table)])->toArray(),
         );
 
         return 0;

@@ -351,7 +351,7 @@ class LutCmd extends Command implements PromptsForMissingInput
 
         table(
             ['ID', $table],
-            $modelClass::all(['id', $table])->toArray(),
+            $modelClass::all(['id', Str::lower($table)])->toArray(),
         );
 
         return 0;

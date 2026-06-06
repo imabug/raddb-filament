@@ -16,6 +16,7 @@ return new class extends Migration
          * surveys to users.
          */
         Schema::create('testdate_user', function (Blueprint $table) {
+            $tablle->id();
             $table->foreignId('testdate_id')
                 ->unsigned()
                 ->nullable(false)

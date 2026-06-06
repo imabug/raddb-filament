@@ -25,7 +25,7 @@ class TubeForm
                     ->required(),
                 Select::make('housing_manuf_id')
                     ->label('Housing manufacturer')
-                    ->relationship(name: 'housing_manuf', titleAttribute: 'manufacturer')
+                    ->relationship(name: 'housingManuf', titleAttribute: 'manufacturer')
                     ->default(null),
                 TextInput::make('housing_model')
                     ->default(null),
@@ -34,7 +34,7 @@ class TubeForm
                     ->default(null),
                 Select::make('insert_manuf_id')
                     ->label('Insert manufacturer')
-                    ->relationship(name: 'insert_manuf', titleAttribute: 'manufacturer')
+                    ->relationship(name: 'insertManuf', titleAttribute: 'manufacturer')
                     ->default(null),
                 TextInput::make('insert_model')
                     ->default(null),

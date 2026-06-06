@@ -17,7 +17,7 @@ class LastYear extends Model
     protected function casts(): array
     {
         return [
-            'testdate' => 'date:Y-m-d H:i:s',
+            'test_date' => 'date:Y-m-d H:i:s',
         ];
     }
 

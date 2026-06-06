@@ -116,12 +116,12 @@ class Machine extends Model implements HasMedia
         return $this->hasMany(Tube::class);
     }
 
-    public function opnote(): HasMany
+    public function opNote(): HasMany
     {
         return $this->hasMany(OpNote::class);
     }
 
-    public function testdate(): HasMany
+    public function testDate(): HasMany
     {
         return $this->hasMany(TestDate::class);
     }
@@ -136,7 +136,7 @@ class Machine extends Model implements HasMedia
         return $this->hasMany(LastYear::class);
     }
 
-    public function testdateRecent(): HasMany
+    public function testDateRecent(): HasMany
     {
         return $this->hasMany(TestDate::class)
             ->latest('test_date')->first();

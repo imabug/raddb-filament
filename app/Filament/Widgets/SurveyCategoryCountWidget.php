@@ -39,7 +39,7 @@ class SurveyCategoryCountWidget extends ChartWidget
     {
         $yearFilter[] = 0;
         // Get a collection of all the survey years in the database
-        $years = TestDate::selectRaw('year(testdate) as years')
+        $years = TestDate::selectRaw('year(test_date) as years')
                      ->distinct()
                      ->orderBy('years', 'desc')
                      ->get()
@@ -69,7 +69,7 @@ class SurveyCategoryCountWidget extends ChartWidget
          */
         $categoryCounts = TestDate::with('testtype')
                               ->year($this->filter)
-                              ->whereNotIn('testtype_id', [8, 10])
+                              ->whereNotIn('test_type_id', [8, 10])
                               ->get()
                               ->countBy('testtype.testtype')
                               ->sortDesc();

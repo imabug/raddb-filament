@@ -14,13 +14,6 @@ class OpNote extends Model
     use SoftDeletes;
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'opnotes';
-
-    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>

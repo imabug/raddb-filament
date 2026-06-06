@@ -13,7 +13,7 @@ return new class () extends Migration {
         /*
          * Table to store operational notes for machines
          */
-        Schema::create('opnotes', function (Blueprint $table) {
+        Schema::create('op_notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('machine_id')
                 ->comment('Foreign key to machines table')

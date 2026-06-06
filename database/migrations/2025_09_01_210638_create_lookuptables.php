@@ -75,9 +75,9 @@ return new class () extends Migration {
          * Testtypes table
          * Stores types of testing performed (routine, acceptance, etc)
          */
-        Schema::create('testtypes', function (Blueprint $table) {
+        Schema::create('test_types', function (Blueprint $table) {
             $table->id();
-            $table->string('testtype', 30)->nullable(false)->index();
+            $table->string('test_type', 30)->nullable(false)->index();
             $table->softDeletes();
             $table->timestamps();
         });

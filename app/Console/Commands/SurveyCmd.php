@@ -101,12 +101,12 @@ class SurveyCmd extends Command
 
         $survey->machine_id = $machine->id;
 
-        $survey->testtype_id = select(
+        $survey->test_type_id = select(
             label: 'Enter the test type',
             options: TestType::pluck('testtype', 'id'),
             required: true,
         );
-        $survey->testdate = text(
+        $survey->test_date = text(
             label: 'Enter the test date (YYYY-MM-DD)',
             required: true,
         );
@@ -143,13 +143,13 @@ class SurveyCmd extends Command
             default: $survey->machine_id,
             required: true,
         );
-        $survey->testtype_id = select(
+        $survey->test_type_id = select(
             label: 'Change the survey type',
             options: TestType::pluck('testtype', 'id'),
-            default: $survey->testtype_id,
+            default: $survey->test_type_id,
             required: true,
         );
-        $survey->testdate = text(
+        $survey->test_date = text(
             label: 'Change the survey date (YYYY-MM-DD)',
             default: $survey->test_date,
             required: true,

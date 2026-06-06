@@ -15,13 +15,13 @@ return new class extends Migration
          * Many-many relationship table (pivot table) to connect
          * surveys to users.
          */
-        Schema::create('testdate_user', function (Blueprint $table) {
-            $tablle->id();
-            $table->foreignId('testdate_id')
+        Schema::create('test_date_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('test_date_id')
                 ->unsigned()
                 ->nullable(false)
                 ->index()
-                ->constrained(table: 'testdates')
+                ->constrained(table: 'test_dates')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('user_id')

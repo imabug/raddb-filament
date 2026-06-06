@@ -14,14 +14,14 @@ class TubeInfolist
             ->components([
                 TextEntry::make('machine.description')
                     ->label('Machine'),
-                TextEntry::make('housing_manuf.manufacturer')
+                TextEntry::make('housingManuf.manufacturer')
                     ->label('Housing manuf')
                     ->placeholder('-'),
                 TextEntry::make('housing_model')
                     ->placeholder('-'),
                 TextEntry::make('housing_sn')
                     ->placeholder('-'),
-                TextEntry::make('insert_manuf.manufacturer')
+                TextEntry::make('insertManuf.manufacturer')
                     ->label('Insert manuf')
                     ->placeholder('-'),
                 TextEntry::make('insert_model')

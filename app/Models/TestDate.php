@@ -15,7 +15,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-#[Table('testdates')]
+#[Table('test_dates')]
 class TestDate extends Model implements HasMedia
 {
     use SoftDeletes;
@@ -28,7 +28,7 @@ class TestDate extends Model implements HasMedia
      */
     protected $with = [
         'machine',
-        'testtype',
+        'testType',
     ];
 
     /**
@@ -38,8 +38,8 @@ class TestDate extends Model implements HasMedia
      */
     protected $fillable = [
         'machine_id',
-        'testtype_id',
-        'testdate',
+        'test_type_id',
+        'test_date',
         'accession',
         'notes',
     ];
@@ -50,7 +50,7 @@ class TestDate extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'testdate'  => 'datetime:Y-m-d H:i:s',
+            'test_date'  => 'datetime:Y-m-d H:i:s',
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
@@ -71,17 +71,17 @@ class TestDate extends Model implements HasMedia
         return $this->belongsTo(Machine::class);
     }
 
-    public function testtype(): BelongsTo
+    public function testType(): BelongsTo
     {
-        return $this->belongsTo(TestType::class, 'testtype_id');
+        return $this->belongsTo(TestType::class);
     }
 
-    public function thisyear(): HasOne
+    public function thisYear(): HasOne
     {
         return $this->hasOne(ThisYear::class, 'survey_id');
     }
 
-    public function lastyear(): HasOne
+    public function lastYear(): HasOne
     {
         return $this->hasOne(LastYear::class, 'survey_id');
     }
@@ -98,7 +98,7 @@ class TestDate extends Model implements HasMedia
     #[Scope]
     protected function year(Builder $query, int $y): void
     {
-        $query->whereYear('testdate', '=', $y);
+        $query->whereYear('test_date', '=', $y);
     }
 
     /**
@@ -109,7 +109,7 @@ class TestDate extends Model implements HasMedia
     #[Scope]
     protected function pending(Builder $query): void
     {
-        $query->where('testdate', '>=', date('Y-m-d'));
+        $query->where('test_date', '>=', date('Y-m-d'));
     }
 
     /**
@@ -121,8 +121,8 @@ class TestDate extends Model implements HasMedia
     #[Scope]
     protected function recent(Builder $query, $n): void
     {
-        $query->where('type_id', 1)
-            ->orderby('testdate', 'desc')
+        $query->where('test_type_id', 1)
+            ->orderby('test_date', 'desc')
             ->limit($n);
     }
 

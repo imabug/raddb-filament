@@ -28,7 +28,7 @@ select
 from raddb.media;
 
 # Migrate the opnotes table
-insert into opnotes (
+insert into op_notes (
     id,machine_id,note,deleted_at,created_at,updated_at
 )
 select
@@ -36,8 +36,8 @@ select
 from raddb.opnotes;
 
 # Migrate the testdates table
-insert into testdates (
-    id,machine_id,testtype_id,testdate,accession,notes,
+insert into test_dates (
+    id,machine_id,test_type_id,test_date,accession,notes,
     deleted_at,created_at,updated_at
 )
 select

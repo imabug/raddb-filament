@@ -23,11 +23,11 @@ class TestDateForm
                         modifyQueryUsing: fn(Builder $query) => $query->active(),
                     )
                     ->required(),
-                Select::make('testtype_id')
+                Select::make('test_type_id')
                     ->label('Test type')
-                    ->relationship(name: 'testtype', titleAttribute: 'testtype')
+                    ->relationship(name: 'testType', titleAttribute: 'test_type')
                     ->required(),
-                DateTimePicker::make('testdate')
+                DateTimePicker::make('test_date')
                     ->label('Survey date')
                     ->format('Y-m-d H:i:s')
                     ->displayFormat('Y-m-d H:i:s')

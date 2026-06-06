@@ -15,7 +15,7 @@ class ThisYear extends Model
     protected function casts(): array
     {
         return [
-            'testdate' => 'date:Y-m-d',
+            'test_date' => 'date:Y-m-d',
         ];
     }
 

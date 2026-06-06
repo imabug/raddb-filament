@@ -13,7 +13,7 @@ return new class () extends Migration {
         /*
          * Table to store equipment survey dates
          */
-        Schema::create('testdates', function (Blueprint $table) {
+        Schema::create('test_dates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('machine_id')
                 ->comment('Foreign key to machines table')
@@ -22,14 +22,14 @@ return new class () extends Migration {
                 ->constrained(table: 'machines')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->foreignId('testtype_id')
+            $table->foreignId('test_type_id')
                 ->comment('Foreign key to testtypes table')
                 ->nullable(false)
                 ->index()
-                ->constrained(table: 'testtypes')
+                ->constrained(table: 'test_types')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->dateTime('testdate', precision: 0)->nullable(false)->index();
+            $table->dateTime('test_date', precision: 0)->nullable(false)->index();
             $table->string('accession', length:50)->nullable()->index();
             $table->text('notes')->nullable();
             $table->softDeletes();

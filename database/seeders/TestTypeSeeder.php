@@ -33,7 +33,7 @@ class TestTypeSeeder extends Seeder
     public function run(): void
     {
         foreach ($this->testTypes as $t) {
-            DB::table('testtypes')->insert([
+            DB::table('test_types')->insert([
                 'test_type' => $t,
             ]);
         }

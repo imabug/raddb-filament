@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Table('testtypes')]
 class TestType extends Model
 {
     use SoftDeletes;
@@ -17,7 +16,7 @@ class TestType extends Model
      *
      * @var array<string>
      */
-    protected $fillable = ['testtype'];
+    protected $fillable = ['test_type'];
 
     /*
      * Attribute casting
@@ -32,8 +31,8 @@ class TestType extends Model
     }
 
     // Relationships
-    public function testdate(): HasMany
+    public function test_date(): HasMany
     {
-        return $this->hasMany(TestDate::class, 'testtype_id');
+        return $this->hasMany(TestDate::class);
     }
 }

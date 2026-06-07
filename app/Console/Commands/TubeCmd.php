@@ -35,6 +35,7 @@ class TubeCmd extends Command
     public function handle()
     {
         $cmd = Str::lower($this->argument('cmd'));
+        $machine = new Machine();
 
         // No id was provided in the argument, so prompt for a machine
         // to operate on

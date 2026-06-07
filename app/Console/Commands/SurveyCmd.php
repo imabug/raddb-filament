@@ -33,6 +33,7 @@ class SurveyCmd extends Command
     public function handle()
     {
         $cmd = Str::lower($this->argument('cmd'));
+        $survey = new TestDate();
 
         switch ($cmd) {
             case 'add':

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,7 +54,7 @@ class Tube extends Model
     protected function casts(): array
     {
         return [
-            'tube_status' => \App\Enums\Status::class,
+            'tube_status' => Status::class,
             'created_at'   => 'datetime',
             'deleted_at'   => 'datetime',
             'updated_at'   => 'datetime',
@@ -94,7 +95,7 @@ class Tube extends Model
     #[Scope]
     protected function active(Builder $query): void
     {
-        $query->where('tube_status', 'Active');
+        $query->where('tube_status', Status::Active);
     }
 
     /*

@@ -15,7 +15,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-#[Table('test_dates')]
 class TestDate extends Model implements HasMedia
 {
     use SoftDeletes;

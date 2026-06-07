@@ -11,13 +11,6 @@ class Modality extends Model
     use SoftDeletes;
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'modalities';
-
-    /**
      * Attributes that are mass assignable.
      *
      * @var array<string>

@@ -28,8 +28,8 @@ class SurveyScheduleView extends Model
     protected function casts(): array
     {
         return [
-            'prevSurveyDate' => 'date:Y-m-d',
-            'currSurveyDate' => 'date:Y-m-d',
+            'prevSurveyDate' => 'date:Y-m-d H:i:s',
+            'currSurveyDate' => 'date:Y-m-d H:i:s',
         ];
     }
 
